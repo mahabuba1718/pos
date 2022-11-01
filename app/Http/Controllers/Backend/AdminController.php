@@ -13,9 +13,11 @@ use App\Models\Supplier;
 use App\Models\Type;
 use App\Models\Unit;
 use App\Models\User;
+use Faker\Provider\Medical;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use File;
 
 class AdminController extends Controller
 {
@@ -166,6 +168,16 @@ class AdminController extends Controller
         return view('backend.layout.medicine', compact('admedicine','categories','units','types'));
   
     }
+    public function editmedicine($med_id)
+    {
+        $med = Medicine::find($med_id);
+        $categories=Category::all();
+        $units=Unit::all();
+        $types=Type::all();
+        // dd($med);
+        return view('backend.layout.editmedicine',compact('med','categories','units','types'));
+    }
+    
     public function admedicine(Request $request)
         {
             // dd($request->all());
@@ -201,6 +213,62 @@ class AdminController extends Controller
                     'description'=>$request->description,
                 ]
             );
+            return redirect()-> back();
+        }
+
+        public function updatemedicine(Request $request)
+        {
+            // dd($request->all());
+
+            // $request->validate(
+            //     [
+            //     'name' => ['required'],
+            //     'genericname' => ['required'],
+            //     'category_id' => ['required'],
+            //     'unit_id' => ['required'],
+            //     'type_id' => ['required'],
+            //     'price' => ['required'],
+            //     ]
+            // );
+            $med = Medicine::find($request->medicine_id);
+            $filename = $med->image;
+            if($request->hasFile('image')){
+                $destination = 'uploads/medicine/'.$med->image;
+                if(File::exists($destination)){
+                    File::delete($destination);
+                }
+                $file = $request->file('image');
+                if($file->isValid()){
+                    $filename = date('Ymdhms').'.'.$file->getClientOriginalExtension();
+                    $file->storeAs('medicine',$filename);
+                }
+            }
+           
+            Medicine::find($request->medicine_id)->update(
+                [
+                    'image'=>$filename,
+                    'name'=>$request->name,
+                    'genericname'=>$request->genericname,
+                    'category_id'=>$request->category,
+                    'unit_id'=>$request->unit,
+                    'type_id'=>$request->type,
+                    'price'=>$request->price,
+                    'purchaseprice'=>$request->purchaseprice,
+                    'description'=>$request->description,
+                ]
+            );
+            return redirect()->route('medicine');
+        }
+
+        public function deletemedicine($med_id){
+            $med = Medicine::find($med_id);
+
+            $destination = 'uploads/medicine/'.$med->image;
+            if(File::exists($destination)){
+                File::delete($destination);
+            }
+
+            $med->delete();
             return redirect()-> back();
         }
 

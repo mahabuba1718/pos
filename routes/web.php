@@ -44,7 +44,10 @@ Route::post('/create/supplier',[AdminController::class,'supplier'])->name('suppl
 
 // medicine
 Route::get('/medicine',[AdminController::class,'medicine'])->name('medicine');
+Route::get('/editmedicine/{med_id}',[AdminController::class,'editmedicine'])->name('editmedicine');
 Route::post('/create/medicine',[AdminController::class,'admedicine'])->name('admedicine');
+Route::put('/update/medicine',[AdminController::class,'updatemedicine'])->name('updatemedicine');
+Route::get('/deletemedicine/{med_id}',[AdminController::class,'deletemedicine'])->name('deletemedicine');
 
 // category
 Route::get('/category',[AdminController::class,'category'])->name('category');

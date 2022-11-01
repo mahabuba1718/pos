@@ -259,7 +259,7 @@
                                                         style="font-size: 0.7rem; background-color: #008080;"
                                                         data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                         title="Edit">
-                                                        <a href="" class="text-light">
+                                                        <a href="{{route('editmedicine',$medicine->id)}}" class="text-light">
                                                             <i class="fa-solid fa-pencil"></i>
                                                         </a>
                                                     </button>
@@ -267,7 +267,7 @@
                                                         style="font-size: 0.7rem;" data-bs-toggle="tooltip"
                                                         data-bs-placement="bottom" title="Delete"
                                                         >
-                                                        <a href="" class="text-light">
+                                                        <a href="{{route('deletemedicine',$medicine->id)}}" class="text-light">
                                                             <i class="fa-solid fa-trash"></i>
                                                         </a>
                                                     </button>
