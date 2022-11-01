@@ -37,9 +37,10 @@
                                     <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
                                         <div class="card">
                                             @if($medicine->image != null)
-                                            <img class="card-img-top" src="{{asset('/uploads/medicine/'.$medicine->image)}}" alt="image">
+                                            <img class="card-img-top"
+                                                src="{{asset('/uploads/medicine/'.$medicine->image)}}" alt="image" style="height: 100px">
                                             @endif
-                                            <div class="card-body">
+                                            <div class="card-body text-center" style="padding: 0.2rem;">
                                                 <h6 class="card-title ">
                                                     {{$medicine->name}}
                                                 </h6>
@@ -53,7 +54,7 @@
                     </div>
                     <input type="hidden" name="purchase" value="0">
                 </div>
-            
+
                 <div class="col-lg-6 ">
                     <form action="" method="post">
 
@@ -116,7 +117,8 @@
                                                 <td>
                                                     <div class="input-group">
                                                         <input type="number" readonly value="0" name="net_total"
-                                                            class="form-control sub_total border-0" placeholder="Net Total">
+                                                            class="form-control sub_total border-0"
+                                                            placeholder="Net Total">
                                                     </div>
                                                 </td>
                                                 <td></td>
@@ -145,26 +147,27 @@
                                             <tr>
                                                 <td colspan="3" style="text-align: end;">Total</td>
                                                 <td>
-                                                    <input type="number" step="0.1" value="0" readonly name="total_amount"
-                                                        name="total_amount" class="form-control total_amount border-0"
-                                                        placeholder="Total">
+                                                    <input type="number" step="0.1" value="0" readonly
+                                                        name="total_amount" name="total_amount"
+                                                        class="form-control total_amount border-0" placeholder="Total">
                                                 </td>
                                                 <td></td>
                                             </tr>
                                             <tr>
                                                 <td colspan="3" style="text-align: end;">Paid</td>
                                                 <td>
-                                                    <input type="number" step="0.1" value="0" readonly name="paid_amount"
-                                                        name="paid_amount" class="form-control paid_amount border-0"
-                                                        placeholder="Paid">
+                                                    <input type="number" step="0.1" value="0" readonly
+                                                        name="paid_amount" name="paid_amount"
+                                                        class="form-control paid_amount border-0" placeholder="Paid">
                                                 </td>
                                                 <td></td>
                                             </tr>
                                             <tr>
                                                 <td colspan="3" style="text-align: end;">Change Amount</td>
                                                 <td>
-                                                    <input type="number" step="0.1" value="0" readonly name="change_amount"
-                                                        name="change_amount" class="form-control change_amount border-0"
+                                                    <input type="number" step="0.1" value="0" readonly
+                                                        name="change_amount" name="change_amount"
+                                                        class="form-control change_amount border-0"
                                                         placeholder="change_amount">
                                                 </td>
                                                 <td></td>

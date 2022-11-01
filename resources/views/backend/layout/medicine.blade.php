@@ -4,6 +4,12 @@
     .m-1{
         margin: 0.1rem!important;
     }
+    .p-1{
+        padding: 1rem!important;
+    }
+    .p-2{
+        padding: 2rem!important;
+    }
 </style>
 <div class="container-fluid px-0">
 
@@ -185,17 +191,17 @@
                                     <table class="table table-striped text-center">
                                         <thead>
                                             <tr>
-                                                <th scope="col" class="">#</th>
-                                                <th scope="col" class="">Image</th>
-                                                <th scope="col" class="">Name</th>
-                                                <th scope="col" class="">Generic Name</th>
-                                                <th scope="col" class="">Category</th>
-                                                <th scope="col" class="">Unit</th>
-                                                <th scope="col" class="">Type</th>
-                                                <th scope="col" class="">Price(BDT)</th>
-                                                <th scope="col" class="">Purchase Price(BDT)</th>
-                                                <th scope="col" class="">Status</th>
-                                                <th scope="col" class="">Action</th>
+                                                <th scope="col" class="" width="5%">#</th>
+                                                <th scope="col" class="" width="9%">Image</th>
+                                                <th scope="col" class="" width="7%">Name</th>
+                                                <th scope="col" class="" width="12%">Generic Name</th>
+                                                <th scope="col" class="" width="9%">Category</th>
+                                                <th scope="col" class="" width="8%">Unit</th>
+                                                <th scope="col" class="" width="9%">Type</th>
+                                                <th scope="col" class="" width="9%">Price(BDT)</th>
+                                                <th scope="col" class="" width="9%">Purchase Price(BDT)</th>
+                                                <th scope="col" class="" width="7%">Status</th>
+                                                <th scope="col" class="" width="15%">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -207,7 +213,7 @@
                                                     <img class="" src="{{asset('/uploads/medicine/'.$medicine->image)}}" alt="image">
                                                     @endif
                                                 </td>
-                                                <td scope="col" class="my-auto">{{$medicine->name}}</td>
+                                                <td scope="col" class="">{{$medicine->name}}</td>
                                                 <td scope="col" class="">{{$medicine->genericname}} </td>
                                                 <td scope="col" class="">{{$medicine->category->name}}</td>
                                                 <td scope="col" class="">{{$medicine->unit->name}}</td>
@@ -224,7 +230,7 @@
                                                     </div>
                                                     @endif
                                                 </td>
-                                                <td scope="col" style="display: flex; flex-wrap: nowrap;">
+                                                <td scope="col" class="p-1" style="display: flex; flex-wrap: nowrap;">
                                                 <button type="button" class="m-1 btn editRow float-right text-light"
                                                         style="font-size: 0.7rem; background-color: #7fa390"
                                                         data-bs-toggle="modal" data-bs-target="#myModal1">                                                    

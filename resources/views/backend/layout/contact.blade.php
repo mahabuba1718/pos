@@ -257,7 +257,7 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <form action="{{route('supplier')}}" method="POST">
+                                    <form action="{{route('supplier')}}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="modal" id="myModal2">
                                             <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -369,9 +369,9 @@
                                                         <tr class="text-center">
                                                             <td scope="col" class="">{{$key+1}}</td>
                                                             <td>
-                                                                {{$supplied->image}}
-                                                                <!-- <img class="" src="img/admin.jpg" alt="image"
-                                                                    style="width: 70px; height: 60px;"> -->
+                                                                @if($supplied->image !=null)
+                                                                <img class="" src="{{asset('/uploads/supplier/'.$supplied->image)}}" alt="image">
+                                                                @endif
                                                             </td>
                                                             <td scope="col" class="my-auto">{{$supplied->name}}</td>
                                                             <td scope="col" class="my-auto">{{$supplied->supplier_id}}</td>

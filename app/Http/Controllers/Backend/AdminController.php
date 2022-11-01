@@ -70,6 +70,7 @@ class AdminController extends Controller
     }
     public function supplier(Request $request)
     {
+        // dd($request->all());
         $request->validate(
             [
             'name' => ['required'],
@@ -77,13 +78,23 @@ class AdminController extends Controller
             'email' => ['required','email'],
             ]
         );
+        $filename = '';
+        if ($request->hasFile('image'))
+        {
+            $file = $request ->file('image');
+            if($file-> isValid())
+            {
+                $filename = date('Ymdhms'). '.' .$file->getClientOriginalExtension();
+                $file -> storeAs('supplier',$filename);
+            }
+        }
         Supplier::create(
             [
                 'name'=>$request->name,
                 'supplier_id'=>$request->supplier_id,
                 'email'=>$request->email,
                 'phone'=>$request->phone,
-                'image'=>$request->image,
+                'image'=>$filename,
             ]
         );
         return redirect()-> back();
@@ -181,7 +192,8 @@ class AdminController extends Controller
     public function admedicine(Request $request)
         {
             // dd($request->all());
-            $request->validate(
+            $request->validate
+            (
                 [
                 'name' => ['required'],
                 'genericname' => ['required'],
@@ -192,9 +204,11 @@ class AdminController extends Controller
                 ]
             );
             $filename = '';
-            if($request->hasFile('image')){
+            if($request->hasFile('image'))
+            {
                 $file = $request->file('image');
-                if($file->isValid()){
+                if($file->isValid())
+                {
                     $filename = date('Ymdhms').'.'.$file->getClientOriginalExtension();
                     $file->storeAs('medicine',$filename);
                 }
@@ -232,13 +246,16 @@ class AdminController extends Controller
             // );
             $med = Medicine::find($request->medicine_id);
             $filename = $med->image;
-            if($request->hasFile('image')){
+            if($request->hasFile('image'))
+            {
                 $destination = 'uploads/medicine/'.$med->image;
-                if(File::exists($destination)){
+                if(File::exists($destination))
+                {
                     File::delete($destination);
                 }
                 $file = $request->file('image');
-                if($file->isValid()){
+                if($file->isValid())
+                {
                     $filename = date('Ymdhms').'.'.$file->getClientOriginalExtension();
                     $file->storeAs('medicine',$filename);
                 }
@@ -260,14 +277,15 @@ class AdminController extends Controller
             return redirect()->route('medicine');
         }
 
-        public function deletemedicine($med_id){
+        public function deletemedicine($med_id)
+        {
             $med = Medicine::find($med_id);
 
             $destination = 'uploads/medicine/'.$med->image;
-            if(File::exists($destination)){
+            if(File::exists($destination))
+            {
                 File::delete($destination);
             }
-
             $med->delete();
             return redirect()-> back();
         }
@@ -378,7 +396,6 @@ class AdminController extends Controller
     public function pos()
     {
         $medicines = Medicine::where('stock_status','1')->get();
-
         return view('backend.layout.pos',compact('medicines'));
     }
 
@@ -400,7 +417,6 @@ class AdminController extends Controller
     }
     public function change(Request $request)
     {
-        // dd($request->all());
         $request->validate(
             [
             'sitename' => ['required'],
@@ -441,11 +457,9 @@ class AdminController extends Controller
                 'name'=> $request -> name,
                 'email'=> $request -> email,
                 'password'=> Hash::make($request ->password),
-                
             ]
-
         );
-        return redirect()-> back()->with('message','success');
+        return redirect('/')->with('message','Register Successfully');
     }
 
     // login
@@ -467,10 +481,7 @@ class AdminController extends Controller
                 {
                     return redirect()->route('dashboard')->with('message', 'Pharmacist Login Successful');
                 }
-                else
-                {
-                    return redirect()->back()->with('message','unauthoried');
-                }
+                return redirect('/')->with('message','unauthoried');  
             } 
 
         return back()->withErrors([
