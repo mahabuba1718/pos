@@ -33,7 +33,19 @@
                                 <input class="form-control mb-3" type="text" placeholder="Enter Medicine Name"
                                     name="medicine_name">
                                 <div class="row pos_div">
+                                    @foreach($medicines as $medicine)
                                     <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
+                                        <div class="card">
+                                            <img class="card-img-top" src="" alt="image">
+                                            <div class="card-body">
+                                                <h6 class="card-title ">
+                                                    {{$medicine->name}}
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                    <!-- <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
                                         <div class="card">
                                             <img class="card-img-top" src="" alt="image">
                                             <div class="card-body">
@@ -72,17 +84,7 @@
                                                 </h6>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
-                                        <div class="card">
-                                            <img class="card-img-top" src="" alt="image">
-                                            <div class="card-body">
-                                                <h6 class="card-title ">
-                                                    Medicine
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

@@ -98,7 +98,7 @@
                                                         <select class="form-select" name="medicine" id="medicine">
                                                             <option selected>Select One</option>
                                                             @foreach($admedicine as $key => $medicine)
-                                                            <option value="{{$medicine->name}}">{{$medicine->name}}</option>
+                                                            <option value="{{$medicine->id}}">{{$medicine->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </td>

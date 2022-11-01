@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('purchaseprice');
             $table->text('description')->nullable();
             $table->boolean('status')->default(true);
+            $table->boolean('stock_status')->default(0);
             $table->timestamps();
         });
     }

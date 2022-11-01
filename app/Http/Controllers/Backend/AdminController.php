@@ -276,8 +276,14 @@ class AdminController extends Controller
                 'description'=>$request->description,
             ]
         );
+
+        Medicine::find($request->medicine)->update([
+            'stock_status' => '1',
+        ]);
+
         return redirect()-> back();
     }
+
 
     // stock
     public function stock_report()
@@ -294,7 +300,9 @@ class AdminController extends Controller
     // pos
     public function pos()
     {
-        return view('backend.layout.pos');
+        $medicines = Medicine::where('stock_status','1')->get();
+
+        return view('backend.layout.pos',compact('medicines'));
     }
 
     public function possale()
