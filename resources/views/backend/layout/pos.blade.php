@@ -45,46 +45,6 @@
                                         </div>
                                     </div>
                                     @endforeach
-                                    <!-- <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
-                                        <div class="card">
-                                            <img class="card-img-top" src="" alt="image">
-                                            <div class="card-body">
-                                                <h6 class="card-title ">
-                                                    Medicine
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
-                                        <div class="card">
-                                            <img class="card-img-top" src="" alt="image">
-                                            <div class="card-body">
-                                                <h6 class="card-title ">
-                                                    Medicine
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
-                                        <div class="card">
-                                            <img class="card-img-top" src="" alt="image">
-                                            <div class="card-body">
-                                                <h6 class="card-title ">
-                                                    Medicine
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
-                                        <div class="card">
-                                            <img class="card-img-top" src="" alt="image">
-                                            <div class="card-body">
-                                                <h6 class="card-title ">
-                                                    Medicine
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
