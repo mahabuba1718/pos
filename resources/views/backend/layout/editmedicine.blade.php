@@ -49,10 +49,10 @@
                                                 Cetagory
                                                 <strong class="text-danger">*</strong>
                                             </label>
-                                            <select class="form-select mb-4" name="category" id="category" value="{{$med->category_id}}">
+                                            <select class="form-select mb-4" name="category" id="category" value="">
                                                 <option selected>Select One</option>
                                                 @foreach($categories as $key=>$category )
-                                                <option value="{{$category->id}}">{{$category->name}}
+                                                <option value="{{$category->id}}" {{ $med->category_id == $category->id ? 'selected' : ''}}>{{$category->name}}
                                                 </option>
                                                 @endforeach
                                             </select>
@@ -64,10 +64,10 @@
                                                 Type
                                                 <strong class="text-danger">*</strong>
                                             </label>
-                                            <select class="form-select mb-4" name="type" id="type" value="{{$med->type_id}}">
+                                            <select class="form-select mb-4" name="type" id="type" value="">
                                                 <option selected>Select One</option>
                                                 @foreach($types as $key=>$type)
-                                                <option value="{{$type->id}}">{{$type->name}}</option>
+                                                <option value="{{$type->id}}" {{$med->type_id == $type->id ? 'selected' : ''}}>{{$type->name}}</option>
                                                 @endforeach
                                             </select>
                                             <span class="text-danger"> </span>
@@ -78,10 +78,10 @@
                                                 Unit
                                                 <strong class="text-danger">*</strong>
                                             </label>
-                                            <select class="form-select mb-4" name="unit" id="unit" value="{{$med->unit_id}}">
+                                            <select class="form-select mb-4" name="unit" id="unit" value="">
                                                 <option selected>Select One</option>
                                                 @foreach($units as $key=>$unit)
-                                                <option value="{{$unit->id}}">{{$unit->name}}</option>
+                                                <option value="{{$unit->id}}" {{$med->unit_id == $unit->id ? 'selected' : ''}}>{{$unit->name}}</option>
                                                 @endforeach
                                             </select>
                                             <span class="text-danger"> </span>
