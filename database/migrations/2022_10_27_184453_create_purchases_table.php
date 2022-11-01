@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('time');
             $table->string('supplier');
             $table->string('purchase_no');
-            $table->string('madicine_name');
+            $table->string('madicine_id');
             $table->string('expire_date');
             $table->string('batch_id');
             $table->string('price');

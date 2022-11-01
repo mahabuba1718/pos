@@ -168,6 +168,7 @@ class AdminController extends Controller
     }
     public function admedicine(Request $request)
         {
+            // dd($request->all());
             $request->validate(
                 [
                 'name' => ['required'],
@@ -178,10 +179,18 @@ class AdminController extends Controller
                 'price' => ['required'],
                 ]
             );
+            $filename = '';
+            if($request->hasFile('image')){
+                $file = $request->file('image');
+                if($file->isValid()){
+                    $filename = date('Ymdhms').'.'.$file->getClientOriginalExtension();
+                    $file->storeAs('medicine',$filename);
+                }
+            }
            
             Medicine::create(
                 [
-                    'image'=>$request->image,
+                    'image'=>$filename,
                     'name'=>$request->name,
                     'genericname'=>$request->genericname,
                     'category_id'=>$request->category_id,
@@ -264,7 +273,7 @@ class AdminController extends Controller
                 'time'=>$request->time,
                 'supplier'=>$request->supplier,
                 'purchase_no'=>$request->purchase_no,
-                'madicine_name'=>$request->medicine,
+                'madicine_id'=>$request->medicine,
                 'expire_date'=>$request->expire_date,
                 'batch_id'=>$request->batch_id,
                 'price'=>$request->price,

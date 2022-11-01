@@ -38,7 +38,7 @@
                                 </button>
                             </div>
                         </div>
-                        <form action="{{route('admedicine')}}" method="POST">
+                        <form action="{{route('admedicine')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="modal" id="myModal">
                                 <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -203,8 +203,9 @@
                                             <tr class="text-center">
                                                 <td scope="col" class="">{{$key+1}}</td>
                                                 <td>
-                                                    <!-- <img class="" src="assets/backend/img/napa.png" alt="image"> -->
-                                                    {{$medicine->image}}
+                                                    @if($medicine->image != null)
+                                                    <img class="" src="{{asset('/uploads/medicine/'.$medicine->image)}}" alt="image">
+                                                    @endif
                                                 </td>
                                                 <td scope="col" class="my-auto">{{$medicine->name}}</td>
                                                 <td scope="col" class="">{{$medicine->genericname}} </td>
