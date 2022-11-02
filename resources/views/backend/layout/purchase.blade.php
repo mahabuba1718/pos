@@ -30,18 +30,18 @@
                         <div class="card-body">
                             <div class="">
                                 <div class="table_section p-3">
-                                    <table class="table table-striped text-center table-responsive-lg">
+                                    <table class="table table-striped text-center" style="vertical-align: middle;" >
                                         <thead>
                                             <tr>
-                                                <th scope="col" class="" width="2%">#</th>
-                                                <th scope="col" class=""width="9%">Medicine Name</th>
-                                                <th scope="col" class=""width="7%">Purchase Date</th>
-                                                <th scope="col" class=""width="7%">Expire Date</th>
+                                                <th scope="col" class="" width="4%">#</th>
+                                                <th scope="col" class=""width="8%">Medicine Name</th>
+                                                <th scope="col" class=""width="8%">Purchase Date</th>
+                                                <th scope="col" class=""width="8%">Expire Date</th>
                                                 <th scope="col" class=""width="7%">Supplier ID</th>
                                                 <th scope="col" class=""width="7%">Purchase No.</th>
                                                 <th scope="col" class=""width="7%">Total Quantity</th>
-                                                <th scope="col" class=""width="7%">Total Amount(BDT) </th>
-                                                <th scope="col" class=""width="7%">Paid Amount(BDT)</th>
+                                                <th scope="col" class=""width="6%">Total Amount(BDT) </th>
+                                                <th scope="col" class=""width="6%">Paid Amount(BDT)</th>
                                                 <th scope="col" class=""width="7%">Vat(BDT)</th>
                                                 <th scope="col" width="7%">Discount(BDT) </th>
                                                 <th scope="col" class=""width="7%">Status</th>

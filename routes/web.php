@@ -37,6 +37,7 @@ Route::get('/dashboard',[AdminController::class,'dashboard'])->name('dashboard')
 
 // contact=pharmacist
 Route::get('/pharmacist',[AdminController::class,'contact_pharmacist'])->name('contact_pharmacist');
+Route::get('/editpharma/{id}',[AdminController::class,'editpharma'])->name('editpharma');
 Route::get('/supplier',[AdminController::class,'contact_supplier'])->name('contact_supplier');
 
 Route::post('/create/contact',[AdminController::class,'pharma'])->name('pharma');

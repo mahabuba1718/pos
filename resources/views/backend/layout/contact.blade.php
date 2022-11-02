@@ -142,7 +142,7 @@
                                     <div class="card-body">
                                         <div class="">
                                             <div class="table_section p-3">
-                                                <table class="table table-striped text-center">
+                                                <table class="table table-striped text-center"  style="vertical-align: middle;"   >
                                                     <thead>
                                                         <tr>
                                                             <th scope="col" class="">#</th>
@@ -187,7 +187,7 @@
                                                                 <button type="button" class="btn editRow float-right text-light"  style="font-size: 0.7rem; background-color: #008080;"data-bs-toggle="tooltip"
                                                                     data-bs-placement="bottom"
                                                                     title="Edit">
-                                                                    <a href="" class="text-light">
+                                                                    <a href="{{route('editpharma', $contact->id)}}" class="text-light">
                                                                         <i class="fa-solid fa-pencil"></i>
                                                                     </a>
                                                                 </button>
@@ -355,7 +355,7 @@
                                     <div class="card-body">
                                         <div class="">
                                             <div class="table_section p-3">
-                                                <table class="table table-striped text-center">
+                                                <table class="table table-striped text-center" style="vertical-align: middle;" >
                                                     <thead>
                                                         <tr>
                                                             <th scope="col" class="">#</th>

@@ -17,8 +17,8 @@ table{
     width: 100%;
 }
 table.table_reduced{
+    
     min-width: unset;
-
 }
 .table_section{
     /* height: 500px; */

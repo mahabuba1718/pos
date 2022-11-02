@@ -84,7 +84,7 @@
 
                             <div class="  col-lg-8 ">
                                 <div class="card  p-3" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-                                    <table class="table table-striped text-center  table-bordered table_reduced">
+                                    <table class="table table-striped text-center  table-bordered table_reduced" style="vertical-align: middle;" >
                                         <thead>
                                             <tr>
                                                 <th scope="col" class="">No.</th>
@@ -194,7 +194,7 @@
 
                             <div class="  col-lg-8">
                                 <div class="card p-3" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-                                    <table class="table table-striped text-center  table-bordered table_reduced">
+                                    <table class="table table-striped text-center  table-bordered table_reduced" style="vertical-align: middle;" >
                                         <thead>
                                             <tr>
                                                 <th scope="col" class="">No.</th>
@@ -304,7 +304,7 @@
 
                             <div class="  col-lg-8">
                                 <div class="card p-3" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-                                    <table class="table table-striped text-center  table-bordered table_reduced">
+                                    <table class="table table-striped text-center  table-bordered table_reduced" style="vertical-align: middle;" >
                                         <thead>
                                             <tr>
                                                 <th scope="col" class="">#</th>

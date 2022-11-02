@@ -37,6 +37,12 @@ class AdminController extends Controller
         $supplier=Supplier::all();
         return view('backend.layout.contact', compact('pharma','supplier'));
     }
+    public function editpharma($pharm_id)
+    {
+        $pharm = User::find($pharm_id);
+        // dd($pharm);
+        return view('backend.layout.editpharma', compact('pharm'));
+    }
     public function pharma(Request $request)
     {
         // dd($request->all());

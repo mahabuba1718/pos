@@ -55,7 +55,7 @@
                                     <div class="card-body">
                                         <div class="">
                                             <div class="table_section p-3">
-                                                <table class="table table-striped text-center">
+                                                <table class="table table-striped text-center" style="vertical-align: middle;" >
                                                     <thead>
                                                         <tr>
                                                             <th scope="col" class="">#</th>
@@ -121,7 +121,7 @@
                                     <div class="card-body">
                                         <div class="">
                                             <div class="table_section p-3">
-                                                <table class="table table-striped text-center">
+                                                <table class="table table-striped text-center" style="vertical-align: middle;" >
                                                     <thead>
                                                         <tr>
                                                             <th scope="col" class="">#</th>
