@@ -71,10 +71,11 @@
                                                         @foreach($adpurchase as $key=> $stock_b)
                                                         <tr class="text-center">
                                                             <td scope="col" class="">{{$key+1}}</td>
-                                                            <td scope="col" class="">{{$stock_b->madicine_name}}</td>
+                                                            <td scope="col" class="">{{$stock_b->medicine->name}}</td>
                                                             <td scope="col" class="my-auto">{{$stock_b->batch_id}}</td>
-                                                            <td scope="col" class="my-auto">{{$stock_b->expire_date}}
-                                                            </td>
+                                                            <td scope="col" class="my-auto">{{$stock_b->expire_date}}</td>
+                                                            <td scope="col" class="my-auto">{{$stock_b->quantity}}</td>
+                                                            <td scope="col" class="my-auto">{{$stock_b->out_quantity}}</td>
                                                             <td scope="col" class="">{{$stock_b->stock}}</td>
                                                         </tr>
                                                         @endforeach
@@ -136,7 +137,7 @@
                                                         @foreach($adpurchase as $key=> $purchase)
                                                         <tr class="text-center">
                                                             <td scope="col" class="">{{$key+1}}</td>
-                                                            <td scope="col" class="">{{$purchase->madicine_name}}</td>
+                                                            <td scope="col" class="">{{$purchase->medicine->name}}</td>
                                                             <td scope="col" class="my-auto">{{$purchase->supplier}}</td>
                                                             <td scope="col" class="my-auto">{{$purchase->date}}</td>
                                                             <td scope="col" class="">{{$purchase->expire_date}}</td>

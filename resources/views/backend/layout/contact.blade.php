@@ -50,7 +50,7 @@
                                         </div>
                                     </div>
                                     <!-- modal -->
-                                    <form action="{{route('pharma')}}" method="POST">
+                                    <form action="{{route('pharma')}}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="modal" id="myModal">
                                             <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -157,12 +157,15 @@
                                                     </thead>
                                                     <tbody>
                                                         @foreach($pharma as $key=> $contact)
+                                                        @if($contact->role_id ==2 )
                                                         <tr class="text-center">
                                                             <td scope="col" class="">{{$key+1}}</td>
                                                             <td>
-                                                                <!-- <img class="" src="img/admin.jpg" alt="image"
-                                                                    style="width: 70px; height: 60px;"> -->
-                                                                {{$contact-> image}}
+                                                                @if($contact->image !=null)
+                                                                <img class="" src="{{asset('/uploads/pharmacist/'.$contact->image)}}"  alt="image">
+                                                                @else
+                                                                <img src="{{asset('assets/backend/img/no.jpg')}}" alt="image">
+                                                                @endif
                                                             </td>
                                                             <td scope="col" class="my-auto">{{$contact-> contact_id}}</td>
                                                             <td scope="col" class="my-auto">{{$contact-> name}}</td>
@@ -214,6 +217,7 @@
                                                                 </ul>
                                                             </div> -->
                                                         </tr>
+                                                        @endif
                                                         @endforeach
                                                     </tbody>
                                                    

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Account;
 use App\Models\Category;
-use App\Models\Contact;
 use App\Models\Medicine;
 use App\Models\Purchase;
 use App\Models\Setting;
@@ -34,28 +33,38 @@ class AdminController extends Controller
     // contact= pharmacist
     public function contact_pharmacist()
     {
-        $pharma=Contact::all();
+        $pharma=User::all();
         $supplier=Supplier::all();
         return view('backend.layout.contact', compact('pharma','supplier'));
     }
     public function pharma(Request $request)
     {
+        // dd($request->all());
         $request->validate(
             [
             'name' => ['required'],
-            'contact_id' => ['required'],
             'email' => ['required','email'],
             'password' => ['required'],
             ]
         );
-        Contact::create(
+        $filename = '';
+        if ($request->hasFile('image'))
+        {
+            $file = $request->file('image');
+            if($file ->isValid())
+            {
+                $filename = date('Ymdhms'). '.'.$file->getClientOriginalExtension();
+                $file -> storeAs('pharmacist',$filename);
+            }
+        }
+        User::create(
             [
                 'name'=>$request->name,
                 'contact_id'=>$request->contact_id,
                 'email'=>$request->email,
                 'password'=> Hash::make($request ->password),
                 'phone'=>$request->phone,
-                'image'=>$request->image,
+                'image'=>$filename,
             ]
         );
         return redirect()-> back();
@@ -64,7 +73,7 @@ class AdminController extends Controller
     // contact = supplier
     public function contact_supplier()
     {
-        $pharma=Contact::all();
+        $pharma=User::all();
         $supplier=Supplier::all();
         return view('backend.layout.contact', compact('supplier','pharma'));
     }

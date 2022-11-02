@@ -34,7 +34,7 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col" class="" width="2%">#</th>
-                                                <th scope="col" class=""width="10%">Medicine Name</th>
+                                                <th scope="col" class=""width="9%">Medicine Name</th>
                                                 <th scope="col" class=""width="7%">Purchase Date</th>
                                                 <th scope="col" class=""width="7%">Expire Date</th>
                                                 <th scope="col" class=""width="7%">Supplier ID</th>
@@ -45,7 +45,7 @@
                                                 <th scope="col" class=""width="7%">Vat(BDT)</th>
                                                 <th scope="col" width="7%">Discount(BDT) </th>
                                                 <th scope="col" class=""width="7%">Status</th>
-                                                <th scope="col" class=""width="7%">Action</th>
+                                                <th scope="col" class=""width="8%">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>

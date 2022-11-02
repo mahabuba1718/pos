@@ -1,15 +1,17 @@
 @extends('backend.master')
 @section('content')
 <style>
-    .m-1{
-        margin: 0.1rem!important;
-    }
-    .p-1{
-        padding: 1rem!important;
-    }
-    .p-2{
-        padding: 2rem!important;
-    }
+.m-1 {
+    margin: 0.1rem !important;
+}
+
+.p-1 {
+    padding: 1rem !important;
+}
+
+.p-2 {
+    padding: 2rem !important;
+}
 </style>
 <div class="container-fluid px-0">
 
@@ -177,7 +179,8 @@
                                         <div class="modal-footer justify-content-center">
                                             <button type="submit" class="btn text-light"
                                                 style="background-color:#25aa9e;">Submit</button>
-                                            <button type="button"  data-bs-dismiss="modal" class="btn btn-danger">Cancel</button>
+                                            <button type="button" data-bs-dismiss="modal"
+                                                class="btn btn-danger">Cancel</button>
 
                                         </div>
 
@@ -188,7 +191,7 @@
                         <div class="card-body">
                             <div class="">
                                 <div class="table_section p-3">
-                                    <table class="table table-striped text-center">
+                                    <table class="table table-striped text-center" style="vertical-align: middle;">
                                         <thead>
                                             <tr>
                                                 <th scope="col" class="" width="5%">#</th>
@@ -210,7 +213,8 @@
                                                 <td scope="col" class="">{{$key+1}}</td>
                                                 <td>
                                                     @if($medicine->image != null)
-                                                    <img class="" src="{{asset('/uploads/medicine/'.$medicine->image)}}" alt="image">
+                                                    <img class="" src="{{asset('/uploads/medicine/'.$medicine->image)}}"
+                                                        alt="image">
                                                     @endif
                                                 </td>
                                                 <td scope="col" class="">{{$medicine->name}}</td>
@@ -231,49 +235,61 @@
                                                     @endif
                                                 </td>
                                                 <td scope="col" class="p-1" style="display: flex; flex-wrap: nowrap;">
-                                                <button type="button" class="m-1 btn editRow float-right text-light"
+                                                    <button type="button" class="m-1 btn editRow float-right text-light"
                                                         style="font-size: 0.7rem; background-color: #7fa390"
-                                                        data-bs-toggle="modal" data-bs-target="#myModal1">                                                    
-                                                            <i class="fa-solid fa-eye"></i>
+                                                        data-bs-toggle="modal" data-bs-target="#myModal1">
+                                                        <i class="fa-solid fa-eye"></i>
                                                     </button>
-                                                <div>
-                                                    
-                                                    <div class="modal" id="myModal1">
-                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title">
-                                                                        Medicine Description
-                                                                    </h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <p align="justify">Napa® (Paracetamol) is a fast acting and safe analgesic with marked antipyretic property.
+                                                    <div>
 
-                                                                    It is recommended for the treatment of most painful and febrile conditions, such as headache, toothache, backache, rheumatic and muscle pains, dysmenorrhoea, sore throat, and for relieving the fever, aches and pains of colds and flu.</p>
-                                                                </div>
-                                                                <div class="modal-footer justify-content-center">
-                                                                   
-                                                                    <button type="button" data-bs-dismiss="modal" class="btn btn-danger">Cancel</button>
+                                                        <div class="modal" id="myModal1">
+                                                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title">
+                                                                            Medicine Description
+                                                                        </h5>
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <p align="justify">Napa® (Paracetamol) is a fast
+                                                                            acting and safe analgesic with marked
+                                                                            antipyretic property.
 
+                                                                            It is recommended for the treatment of most
+                                                                            painful and febrile conditions, such as
+                                                                            headache, toothache, backache, rheumatic and
+                                                                            muscle pains, dysmenorrhoea, sore throat,
+                                                                            and for relieving the fever, aches and pains
+                                                                            of colds and flu.</p>
+                                                                    </div>
+                                                                    <div class="modal-footer justify-content-center">
+
+                                                                        <button type="button" data-bs-dismiss="modal"
+                                                                            class="btn btn-danger">Cancel</button>
+
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+
                                                     <button type="button" class="m-1 btn editRow float-right text-light"
                                                         style="font-size: 0.7rem; background-color: #008080;"
                                                         data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                         title="Edit">
-                                                        <a href="{{route('editmedicine',$medicine->id)}}" class="text-light">
+                                                        <a href="{{route('editmedicine',$medicine->id)}}"
+                                                            class="text-light">
                                                             <i class="fa-solid fa-pencil"></i>
                                                         </a>
                                                     </button>
-                                                    <button type="button" class="m-1 btn btn-danger deleteRow float-right"
+                                                    <button type="button"
+                                                        class="m-1 btn btn-danger deleteRow float-right"
                                                         style="font-size: 0.7rem;" data-bs-toggle="tooltip"
-                                                        data-bs-placement="bottom" title="Delete"
-                                                        >
-                                                        <a href="{{route('deletemedicine',$medicine->id)}}" class="text-light">
+                                                        data-bs-placement="bottom" title="Delete">
+                                                        <a href="{{route('deletemedicine',$medicine->id)}}"
+                                                            class="text-light">
                                                             <i class="fa-solid fa-trash"></i>
                                                         </a>
                                                     </button>

@@ -21,9 +21,9 @@
 
 
     <!-- css -->
-    <link href="assets/backend/css/dashboard.css" rel="stylesheet" type="text/css" />
-    <link href="assets/backend/css/invoice.css" rel="stylesheet" type="text/css" />
-    <link href="assets/backend/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('/assets/backend/css/dashboard.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('/assets/backend/css/invoice.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('/assets/backend/css/style.css')}}" rel="stylesheet" type="text/css" />
     <meta name="theme-color" content="#712cf9">
 
 

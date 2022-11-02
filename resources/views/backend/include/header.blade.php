@@ -10,7 +10,7 @@
 <header class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow" style="background-color: #008080;">
 
     <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-center" href="{{route('dashboard')}}">
-        <img class="mr-auto " src="assets/backend/img/medi.png" alt="logo" style="width: 45px; height: 45px;">PHARMACY
+        <img class="mr-auto " src="{{asset('/assets/backend/img/medi.png')}}" alt="logo" style="width: 45px; height: 45px;">PHARMACY
     </a>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
         data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,7 +21,7 @@
  
     <div class="dropdown  me-5">
         <button class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="assets/backend/img/med.webp" alt="image" class="rounded-circle mr-1" style="width: 30px;">
+            <img src="{{asset('assets/backend/img/med.webp')}}" alt="image" class="rounded-circle mr-1" style="width: 30px;">
         </button>
         <ul class="dropdown-menu">
             <li  class="p-2">
