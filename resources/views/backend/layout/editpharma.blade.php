@@ -10,9 +10,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-                        <form method="POST" action="" enctype="multipart/form-data">
+                        <form method="POST" action="{{route('updatepharm')}}" enctype="multipart/form-data">
                             @csrf
-                            <!-- <input type="hidden" name="_toekn" value=""> -->
+                            @method('PUT')
+                            <input type="hidden" name="id" value="{{$pharm->id}}">
                             <div class="card-header p-3">
                                 <h5>Edit Pharmacist</h5>
                             </div>
@@ -52,7 +53,7 @@
                                             <strong class="text-danger">*</strong>
                                         </label>
                                         <input type="password" class="form-control mb-4" name="password"
-                                            placeholder="Password" for="password" id="password" value="{{$pharm->password}}">
+                                            placeholder="Password" for="password" id="password" value="">
                                         <span class="text-danger"> </span>
                                     </div>
                                     <div class="form-group col-lg-4">
@@ -72,7 +73,7 @@
                                         <span class="text-danger"> </span>
                                     </div>
                                     <div class="form-group col-lg-4">
-                                        <img src="{{'/uploads/pharmacist/'.$pharm->image}}" alt="image" width="100">
+                                        <img src="{{'/uploads/pharmacist/'.$pharm->image}}" alt="image" width="200" height="200">
                                     </div>
 
                                 </div>

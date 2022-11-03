@@ -33,7 +33,7 @@ class AdminController extends Controller
     // contact= pharmacist
     public function contact_pharmacist()
     {
-        $pharma=User::all();
+        $pharma=User::where('role_id','2')->get();
         $supplier=Supplier::all();
         return view('backend.layout.contact', compact('pharma','supplier'));
     }
@@ -44,6 +44,40 @@ class AdminController extends Controller
         return view('backend.layout.editpharma', compact('pharm'));
     }
     public function pharma(Request $request)
+    {
+        // dd($request->all());
+        $pharm = User::find($request->id);
+        $request->validate(
+            [
+            'name' => ['required'],
+            'email' => ['required','email'],
+            'password' => ['required'],
+            ]
+        );
+        $filename = '';
+        if ($request->hasFile('image'))
+        {
+            $file = $request->file('image');
+            if($file ->isValid())
+            {
+                $filename = date('Ymdhms'). '.'.$file->getClientOriginalExtension();
+                $file -> storeAs('pharmacist',$filename);
+            }
+        }
+        User::find($request->id)->update(
+            [
+                'name'=>$request->name,
+                'contact_id'=>$request->contact_id,
+                'email'=>$request->email,
+                'password'=> Hash::make($request ->password),
+                'phone'=>$request->phone,
+                'image'=>$filename,
+            ]
+        );
+        return redirect()-> back();
+    }
+
+    public function updatepharm(Request $request)
     {
         // dd($request->all());
         $request->validate(
@@ -63,7 +97,7 @@ class AdminController extends Controller
                 $file -> storeAs('pharmacist',$filename);
             }
         }
-        User::create(
+        User::find($request->medicine_id)->update(
             [
                 'name'=>$request->name,
                 'contact_id'=>$request->contact_id,
@@ -73,6 +107,12 @@ class AdminController extends Controller
                 'image'=>$filename,
             ]
         );
+        return redirect()-> route('pharmacist');
+    }
+    public function deletepharma($pharm_id)
+    {
+        $pharm = User::find($pharm_id);
+        $pharm ->delete();
         return redirect()-> back();
     }
 

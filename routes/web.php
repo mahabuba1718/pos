@@ -37,10 +37,13 @@ Route::get('/dashboard',[AdminController::class,'dashboard'])->name('dashboard')
 
 // contact=pharmacist
 Route::get('/pharmacist',[AdminController::class,'contact_pharmacist'])->name('contact_pharmacist');
-Route::get('/editpharma/{id}',[AdminController::class,'editpharma'])->name('editpharma');
-Route::get('/supplier',[AdminController::class,'contact_supplier'])->name('contact_supplier');
-
 Route::post('/create/contact',[AdminController::class,'pharma'])->name('pharma');
+Route::get('/editpharma/{id}',[AdminController::class,'editpharma'])->name('editpharma');
+Route::put('/update/pharmacist',[AdminController::class,'updatepharm'])->name('updatepharm');
+Route::get('/deletepharma/{id}',[AdminController::class,'deletepharma'])->name('deletepharma');
+
+// supplier
+Route::get('/supplier',[AdminController::class,'contact_supplier'])->name('contact_supplier');
 Route::post('/create/supplier',[AdminController::class,'supplier'])->name('supplier');
 
 // medicine

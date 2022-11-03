@@ -194,7 +194,7 @@
                                                                 <button type="button" data-bs-toggle="tooltip"
                                                                     data-bs-placement="bottom"
                                                                     title="Delete" class="btn btn-danger deleteRow float-right" style="font-size: 0.7rem;">
-                                                                    <a href="" class="text-light">
+                                                                    <a href="{{route('deletepharma', $contact->id)}}" class="text-light">
                                                                         <i class="fa-solid fa-trash"></i>
                                                                     </a>
                                                                 </button>
