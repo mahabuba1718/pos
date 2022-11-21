@@ -237,8 +237,10 @@
                                                     @endif
                                                 </td>
                                                 <td scope="col" class="p-1" style="display: flex; flex-wrap: nowrap;">
-                                                    <button type="button" class="m-1 btn editRow float-right text-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View" style="font-size: 0.7rem; background-color: #7fa390" 
-                                                    value="{{$medicine->id}}">
+                                                    <button type="button" class="m-1 btn editRow float-right text-light"
+                                                        data-bs-toggle="tooltip" data-bs-placement="bottom" title="View"
+                                                        style="font-size: 0.7rem; background-color: #7fa390"
+                                                        value="{{$medicine->id}}">
                                                         <i class="fa-solid fa-eye"></i>
                                                     </button>
                                                     <div class="modal" id="myModal1">
@@ -254,7 +256,7 @@
                                                                 <div class="modal-body">
                                                                     <div class="form-group col-lg-12 p-2">
                                                                         <label for="u_description" class="mb-2">
-                                                                        {{$medicine->description}}
+                                                                            {{$medicine->description}}
                                                                         </label>
                                                                     </div>
                                                                 </div>
@@ -283,13 +285,41 @@
                                                         class="m-1 btn btn-danger deleteRow float-right"
                                                         style="font-size: 0.7rem;" data-bs-toggle="tooltip"
                                                         data-bs-placement="bottom" title="Delete">
-                                                        
-                                                        <a href="{{route('deletemedicine',$medicine->id)}}"
-                                                            class="text-light">
-                                                            <i class="fa-solid fa-trash"></i>
-                                                        </a>
-                                                        
+                                                        <i class="fa-solid fa-trash"></i>
                                                     </button>
+                                                    <div class="modal fade" id="myModalp">
+                                                        <div class="modal-dialog modal-dialog-centered modal-sm">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header text-center">
+                                                                    <h5 class="modal-title ">
+                                                                        Are Your Sure?
+                                                                    </h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="form-group col-lg-12 p-1">
+                                                                        You Want to Delete This Record?
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer justify-content-center">
+                                                                    <button class="btn text-light"
+                                                                        style="background-color:#25aa9e;" type="submit">
+                                                                        <a href="{{route('deletemedicine',$medicine->id)}}"
+                                                                            class="text-light"
+                                                                            style="text-decoration: none;">
+                                                                            Yes Delete
+                                                                        </a>
+                                                                    </button>
+                                                                    <button type="button" data-bs-dismiss="modal"
+                                                                        class="btn btn-danger">
+                                                                        Cancel
+                                                                    </button>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -324,6 +354,20 @@ $(document).on('click', '.editRow', function() {
             console.log(response.med);
             $("#med_id").val(update_id);
             $("#u_description").val(response.med.description);
+        }
+    });
+});
+$(document).on('click', '.deleteRow', function() {
+    var update_id = $(this).val();
+    // alert(update_id);
+    $("#myModalp").modal('show');
+
+    $.ajax({
+        type: "GET",
+        url: "/deleteRow/" + update_id,
+        success: function(response) {
+            console.log(response.med);
+            $("#med_id").val(update_id);
         }
     });
 });

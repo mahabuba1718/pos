@@ -49,7 +49,7 @@
                                 <div class="card">
                                     <div class="card-header d-flex p-3">
                                         <h4>Stock Report(Batch Wise)</h4>
-                                        <input class="d-flex"  type="text">
+                                        <input class="d-flex"  type="text" placeholder="Search" style="border-radius: 5px; padding:5px ">
                                     </div>
 
                                     <div class="card-body">
@@ -116,7 +116,7 @@
                                 <div class="card">
                                     <div class="card-header d-flex p-3">
                                         <h4>Expiry Medicine Report</h4>
-                                        <input class="d-flex"  type="text">
+                                        <input class="d-flex"  type="text" placeholder="Search" style="border-radius: 5px; padding:5px ">
                                     </div>
                                     <div class="card-body">
                                         <div class="">
@@ -142,7 +142,7 @@
                                                             <td scope="col" class="my-auto">{{$purchase->date}}</td>
                                                             <td scope="col" class="">{{$purchase->expire_date}}</td>
                                                             <td scope="col" class="">{{$purchase->purchase_no}}</td>
-                                                            <td scope="col" class="">{{$purchase->stock}}</td>
+                                                            <td scope="col" class="">{{$purchase->quantity}}</td>
                                                         </tr>
                                                         @endforeach
                                                     </tbody>

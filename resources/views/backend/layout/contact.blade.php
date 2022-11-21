@@ -186,10 +186,42 @@
                                                                 <button type="button" data-bs-toggle="tooltip"
                                                                     data-bs-placement="bottom"
                                                                     title="Delete" class="btn btn-danger deleteRow float-right" style="font-size: 0.7rem;">
-                                                                    <a href="{{route('deletepharma', $contact->id)}}" class="text-light">
-                                                                        <i class="fa-solid fa-trash"></i>
-                                                                    </a>
+                                                                    <i class="fa-solid fa-trash"></i>
                                                                 </button>
+                                                                <div class="modal fade" id="myModalp">
+                                                                    <div class="modal-dialog modal-dialog-centered modal-sm">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header text-center">
+                                                                                <h5 class="modal-title ">
+                                                                                   Are Your Sure?
+                                                                                </h5>
+                                                                                <button type="button" class="btn-close"
+                                                                                    data-bs-dismiss="modal"></button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <div class="form-group col-lg-12 p-2">
+                                                                                You Want to Delete This Record?
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal-footer justify-content-center">
+                                                                                <button class="btn text-light"
+                                                                                    style="background-color:#25aa9e;"
+                                                                                    type="submit">
+                                                                                    <a href="{{route('deletepharma', $contact->id)}}" class="text-light" style="text-decoration: none;">
+                                                                                    Yes Delete
+                                                                                    </a>
+                                                                                </button>
+
+                                                                                <button type="button" data-bs-dismiss="modal"
+                                                                                    class="btn btn-danger">
+                                                                                    Cancel
+                                                                                </button>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </td>
                                                         </tr>
                                                         @endif
@@ -366,11 +398,42 @@
                                                                 </button>
                                                                 <button type="button" data-bs-toggle="tooltip"
                                                                     data-bs-placement="bottom"
-                                                                    title="Delete" class="btn btn-danger deleteRow float-right" style="font-size: 0.7rem;">
-                                                                    <a href="{{route('deletesup', $supplied->id)}}"  class="text-light">
-                                                                        <i class="fa-solid fa-trash"></i>
-                                                                    </a>
+                                                                    title="Delete" class="btn btn-danger deleteRow2 float-right" style="font-size: 0.7rem;">
+                                                                    <i class="fa-solid fa-trash"></i>
                                                                 </button>
+                                                                <div class="modal fade" id="myModals">
+                                                                    <div class="modal-dialog modal-dialog-centered modal-sm">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header text-center">
+                                                                                <h5 class="modal-title ">
+                                                                                   Are Your Sure?
+                                                                                </h5>
+                                                                                <button type="button" class="btn-close"
+                                                                                    data-bs-dismiss="modal"></button>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <div class="form-group col-lg-12 p-2">
+                                                                                You Want to Delete This Record?
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal-footer justify-content-center">
+                                                                                <button class="btn text-light"
+                                                                                    style="background-color:#25aa9e;"
+                                                                                    type="submit">
+                                                                                    <a href="{{route('deletesup', $supplied->id)}}"  class="text-light" style="text-decoration: none;">
+                                                                                    Yes Delete
+                                                                                    </a>
+                                                                                </button>
+                                                                                <button type="button" data-bs-dismiss="modal"
+                                                                                    class="btn btn-danger">
+                                                                                    Cancel
+                                                                                </button>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </td>
                                                         </tr>
                                                         @endforeach
@@ -394,3 +457,36 @@
     integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
 </script>
 @endsection
+@push('custom_script')
+<script>
+$(document).on('click', '.deleteRow', function() {
+    var update_id = $(this).val();
+    // alert(update_id);
+    $("#myModalp").modal('show');
+
+    $.ajax({
+        type: "GET",
+        url: "/deleteRow/" + update_id,
+        success: function(response) {
+            console.log(response.pharme);
+            $("#pharm_id").val(update_id);
+        }
+    });
+});
+
+$(document).on('click', '.deleteRow2', function() {
+    var update_id = $(this).val();
+    // alert(update_id);
+    $("#myModals").modal('show');
+
+    $.ajax({
+        type: "GET",
+        url: "/deleteRow2/" + update_id,
+        success: function(response) {
+            console.log(response.supe);
+            $("#sup_id").val(update_id);
+        }
+    });
+});
+</script>
+@endpush

@@ -116,7 +116,7 @@
                                                     <td colspan="1">
                                                         <div class="input-group">
                                                         <label for="price" class="mb-2"></label>
-                                                            <input type="number" step="0.1" min="0.1" for="price" name="price[]"
+                                                            <input type="number"  step="0.1" min="0.1" for="price" name="price[]"
                                                                 class="form-control total_amount">
                                                         </div>
                                                     </td>

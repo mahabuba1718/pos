@@ -41,6 +41,7 @@ Route::post('/create/contact',[AdminController::class,'pharma'])->name('pharma')
 Route::get('/editpharma/{pharm_id}',[AdminController::class,'editpharma'])->name('editpharma');
 Route::put('/update/pharmacist',[AdminController::class,'updatepharm'])->name('updatepharm');
 Route::get('/deletepharma/{pharm_id}',[AdminController::class,'deletepharma'])->name('deletepharma');
+Route::get('/deltpharm/{pharm_id}',[AdminController::class,'deltpharm'])->name('deltpharm');
 
 // supplier
 Route::get('/supplier',[AdminController::class,'contact_supplier'])->name('contact_supplier');
@@ -48,6 +49,7 @@ Route::post('/create/supplier',[AdminController::class,'supplier'])->name('suppl
 Route::get('/editsup/{sup_id}',[AdminController::class,'editsup'])->name('editsup');
 Route::put('/update/supplier',[AdminController::class,'updatesup'])->name('updatesup');
 Route::get('/deletesup/{sup_id}',[AdminController::class,'deletesup'])->name('deletesup');
+Route::get('/deltsupe/{sup_id}',[AdminController::class,'deltsupe'])->name('deltsupe');
 
 // medicine
 Route::get('/medicine',[AdminController::class,'medicine'])->name('medicine');
@@ -56,6 +58,7 @@ Route::get('/editmedicine/{med_id}',[AdminController::class,'editmedicine'])->na
 Route::get('/editmed/{med_id}',[AdminController::class,'editmed'])->name('editmed');
 Route::put('/update/medicine',[AdminController::class,'updatemedicine'])->name('updatemedicine');
 Route::get('/deletemedicine/{med_id}',[AdminController::class,'deletemedicine'])->name('deletemedicine');
+Route::get('/deletemed/{med_id}',[AdminController::class,'deletemed'])->name('deletemed');
 
 // category
 Route::get('/category',[AdminController::class,'category'])->name('category');

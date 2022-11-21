@@ -39,6 +39,13 @@ class AdminController extends Controller
         $supplier=Supplier::all();
         return view('backend.layout.contact', compact('pharma','supplier'));
     }
+    public function deltpharm($pharm_id)
+    {
+        $pharme = User::find($pharm_id);
+        return response([
+           'pharme' => $pharme,
+        ]);
+    }
     public function editpharma($pharm_id)
     {
         $pharm = User::find($pharm_id);
@@ -167,6 +174,13 @@ class AdminController extends Controller
             ]
         );
         return redirect()-> back();
+    }
+    public function deltsupe($sup_id)
+    {
+        $supe = User::find($sup_id);
+        return response([
+           'supe' => $supe,
+        ]);
     }
     public function editsup($sup_id)
     {
@@ -371,6 +385,14 @@ class AdminController extends Controller
         return view('backend.layout.medicine', compact('admedicine','categories','units','types'));
   
     }
+    
+    public function deletemed($med_id)
+     {
+         $med = Medicine::find($med_id);
+         return response([
+            'med' => $med,
+         ]);
+     }
     public function editmed($med_id)
      {
          $med = Medicine::find($med_id);
