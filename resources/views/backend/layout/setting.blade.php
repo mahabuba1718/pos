@@ -10,7 +10,7 @@
                 </div>
                 <div class="m-2">/</div>
                 <div class="m-2">
-                    <a href="{{route('contact')}}">Contact</a>
+                    <a href="{{route('medicine')}}">Medicine</a>
                 </div>
             </div>
         </div>

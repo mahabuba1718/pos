@@ -15,3 +15,4 @@ class Purchase extends Model
         return $this->belongsTo(Medicine::class,'madicine_id','id');
     }
 }
+

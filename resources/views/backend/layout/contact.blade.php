@@ -103,14 +103,6 @@
                                                                     value="">
                                                                 <span class="text-danger"> </span>
                                                             </div>
-                                                            <!-- <div class="form-group col-lg-6">
-                                                            <label for="password_confirmation" class="mb-2">
-                                                                Password Confirmation
-                                                                <strong class="text-danger">*</strong>
-                                                            </label>
-                                                            <input type="password" class="form-control mb-4" name="password_confirmation" placeholder="Confirm Password" id="password_confirmation" value="">
-                                                            <span class="text-danger"> </span>
-                                                        </div> -->
                                                             <div class="form-group col-lg-6">
                                                                 <label for="phone" class="mb-2">
                                                                     Phone
@@ -164,7 +156,7 @@
                                                                 @if($contact->image !=null)
                                                                 <img class="" src="{{asset('/uploads/pharmacist/'.$contact->image)}}"  alt="image">
                                                                 @else
-                                                                <img src="{{asset('assets/backend/img/no.jpg')}}" alt="image">
+                                                                <img src="{{asset('assets/backend/img/nouser.webp')}}" alt="image">
                                                                 @endif
                                                             </td>
                                                             <td scope="col" class="my-auto">{{$contact-> contact_id}}</td>
@@ -199,23 +191,6 @@
                                                                     </a>
                                                                 </button>
                                                             </td>
-
-                                                            <!-- <div class="dropdown">
-                                                                <button type="button" class="btn btn-primary dropdown-toggle " data-bs-toggle="dropdown">
-                                                                Action
-                                                                </button>
-                                                                <ul class="dropdown-menu option">
-                                                                <li>
-                                                                    <a class="dropdown-item"  href="edit-pharma.html">
-                                                                    <i style="font-size: 10px;" class="fas fa-pencil-alt my-2"> Edit</i>
-                                                                    </a>  
-                                                                </li>
-                                                                <li><a class="dropdown-item" href="#">
-                                                                    <i style="font-size: 10px;" class="fas fa-trash my-2"> Delete</i>
-                                                                    </a>
-                                                                </li>
-                                                                </ul>
-                                                            </div> -->
                                                         </tr>
                                                         @endif
                                                         @endforeach
@@ -329,18 +304,6 @@
                                                                     <span class="text-danger"> </span>
                                                                 </div>
                                                             </div>
-                                                            <!-- <div class="col-lg-12">
-                                                                <div class="form-group p-2">
-                                                                    <label for="description" class="mb-2">
-                                                                        Description
-                                                                        <strong class="text-danger"> </strong>
-                                                                    </label>
-                                                                    <textarea class="form-control mb-4" name="description"
-                                                                        id="description"
-                                                                        placeholder="Please add details of the Medicine"></textarea>
-                                                                    <span class="text-danger"> </span>
-                                                                </div>
-                                                            </div> -->
                                                         </div>
 
                                                     </div>
@@ -375,6 +338,8 @@
                                                             <td>
                                                                 @if($supplied->image !=null)
                                                                 <img class="" src="{{asset('/uploads/supplier/'.$supplied->image)}}" alt="image">
+                                                                @else
+                                                                <img src="{{asset('assets/backend/img/nouser.webp')}}" alt="image">
                                                                 @endif
                                                             </td>
                                                             <td scope="col" class="my-auto">{{$supplied->name}}</td>
@@ -395,14 +360,14 @@
                                                                 <button type="button" class="btn editRow float-right text-light"  style="font-size: 0.7rem; background-color: #008080;"data-bs-toggle="tooltip"
                                                                     data-bs-placement="bottom"
                                                                     title="Edit">
-                                                                    <a href="" class="text-light">
+                                                                    <a href="{{route('editsup', $supplied->id)}}"  class="text-light">
                                                                         <i class="fa-solid fa-pencil"></i>
                                                                     </a>
                                                                 </button>
                                                                 <button type="button" data-bs-toggle="tooltip"
                                                                     data-bs-placement="bottom"
                                                                     title="Delete" class="btn btn-danger deleteRow float-right" style="font-size: 0.7rem;">
-                                                                    <a href="" class="text-light">
+                                                                    <a href="{{route('deletesup', $supplied->id)}}"  class="text-light">
                                                                         <i class="fa-solid fa-trash"></i>
                                                                     </a>
                                                                 </button>

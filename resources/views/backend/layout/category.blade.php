@@ -6,21 +6,21 @@
     <section class="container-fluid my-3">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <a href="{{url('/category')}}" class="nav-link {{request()->is('category') ? 'active' : '' }} " id="category-tab"  type="button" role="tab" aria-controls="category-tab-pane"
-                    aria-selected="true">
+                <a href="{{url('/category')}}" class="nav-link {{request()->is('category') ? 'active' : '' }} "
+                    id="category-tab" type="button" role="tab" aria-controls="category-tab-pane" aria-selected="true">
                     <i class="fa-solid fa-square-poll-horizontal"></i>
                     Category
                 </a>
             </li>
             <li class="nav-item" role="presentation">
-                <a href="{{url('/unit')}}"  class="nav-link {{request()->is('unit') ? 'active' : '' }} " id="unit-tab" 
+                <a href="{{url('/unit')}}" class="nav-link {{request()->is('unit') ? 'active' : '' }} " id="unit-tab"
                     type="button" role="tab" aria-controls="unit-tab-pane" aria-selected="false">
                     <i class="fa-solid fa-pen-fancy"></i>
                     Unit
                 </a>
             </li>
             <li class="nav-item" role="presentation">
-                <a href="{{url('/type')}}"  class="nav-link {{request()->is('type') ? 'active' : '' }} " id="type-tab" 
+                <a href="{{url('/type')}}" class="nav-link {{request()->is('type') ? 'active' : '' }} " id="type-tab"
                     type="button" role="tab" aria-controls="type-tab-pane" aria-selected="false">
                     <i class="fa-solid fa-cube"></i>
                     Type
@@ -28,8 +28,8 @@
             </li>
         </ul>
         <div class="container-fluid tab-content" id="myTabContent">
-            <div class="tab-pane fade show {{request()->is('category') ? 'active' : '' }}" id="{{url('/category')}}" role="tabpanel" aria-labelledby="category-tab"
-                tabindex="0">
+            <div class="tab-pane fade show {{request()->is('category') ? 'active' : '' }}" id="{{url('/category')}}"
+                role="tabpanel" aria-labelledby="category-tab" tabindex="0">
                 <section class="section p-2">
                     <div class="section-header d-flex p-3">
                         <h3 class="mt-3">Category</h3>
@@ -46,9 +46,9 @@
                     <div class="section-body container-fluid">
                         <div class="row ">
                             <div class=" col-lg-4 ">
-                                <form method="POST" action="{{route('categories')}}" class="border" >
-                                 @csrf
-                                  
+                                <form method="POST" action="{{route('categories')}}" class="border">
+                                    @csrf
+
                                     <div class="card" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
                                         <div class="card-header p-2">
                                             <h4>Add Category</h4>
@@ -57,16 +57,17 @@
                                                     Category
                                                     <strong class="text-danger">*</strong>
                                                 </label>
-                                                <input for="category"  type="text" class="form-control mb-4" name="name"
+                                                <input for="category" type="text" class="form-control mb-4" name="name"
                                                     placeholder="Category" id="category" value="">
-                                                <span class="text-danger"> </span>
+                                                <span class="text-danger">@error('name') {{$message}} @enderror</span>
                                             </div>
                                             <div class="form-group col-lg-12 p-2">
                                                 <label for="description" class="mb-2">
                                                     Description
                                                     <strong class="text-danger"> </strong>
                                                 </label>
-                                                <textarea for="description" class="form-control mb-4" name="description" id="description"
+                                                <textarea for="description" class="form-control mb-4" name="description"
+                                                    id="description"
                                                     placeholder="Please add Category details"></textarea>
                                                 <span class="text-danger"> </span>
                                             </div>
@@ -74,7 +75,8 @@
                                         </div>
 
                                         <div class="card-footer text-center mb-3">
-                                            <button class="btn text-light" style="background-color:#25aa9e;" type="submit">
+                                            <button class="btn text-light" style="background-color:#25aa9e;"
+                                                type="submit">
                                                 Save Changes
                                             </button>
                                         </div>
@@ -84,14 +86,15 @@
 
                             <div class="  col-lg-8 ">
                                 <div class="card  p-3" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-                                    <table class="table table-striped text-center  table-bordered table_reduced" style="vertical-align: middle;" >
+                                    <table class="table table-striped text-center  table-bordered table_reduced"
+                                        style="vertical-align: middle;">
                                         <thead>
                                             <tr>
-                                                <th scope="col" class="">No.</th>
-                                                <th scope="col" class="">Name</th>
-                                                <th scope="col" class="">Description</th>
-                                                <th scope="col" class="">Status</th>
-                                                <th scope="col" class="">Action</th>
+                                                <th scope="col" class="" width="10">No.</th>
+                                                <th scope="col" class="" width="25">Name</th>
+                                                <th scope="col" class="" width="30">Description</th>
+                                                <th scope="col" class="" width="15">Status</th>
+                                                <th scope="col" class="" width="20">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -112,23 +115,97 @@
                                                 </td>
                                                 <td>
                                                     <div class="dropdown">
-                                                        <button type="button" class="btn text-light dropdown-toggle " style="background-color: #008080;"
+                                                        <button type="button" class="btn text-light dropdown-toggle "
+                                                            style="background-color: #008080;"
                                                             data-bs-toggle="dropdown">
                                                             Action
                                                         </button>
                                                         <ul class="dropdown-menu option">
-                                                            <li><a class="dropdown-item" href="edit-income.html">
+                                                            <li><button class="dropdown-item category_edit"
+                                                                    value="{{$category->id}}">
                                                                     <i style="font-size: 10px;"
                                                                         class="fas fa-pencil-alt my-2"> Edit</i>
-                                                                </a>
+                                                                </button>
                                                             </li>
-                                                            <li><a class="dropdown-item" href="#">
-                                                                    <i style="font-size: 10px;"
-                                                                        class="fas fa-trash my-2"> Delete</i>
-                                                                </a>
+                                                            <li><button class="dropdown-item">
+                                                                
+                                                                <i style="font-size: 10px;" class="fas fa-trash my-2"> Delete</i>
+                                                                
+                                                                </button>
                                                             </li>
                                                         </ul>
                                                     </div>
+
+                                                    <div class="modal" id="myModal1">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">
+                                                                        Category
+                                                                    </h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"></button>
+                                                                </div>
+                                                                <form method="POST" action="{{route('updatecat')}}">
+                                                                    @csrf
+                                                                    @method('PUT')
+                                                                    <input type="hidden" name="cat_id" value=""
+                                                                        id="cat_id">
+                                                                    <div class="modal-body">
+                                                                        <div class="card"
+                                                                            style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+                                                                            <div class="card-header text-start p-2">
+                                                                                <h4>Edit Category</h4>
+                                                                                <div class="form-group col-lg-12 p-2">
+                                                                                    <label for="u_category "
+                                                                                        class="mb-2">
+                                                                                        Category
+                                                                                        <strong
+                                                                                            class="text-danger">*</strong>
+                                                                                    </label>
+                                                                                    <input type="text"
+                                                                                        class="form-control mb-4"
+                                                                                        name="name"
+                                                                                        placeholder="Category"
+                                                                                        id="u_category" value="">
+                                                                                    <span class="text-danger"> </span>
+                                                                                </div>
+                                                                                <div class="form-group col-lg-12 p-2">
+                                                                                    <label for="u_description"
+                                                                                        class="mb-2">
+                                                                                        Description
+                                                                                        <strong class="text-danger">
+                                                                                        </strong>
+                                                                                    </label>
+                                                                                    <textarea class="form-control mb-4"
+                                                                                        name="description"
+                                                                                        id="u_description"
+                                                                                        placeholder="Please add Category details"></textarea>
+                                                                                    <span class="text-danger"> </span>
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                            <div class="card-footer text-center mb-3">
+                                                                                <button class="btn text-light"
+                                                                                    style="background-color:#25aa9e;"
+                                                                                    type="submit">
+                                                                                    Save Changes
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                                <div class="modal-footer justify-content-center">
+
+                                                                    <button type="button" data-bs-dismiss="modal"
+                                                                        class="btn btn-danger">Cancel</button>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -140,7 +217,8 @@
                     </div>
                 </section>
             </div>
-            <div class="tab-pane fade show {{request()->is('unit') ? 'active' : '' }} " id="{{url('/unit')}}" role="tabpanel" aria-labelledby="unit-tab" tabindex="0">
+            <div class="tab-pane fade show {{request()->is('unit') ? 'active' : '' }} " id="{{url('/unit')}}"
+                role="tabpanel" aria-labelledby="unit-tab" tabindex="0">
                 <section class="section p-2">
                     <div class="section-header d-flex p-3">
                         <h3 class="mt-3">Unit</h3>
@@ -157,7 +235,7 @@
                     <div class="section-body container-fluid">
                         <div class="row ">
                             <div class=" col-lg-4">
-                                <form method="POST" action="{{route('units')}}" class="border" >
+                                <form method="POST" action="{{route('units')}}" class="border">
                                     @csrf
                                     <div class="card" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
                                         <div class="card-header p-2">
@@ -169,7 +247,7 @@
                                                 </label>
                                                 <input type="text" class="form-control mb-4" name="name"
                                                     placeholder="Unit" id="unit" value="">
-                                                <span class="text-danger"> </span>
+                                                <span class="text-danger">@error('name') {{$message}} @enderror </span>
                                             </div>
                                             <div class="form-group col-lg-12 p-2">
                                                 <label for="description" class="mb-2">
@@ -184,7 +262,8 @@
                                         </div>
 
                                         <div class="card-footer text-center mb-3">
-                                            <button class="btn text-light" style="background-color:#25aa9e;" type="submit">
+                                            <button class="btn text-light" style="background-color:#25aa9e;"
+                                                type="submit">
                                                 Save Changes
                                             </button>
                                         </div>
@@ -194,14 +273,15 @@
 
                             <div class="  col-lg-8">
                                 <div class="card p-3" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-                                    <table class="table table-striped text-center  table-bordered table_reduced" style="vertical-align: middle;" >
+                                    <table class="table table-striped text-center  table-bordered table_reduced"
+                                        style="vertical-align: middle;">
                                         <thead>
                                             <tr>
-                                                <th scope="col" class="">No.</th>
-                                                <th scope="col" class="">Name</th>
-                                                <th scope="col" class="">Description</th>
-                                                <th scope="col" class="">Status</th>
-                                                <th scope="col" class="">Action</th>
+                                                <th scope="col" class="" width="10">No.</th>
+                                                <th scope="col" class="" width="25">Name</th>
+                                                <th scope="col" class="" width="30">Description</th>
+                                                <th scope="col" class="" width="15">Status</th>
+                                                <th scope="col" class="" width="20">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -218,19 +298,20 @@
                                                         <label class="form-check-label"
                                                             for="flexSwitchCheckDefault"></label>
                                                         <div>
-                                                    @endif
+                                                            @endif
                                                 </td>
                                                 <td>
                                                     <div class="dropdown">
-                                                        <button type="button" class="btn text-light dropdown-toggle " style="background-color: #008080;"
+                                                        <button type="button" class="btn text-light dropdown-toggle "
+                                                            style="background-color: #008080;"
                                                             data-bs-toggle="dropdown">
                                                             Action
                                                         </button>
                                                         <ul class="dropdown-menu option">
-                                                            <li><a class="dropdown-item" href="edit-income.html">
+                                                            <li><button class="dropdown-item unit_edit" value="{{$unit->id}}">
                                                                     <i style="font-size: 10px;"
                                                                         class="fas fa-pencil-alt my-2"> Edit</i>
-                                                                </a>
+                                                                </button>
                                                             </li>
                                                             <li><a class="dropdown-item" href="#">
                                                                     <i style="font-size: 10px;"
@@ -238,6 +319,71 @@
                                                                 </a>
                                                             </li>
                                                         </ul>
+                                                    </div>
+                                                    <div class="modal" id="myModal2">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">
+                                                                        Unit
+                                                                    </h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"></button>
+                                                                </div>
+                                                                <form method="POST" action="{{route('updateunit')}}">
+                                                                    @csrf
+                                                                    @method('PUT')
+                                                                    <input type="hidden" name="unit_id" value=""
+                                                                        id="unit_id">
+                                                                    <div class="modal-body">
+                                                                        <div class="card"
+                                                                            style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+                                                                            <div class="card-header text-start p-2">
+                                                                                <h4>Edit Unit</h4>
+                                                                                <div class="form-group col-lg-12 p-2">
+                                                                                    <label for="u_unit" class="mb-2">
+                                                                                        Unit
+                                                                                        <strong
+                                                                                            class="text-danger">*</strong>
+                                                                                    </label>
+                                                                                    <input type="text"
+                                                                                        class="form-control mb-4"
+                                                                                        name="name" placeholder="Unit"
+                                                                                        id="u_unit" value="">
+                                                                                    <span class="text-danger"> </span>
+                                                                                </div>
+                                                                                <div class="form-group col-lg-12 p-2">
+                                                                                    <label for="u_udescription" class="mb-2">
+                                                                                        Description
+                                                                                        <strong class="text-danger">
+                                                                                        </strong>
+                                                                                    </label>
+                                                                                    <textarea class="form-control mb-4"
+                                                                                        name="description" id="u_udescription"
+                                                                                        placeholder="Please add unit details"></textarea>
+                                                                                    <span class="text-danger"> </span>
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                            <div class="card-footer text-center mb-3">
+                                                                                <button class="btn text-light"
+                                                                                    style="background-color:#25aa9e;"
+                                                                                    type="submit">
+                                                                                    Save Changes
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                                <div class="modal-footer justify-content-center">
+
+                                                                    <button type="button" data-bs-dismiss="modal"
+                                                                        class="btn btn-danger">Cancel</button>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -250,7 +396,8 @@
                     </div>
                 </section>
             </div>
-            <div class="tab-pane fade show {{request()->is('type') ? 'active' : '' }} " id="{{url('/type')}}" role="tabpanel" aria-labelledby="type-tab" tabindex="0">
+            <div class="tab-pane fade show {{request()->is('type') ? 'active' : '' }} " id="{{url('/type')}}"
+                role="tabpanel" aria-labelledby="type-tab" tabindex="0">
                 <section class="section p-2">
                     <div class="section-header d-flex p-3">
                         <h3 class="mt-3">Type</h3>
@@ -277,9 +424,9 @@
                                                     Type
                                                     <strong class="text-danger">*</strong>
                                                 </label>
-                                                <input type="text" class="form-control mb-4" name="name"
+                                                <input type="text" class="form-control mb-4" name="type"
                                                     placeholder="Type" id="type" value="">
-                                                <span class="text-danger"> </span>
+                                                <span class="text-danger">@error('type') {{$message}} @enderror</span>
                                             </div>
                                             <div class="form-group col-lg-12 p-2">
                                                 <label for="description" class="mb-2">
@@ -294,7 +441,8 @@
                                         </div>
 
                                         <div class="card-footer text-center mb-3">
-                                            <button class="btn text-light" style="background-color:#25aa9e;" type="submit">
+                                            <button class="btn text-light" style="background-color:#25aa9e;"
+                                                type="submit">
                                                 Save Changes
                                             </button>
                                         </div>
@@ -304,14 +452,15 @@
 
                             <div class="  col-lg-8">
                                 <div class="card p-3" style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-                                    <table class="table table-striped text-center  table-bordered table_reduced" style="vertical-align: middle;" >
+                                    <table class="table table-striped text-center  table-bordered table_reduced"
+                                        style="vertical-align: middle;">
                                         <thead>
                                             <tr>
-                                                <th scope="col" class="">#</th>
-                                                <th scope="col" class="">Name</th>
-                                                <th scope="col" class="">Description</th>
-                                                <th scope="col" class="">Status</th>
-                                                <th scope="col" class="">Action</th>
+                                                <th scope="col" class="" width="10">#</th>
+                                                <th scope="col" class="" width="25">Name</th>
+                                                <th scope="col" class="" width="30">Description</th>
+                                                <th scope="col" class="" width="15">Status</th>
+                                                <th scope="col" class="" width="20">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -327,20 +476,21 @@
                                                             id="flexSwitchCheckDefault">
                                                         <label class="form-check-label"
                                                             for="flexSwitchCheckDefault"></label>
-                                                    <div>
-                                                    @endif
+                                                        <div>
+                                                            @endif
                                                 </td>
                                                 <td>
                                                     <div class="dropdown">
-                                                        <button type="button" class="btn text-light dropdown-toggle " style="background-color: #008080;"
+                                                        <button type="button" class="btn text-light dropdown-toggle "
+                                                            style="background-color: #008080;"
                                                             data-bs-toggle="dropdown">
                                                             Action
                                                         </button>
                                                         <ul class="dropdown-menu option">
-                                                            <li><a class="dropdown-item" href="edit-income.html">
+                                                            <li><button class="dropdown-item type_edit" value="{{$type->id}}" >
                                                                     <i style="font-size: 10px;"
                                                                         class="fas fa-pencil-alt my-2"> Edit</i>
-                                                                </a>
+                                                                </button>
                                                             </li>
                                                             <li><a class="dropdown-item" href="#">
                                                                     <i style="font-size: 10px;"
@@ -348,6 +498,71 @@
                                                                 </a>
                                                             </li>
                                                         </ul>
+                                                    </div>
+                                                    <div class="modal" id="myModal3">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">
+                                                                        Type
+                                                                    </h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"></button>
+                                                                </div>
+                                                                <form method="POST" action="{{route('updatetype')}}">
+                                                                    @csrf
+                                                                    @method('PUT')
+                                                                    <input type="hidden" name="type_id" value=""
+                                                                        id="type_id">
+                                                                    <div class="modal-body">
+                                                                        <div class="card"
+                                                                            style="box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
+                                                                            <div class="card-header text-start p-2">
+                                                                                <h4>Edit Type</h4>
+                                                                                <div class="form-group col-lg-12 p-2">
+                                                                                    <label for="u_type" class="mb-2">
+                                                                                        Type
+                                                                                        <strong
+                                                                                            class="text-danger">*</strong>
+                                                                                    </label>
+                                                                                    <input type="text"
+                                                                                        class="form-control mb-4"
+                                                                                        name="name" placeholder="Type"
+                                                                                        id="u_type" value="">
+                                                                                    <span class="text-danger"> </span>
+                                                                                </div>
+                                                                                <div class="form-group col-lg-12 p-2">
+                                                                                    <label for="u_tdescription" class="mb-2">
+                                                                                        Description
+                                                                                        <strong class="text-danger">
+                                                                                        </strong>
+                                                                                    </label>
+                                                                                    <textarea class="form-control mb-4"
+                                                                                        name="description" id="u_tdescription"
+                                                                                        placeholder="Please add type details"></textarea>
+                                                                                    <span class="text-danger"> </span>
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                            <div class="card-footer text-center mb-3">
+                                                                                <button class="btn text-light"
+                                                                                    style="background-color:#25aa9e;"
+                                                                                    type="submit">
+                                                                                    Save Changes
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                                <div class="modal-footer justify-content-center">
+
+                                                                    <button type="button" data-bs-dismiss="modal"
+                                                                        class="btn btn-danger">Cancel</button>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -368,3 +583,58 @@
 </script>
 
 @endsection
+
+@push('custom_script')
+<script>
+$(document).on('click', '.category_edit', function() {
+    var update_id = $(this).val();
+    // alert(update_id);
+    $("#myModal1").modal('show');
+
+    $.ajax({
+        type: "GET",
+        url: "/editcat/" + update_id,
+        success: function(response) {
+            console.log(response.cat);
+            $("#cat_id").val(update_id);
+            $("#u_category").val(response.cat.name);
+            $("#u_description").val(response.cat.description);
+        }
+    });
+});
+
+$(document).on('click', '.unit_edit', function() {
+    var update_id = $(this).val();
+    // alert(update_id);
+    $("#myModal2").modal('show');
+
+    $.ajax({
+        type: "GET",
+        url: "/editunit/" + update_id,
+        success: function(response) {
+            console.log(response.unit);
+            $("#unit_id").val(update_id);
+            $("#u_unit").val(response.unit.name);
+            $("#u_udescription").val(response.unit.description);
+        }
+    });
+});
+
+$(document).on('click', '.type_edit', function() {
+    var update_id = $(this).val();
+    // alert(update_id);
+    $("#myModal3").modal('show');
+
+    $.ajax({
+        type: "GET",
+        url: "/edittype/" + update_id,
+        success: function(response) {
+            console.log(response.type);
+            $("#type_id").val(update_id);
+            $("#u_type").val(response.type.name);
+            $("#u_tdescription").val(response.type.description);
+        }
+    });
+});
+</script>
+@endpush

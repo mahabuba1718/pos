@@ -215,6 +215,8 @@
                                                     @if($medicine->image != null)
                                                     <img class="" src="{{asset('/uploads/medicine/'.$medicine->image)}}"
                                                         alt="image">
+                                                    @else
+                                                    <img src="{{asset('assets/backend/img/no.jpg')}}" alt="image">
                                                     @endif
                                                 </td>
                                                 <td scope="col" class="">{{$medicine->name}}</td>
@@ -235,41 +237,34 @@
                                                     @endif
                                                 </td>
                                                 <td scope="col" class="p-1" style="display: flex; flex-wrap: nowrap;">
-                                                    <button type="button" class="m-1 btn editRow float-right text-light"
-                                                        style="font-size: 0.7rem; background-color: #7fa390"
-                                                        data-bs-toggle="modal" data-bs-target="#myModal1">
+                                                    <button type="button" class="m-1 btn editRow float-right text-light" data-bs-toggle="tooltip" data-bs-placement="bottom" title="View" style="font-size: 0.7rem; background-color: #7fa390" 
+                                                    value="{{$medicine->id}}">
                                                         <i class="fa-solid fa-eye"></i>
                                                     </button>
-                                                    <div>
-
-                                                        <div class="modal" id="myModal1">
-                                                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title">
-                                                                            Medicine Description
-                                                                        </h5>
-                                                                        <button type="button" class="btn-close"
-                                                                            data-bs-dismiss="modal"></button>
+                                                    <div class="modal" id="myModal1">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">
+                                                                        Medicine Description
+                                                                    </h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="form-group col-lg-12 p-2">
+                                                                        <label for="u_description" class="mb-2">
+                                                                        {{$medicine->description}}
+                                                                        </label>
                                                                     </div>
-                                                                    <div class="modal-body">
-                                                                        <p align="justify">Napa® (Paracetamol) is a fast
-                                                                            acting and safe analgesic with marked
-                                                                            antipyretic property.
+                                                                </div>
+                                                                <div class="modal-footer justify-content-center">
 
-                                                                            It is recommended for the treatment of most
-                                                                            painful and febrile conditions, such as
-                                                                            headache, toothache, backache, rheumatic and
-                                                                            muscle pains, dysmenorrhoea, sore throat,
-                                                                            and for relieving the fever, aches and pains
-                                                                            of colds and flu.</p>
-                                                                    </div>
-                                                                    <div class="modal-footer justify-content-center">
+                                                                    <button type="button" data-bs-dismiss="modal"
+                                                                        class="btn btn-danger">
+                                                                        Cancel
+                                                                    </button>
 
-                                                                        <button type="button" data-bs-dismiss="modal"
-                                                                            class="btn btn-danger">Cancel</button>
-
-                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -288,10 +283,12 @@
                                                         class="m-1 btn btn-danger deleteRow float-right"
                                                         style="font-size: 0.7rem;" data-bs-toggle="tooltip"
                                                         data-bs-placement="bottom" title="Delete">
+                                                        
                                                         <a href="{{route('deletemedicine',$medicine->id)}}"
                                                             class="text-light">
                                                             <i class="fa-solid fa-trash"></i>
                                                         </a>
+                                                        
                                                     </button>
                                                 </td>
                                             </tr>
@@ -312,3 +309,23 @@
     integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
 </script>
 @endsection
+
+@push('custom_script')
+<script>
+$(document).on('click', '.editRow', function() {
+    var update_id = $(this).val();
+    // alert(update_id);
+    $("#myModal1").modal('show');
+
+    $.ajax({
+        type: "GET",
+        url: "/editmed/" + update_id,
+        success: function(response) {
+            console.log(response.med);
+            $("#med_id").val(update_id);
+            $("#u_description").val(response.med.description);
+        }
+    });
+});
+</script>
+@endpush

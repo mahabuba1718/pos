@@ -95,7 +95,7 @@
                                                 <tr>
                                                     <td colspan="1" class="tbl_id" >1</td>
                                                     <td colspan="1" class="">
-                                                        <select class="form-select" name="medicine" id="medicine">
+                                                        <select class="form-select" name="medicine[]" id="medicine">
                                                             <option selected>Select One</option>
                                                             @foreach($admedicine as $key => $medicine)
                                                             <option value="{{$medicine->id}}">{{$medicine->name}}</option>
@@ -104,31 +104,31 @@
                                                     </td>
                                                     <td colspan="1" class="">
                                                     
-                                                        <input class="form-control" type="date" for="expire_date" name="expire_date" id="expire_date" />
+                                                        <input class="form-control" type="date" for="expire_date" name="expire_date[]" id="expire_date" />
                                                     </td>
                                                     <td colspan="1" class="">
                                                         <div class="input-group">
                                                         <label for="batch_id" class="mb-2"></label>
-                                                            <input type="text" name="batch_id" for="batch_id" placeholder="BI-01"
+                                                            <input type="text" name="batch_id[]" for="batch_id" placeholder="BI-01"
                                                                 class="form-control batch_id">
                                                         </div>
                                                     </td>
                                                     <td colspan="1">
                                                         <div class="input-group">
                                                         <label for="price" class="mb-2"></label>
-                                                            <input type="number" step="0.1" min="0.1" for="price" name="price"
+                                                            <input type="number" step="0.1" min="0.1" for="price" name="price[]"
                                                                 class="form-control total_amount">
                                                         </div>
                                                     </td>
                                                     <td colspan="1">
                                                         <div class="input-group">
                                                         <label for="quantity" class="mb-2"></label>
-                                                            <input type="number" step="1" min="1" for="quantity" name="quantity"
+                                                            <input type="number" step="1" min="1" for="quantity" name="quantity[]"
                                                                 class="form-control vat_amount">
                                                         </div>
                                                     </td>
                                                     <td colspan="1">
-                                                        <input type="number" step="0.1" min="0.1" for="sub_total" name="sub_total"
+                                                        <input type="number" step="0.1" min="0.1" for="sub_total" name="sub_total[]"
                                                             class="form-control sub_total border-0">
                                                     </td>
                                                     <td colspan="1">

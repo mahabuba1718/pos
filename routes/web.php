@@ -38,29 +38,43 @@ Route::get('/dashboard',[AdminController::class,'dashboard'])->name('dashboard')
 // contact=pharmacist
 Route::get('/pharmacist',[AdminController::class,'contact_pharmacist'])->name('contact_pharmacist');
 Route::post('/create/contact',[AdminController::class,'pharma'])->name('pharma');
-Route::get('/editpharma/{id}',[AdminController::class,'editpharma'])->name('editpharma');
+Route::get('/editpharma/{pharm_id}',[AdminController::class,'editpharma'])->name('editpharma');
 Route::put('/update/pharmacist',[AdminController::class,'updatepharm'])->name('updatepharm');
-Route::get('/deletepharma/{id}',[AdminController::class,'deletepharma'])->name('deletepharma');
+Route::get('/deletepharma/{pharm_id}',[AdminController::class,'deletepharma'])->name('deletepharma');
 
 // supplier
 Route::get('/supplier',[AdminController::class,'contact_supplier'])->name('contact_supplier');
 Route::post('/create/supplier',[AdminController::class,'supplier'])->name('supplier');
+Route::get('/editsup/{sup_id}',[AdminController::class,'editsup'])->name('editsup');
+Route::put('/update/supplier',[AdminController::class,'updatesup'])->name('updatesup');
+Route::get('/deletesup/{sup_id}',[AdminController::class,'deletesup'])->name('deletesup');
 
 // medicine
 Route::get('/medicine',[AdminController::class,'medicine'])->name('medicine');
-Route::get('/editmedicine/{med_id}',[AdminController::class,'editmedicine'])->name('editmedicine');
 Route::post('/create/medicine',[AdminController::class,'admedicine'])->name('admedicine');
+Route::get('/editmedicine/{med_id}',[AdminController::class,'editmedicine'])->name('editmedicine');
+Route::get('/editmed/{med_id}',[AdminController::class,'editmed'])->name('editmed');
 Route::put('/update/medicine',[AdminController::class,'updatemedicine'])->name('updatemedicine');
 Route::get('/deletemedicine/{med_id}',[AdminController::class,'deletemedicine'])->name('deletemedicine');
 
 // category
 Route::get('/category',[AdminController::class,'category'])->name('category');
-Route::get('/unit',[AdminController::class,'unit'])->name('unit');
-Route::get('/type',[AdminController::class,'type'])->name('type');
-
 Route::post('/create/category',[AdminController::class,'categories'])->name('categories');
+Route::get('/editcat/{cat_id}',[AdminController::class,'editcat'])->name('editcat');
+Route::put('/update/category',[AdminController::class,'updatecat'])->name('updatecat');
+// Route::get('/deletecat/{cat_id}',[AdminController::class,'deletecat'])->name('deletecat');
+
+// UNIT
+Route::get('/unit',[AdminController::class,'unit'])->name('unit');
 Route::post('/create/unit',[AdminController::class,'units'])->name('units');
+Route::get('/editunit/{unit_id}',[AdminController::class,'editunit'])->name('editunit');
+Route::put('/update/unit',[AdminController::class,'updateunit'])->name('updateunit');
+
+// type
+Route::get('/type',[AdminController::class,'type'])->name('type');
 Route::post('/create/type',[AdminController::class,'types'])->name('types');
+Route::get('/edittype/{type_id}',[AdminController::class,'edittype'])->name('edittype');
+Route::put('/update/type',[AdminController::class,'updatetype'])->name('updatetype');
 
 // pos
 Route::get('/pos',[AdminController::class,'pos'])->name('pos');

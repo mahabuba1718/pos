@@ -52,7 +52,7 @@
                                            @foreach($adpurchase as $key=> $purchase)
                                             <tr class="text-center">
                                                 <td scope="col" class="">{{$key+1}}</td>
-                                                <td scope="col" class="">{{$purchase->medicine->name}}</td>
+                                                <td scope="col" class="">{{$purchase->name}}</td>
                                                 <td scope="col" class="">{{$purchase->date}}</td>
                                                 <td scope="col" class="">{{$purchase->expire_date}}</td>
                                                 <td scope="col" class="my-auto">{{$purchase->supplier}}</td>

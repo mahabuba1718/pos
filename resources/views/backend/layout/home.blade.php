@@ -27,9 +27,14 @@
 
                 <div class="row needs-validaion" novalidate>
                     <div class="col-lg-12">
-                        @if(session()->has('message'))
+                        @if(session()->has('success'))
+                        <div class="alert alert-success">
+                            {{ session()->get('success') }}
+                        </div>
+                        @endif
+                        @if(session()->has('fail'))
                         <div class="alert alert-danger">
-                            {{ session()->get('message') }}
+                            {{ session()->get('fail') }}
                         </div>
                         @endif
                         <form action="{{route('login_post')}}" method="$_POST">
@@ -38,12 +43,6 @@
                                 <label for="email" class="form-label font-weight-bold">Email</label>
                                 <input type="email" for="email" name="email" class="form-control" id="email"
                                     placeholder="Mark@gmail.com" required>
-                                <div class="valid-feedback">
-                                    valid
-                                </div>
-                                <div class="invalid-feedback" style="color: rgb(56, 53, 53);">
-                                    Enter email address before submitting the Form
-                                </div>
                             </div>
                             <div class="form-group  mb-1">
                                 <label for="password" class="form-label font-weight-bold">Password</label>
