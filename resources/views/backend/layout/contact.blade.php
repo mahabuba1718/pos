@@ -468,7 +468,6 @@ $(document).on('click', '.deleteRow', function() {
         type: "GET",
         url: "/deleteRow/" + update_id,
         success: function(response) {
-            console.log(response.pharme);
             $("#pharm_id").val(update_id);
         }
     });
@@ -483,7 +482,6 @@ $(document).on('click', '.deleteRow2', function() {
         type: "GET",
         url: "/deleteRow2/" + update_id,
         success: function(response) {
-            console.log(response.supe);
             $("#sup_id").val(update_id);
         }
     });

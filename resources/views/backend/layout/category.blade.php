@@ -121,16 +121,14 @@
                                                             Action
                                                         </button>
                                                         <ul class="dropdown-menu option">
-                                                            <li><button class="dropdown-item category_edit"
-                                                                    value="{{$category->id}}">
-                                                                    <i style="font-size: 10px;"
-                                                                        class="fas fa-pencil-alt my-2"> Edit</i>
+                                                            <li>
+                                                                <button class="dropdown-item category_edit" value="{{$category->id}}">
+                                                                <i style="font-size: 10px;" class="fas fa-pencil-alt my-2"> Edit</i>
                                                                 </button>
                                                             </li>
-                                                            <li><button class="dropdown-item">
-                                                                
+                                                            <li>
+                                                                <button class="dropdown-item category_delete" value="{{$category->id}}">
                                                                 <i style="font-size: 10px;" class="fas fa-trash my-2"> Delete</i>
-                                                                
                                                                 </button>
                                                             </li>
                                                         </ul>
@@ -308,15 +306,17 @@
                                                             Action
                                                         </button>
                                                         <ul class="dropdown-menu option">
-                                                            <li><button class="dropdown-item unit_edit" value="{{$unit->id}}">
+                                                            <li>
+                                                                <button class="dropdown-item unit_edit" value="{{$unit->id}}">
                                                                     <i style="font-size: 10px;"
                                                                         class="fas fa-pencil-alt my-2"> Edit</i>
                                                                 </button>
                                                             </li>
-                                                            <li><a class="dropdown-item" href="#">
+                                                            <li>
+                                                                <button class="dropdown-item unit_delete" value="{{$unit->id}}">
                                                                     <i style="font-size: 10px;"
                                                                         class="fas fa-trash my-2"> Delete</i>
-                                                                </a>
+                                                                </button>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -492,10 +492,10 @@
                                                                         class="fas fa-pencil-alt my-2"> Edit</i>
                                                                 </button>
                                                             </li>
-                                                            <li><a class="dropdown-item" href="#">
+                                                            <li><button class="dropdown-item type_delete" value="{{$type->id}}">
                                                                     <i style="font-size: 10px;"
                                                                         class="fas fa-trash my-2"> Delete</i>
-                                                                </a>
+                                                                </button>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -578,6 +578,106 @@
         </div>
     </section>
 </div>
+<!-- Category Delete Modal -->
+<div class="modal" id="CategoryDelete">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <form action="{{route('deletecat')}}" method="POST">
+            @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Are You Sure?
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="DelCatId" name="DelCatId" value="">
+                    You Want to Delete This Record?
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button class="btn text-light"
+                        style="background-color:#25aa9e;"
+                        type="submit">
+                        Yes,Delete
+                    </button>
+
+                    <button type="button" data-bs-dismiss="modal"
+                        class="btn btn-danger">
+                        Cancel
+                    </button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Unit Delete Modal -->
+<div class="modal" id="UnitDelete">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <form action="{{route('deleteunit')}}" method="POST">
+            @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Are You Sure?
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="DelUnitId" name="DelUnitId" value="">
+                    You Want to Delete This Record?
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button class="btn text-light"
+                        style="background-color:#25aa9e;"
+                        type="submit">
+                        Yes,Delete
+                    </button>
+
+                    <button type="button" data-bs-dismiss="modal"
+                        class="btn btn-danger">
+                        Cancel
+                    </button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Type Delete Modal -->
+<div class="modal" id="TypeDelete">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <form action="{{route('deletetype')}}" method="POST">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Are You Sure?
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="DelTypeId" name="DelTypeId" value="">
+                    You Want to Delete This Record?
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button class="btn text-light"
+                        style="background-color:#25aa9e;"
+                        type="submit">
+                        Save Changes
+                    </button>
+
+                    <button type="button" data-bs-dismiss="modal"
+                        class="btn btn-danger">
+                        Cancel
+                    </button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
 </script>
@@ -635,6 +735,28 @@ $(document).on('click', '.type_edit', function() {
             $("#u_tdescription").val(response.type.description);
         }
     });
+    
+});
+$(document).on('click', '.category_delete', function() {
+    var delete_id = $(this).val();
+    // alert(delete_id);
+    $("#CategoryDelete").modal('show');
+    $("#DelCatId").val(delete_id);
+    
+});
+$(document).on('click', '.unit_delete', function() {
+    var delete_id = $(this).val();
+    // alert(delete_id);
+    $("#UnitDelete").modal('show');
+    $("#DelUnitId").val(delete_id);
+    
+});
+
+$(document).on('click', '.type_delete', function() {
+    var delete_id = $(this).val();
+    // alert(update_id);
+    $("#TypeDelete").modal('show');
+    $("#DelTypeId").val(delete_id);
 });
 </script>
 @endpush

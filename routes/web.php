@@ -35,6 +35,10 @@ Route::get('/create/user',[AdminController::class,'register'])->name('register')
 // dashboard
 Route::get('/dashboard',[AdminController::class,'dashboard'])->name('dashboard');
 
+// search
+// Route::get('/search',[AdminController::class,'searchmed'])->name('searchmed');
+
+
 // contact=pharmacist
 Route::get('/pharmacist',[AdminController::class,'contact_pharmacist'])->name('contact_pharmacist');
 Route::post('/create/contact',[AdminController::class,'pharma'])->name('pharma');
@@ -55,7 +59,7 @@ Route::get('/deltsupe/{sup_id}',[AdminController::class,'deltsupe'])->name('delt
 Route::get('/medicine',[AdminController::class,'medicine'])->name('medicine');
 Route::post('/create/medicine',[AdminController::class,'admedicine'])->name('admedicine');
 Route::get('/editmedicine/{med_id}',[AdminController::class,'editmedicine'])->name('editmedicine');
-Route::get('/editmed/{med_id}',[AdminController::class,'editmed'])->name('editmed');
+Route::get('/viewmed/{med_id}',[AdminController::class,'viewmed'])->name('viewmed');
 Route::put('/update/medicine',[AdminController::class,'updatemedicine'])->name('updatemedicine');
 Route::get('/deletemedicine/{med_id}',[AdminController::class,'deletemedicine'])->name('deletemedicine');
 Route::get('/deletemed/{med_id}',[AdminController::class,'deletemed'])->name('deletemed');
@@ -65,19 +69,21 @@ Route::get('/category',[AdminController::class,'category'])->name('category');
 Route::post('/create/category',[AdminController::class,'categories'])->name('categories');
 Route::get('/editcat/{cat_id}',[AdminController::class,'editcat'])->name('editcat');
 Route::put('/update/category',[AdminController::class,'updatecat'])->name('updatecat');
-// Route::get('/deletecat/{cat_id}',[AdminController::class,'deletecat'])->name('deletecat');
+Route::post('/deletecat',[AdminController::class,'deletecat'])->name('deletecat');
 
 // UNIT
 Route::get('/unit',[AdminController::class,'unit'])->name('unit');
 Route::post('/create/unit',[AdminController::class,'units'])->name('units');
 Route::get('/editunit/{unit_id}',[AdminController::class,'editunit'])->name('editunit');
 Route::put('/update/unit',[AdminController::class,'updateunit'])->name('updateunit');
+Route::post('/deleteunit',[AdminController::class,'deleteunit'])->name('deleteunit');
 
 // type
 Route::get('/type',[AdminController::class,'type'])->name('type');
 Route::post('/create/type',[AdminController::class,'types'])->name('types');
 Route::get('/edittype/{type_id}',[AdminController::class,'edittype'])->name('edittype');
 Route::put('/update/type',[AdminController::class,'updatetype'])->name('updatetype');
+Route::post('/deletetype',[AdminController::class,'deletetype'])->name('deletetype');
 
 // pos
 Route::get('/pos',[AdminController::class,'pos'])->name('pos');
@@ -96,6 +102,7 @@ Route::get('/add_purchase',[AdminController::class,'addpurchase'])->name('add_pu
 
 // purchase
 Route::get('/purchase',[AdminController::class,'purchase'])->name('purchase');
+Route::get('/purchase/find_med/{id}',[AdminController::class,'purchase_find_med'])->name('purchase_find_med');
 Route::post('/create/purchase',[AdminController::class,'adpurchase'])->name('adpurchase');
 
 // stock

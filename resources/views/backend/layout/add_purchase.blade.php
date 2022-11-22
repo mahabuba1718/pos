@@ -96,7 +96,7 @@
                                                     <td colspan="1" class="tbl_id" >1</td>
                                                     <td colspan="1" class="">
                                                         <select class="form-select" name="medicine[]" id="medicine">
-                                                            <option selected>Select One</option>
+                                                            <option>Select One</option>
                                                             @foreach($admedicine as $key => $medicine)
                                                             <option value="{{$medicine->id}}">{{$medicine->name}}</option>
                                                             @endforeach
@@ -116,20 +116,20 @@
                                                     <td colspan="1">
                                                         <div class="input-group">
                                                         <label for="price" class="mb-2"></label>
-                                                            <input type="number"  step="0.1" min="0.1" for="price" name="price[]"
-                                                                class="form-control total_amount">
+                                                            <input type="number"  step="0.1" min="0.1" id="price" value="{{}}" name="price[]"
+                                                                class="form-control total_amount" readonly>
                                                         </div>
                                                     </td>
                                                     <td colspan="1">
                                                         <div class="input-group">
                                                         <label for="quantity" class="mb-2"></label>
-                                                            <input type="number" step="1" min="1" for="quantity" name="quantity[]"
-                                                                class="form-control vat_amount">
+                                                            <input type="number" step="1" min="1" id="quantity" name="quantity[]"
+                                                                class="form-control vat_amount" value="">
                                                         </div>
                                                     </td>
                                                     <td colspan="1">
-                                                        <input type="number" step="0.1" min="0.1" for="sub_total" name="sub_total[]"
-                                                            class="form-control sub_total border-0">
+                                                        <input type="number" step="0.1" min="0.1" id="sub_total" name="sub_total[]"
+                                                            class="form-control sub_total border-0" readonly>
                                                     </td>
                                                     <td colspan="1">
                                                     
@@ -149,18 +149,18 @@
                                                     <td>
                                                         <div class="input-group">
                                                             <input type="number" min="1" name="net_total"
-                                                                class="form-control net_total">
+                                                                class="form-control net_total" readonly>
                                                         </div>
                                                     </td>
                                                     <td></td>
                                                     <td></td>
                                                 </tr>
                                                 <tr >
-                                                    <td colspan="6" style="text-align: end;" >Vat</td>
+                                                    <td colspan="6" style="text-align: end;" >Vat(5%)</td>
                                                     <td>
                                                         <div class="input-group">
-                                                            <input type="number" min="0" name="vat"
-                                                                class="form-control vat">
+                                                            <input type="number" min="0" name="vat" id="vat"
+                                                                class="form-control vat" value="" readonly>
                                                         </div>
                                                     </td>
                                                     <td></td>
@@ -170,8 +170,8 @@
                                                     <td colspan="6" style="text-align: end;" >Discount</td>
                                                     <td>
                                                         <div class="input-group">
-                                                            <input type="number" step="0" min="0" name="discount_amount"
-                                                                class="form-control discount_amount">
+                                                            <input type="number" step="0" min="0" name="discount_amount" id="discount_amount"
+                                                                class="form-control discount_amount" value="">
                                                         </div>
                                                     </td>
                                                     <td></td>
@@ -180,8 +180,8 @@
                                                 <tr>
                                                     <td colspan="6" style="text-align: end;" >Total</td>
                                                     <td>
-                                                        <input type="number" step="0.1" min="0.1" name="total_amount"
-                                                            class="form-control total_amount border-0">
+                                                        <input type="number" step="0.1" min="0.1" name="total_amount" id="total_amount"
+                                                            class="form-control total_amount border-0" value="" readonly>
                                                     </td>
                                                     <td></td>
                                                     <td></td>
@@ -190,7 +190,7 @@
                                                     <td colspan="6" style="text-align: end;" >Paid</td>
                                                     <td>
                                                         <input type="number" step="0.1" min="0.1" name="paid_amount"
-                                                            class="form-control paid_amount border-0">
+                                                            class="form-control paid_amount border-0" id="paid_amount">
                                                     </td>
                                                     <td></td>
                                                     <td></td>
@@ -198,8 +198,8 @@
                                                 <tr >
                                                     <td colspan="6" style="text-align: end;" >Change Amount</td>
                                                     <td>
-                                                        <input type="number" step="0" min="0" name="change_amount"
-                                                            class="form-control change_amount border-0">
+                                                        <input type="number" step="0" min="0" name="change_amount" id="change_amount"
+                                                            class="form-control change_amount border-0" readonly>
                                                     </td>
                                                     <td></td>
                                                     <td></td>
@@ -207,8 +207,8 @@
                                                 <tr >
                                                     <td colspan="6" style="text-align: end;" >Due</td>
                                                     <td>
-                                                        <input type="number" step="0" min="0" name="due_amount"
-                                                            class="form-control due_amount border-0">
+                                                        <input type="number" step="0" min="0" name="due_amount" id="due_amount"
+                                                            class="form-control due_amount border-0" readonly>
                                                     </td>
                                                     <td></td>
                                                     <td></td>
@@ -243,6 +243,11 @@
     </section>
 
 </div>
+
+
+@endsection
+
+@push('custom_script')
 <script>
 
   //JS class to add/delete rows in html table - https://coursesweb.net/javascript/ 
@@ -283,4 +288,54 @@
     integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
 </script>
 
-@endsection
+<script>
+    $(document).ready(function(){
+        $(document).on('change','#medicine',function(){
+            var $option = $(this).find('option:selected');
+            var value = $option.val();
+            $.ajax({
+                type: "GET",
+                url: "/purchase/find_med/" + value,
+                success: function(response) {
+                    $("#price").val(response.med.purchaseprice);
+                }
+            }); 
+        });
+
+        $(document).on('change','#quantity',function(){
+            var qty = $(this).val();
+            var price = $("#price").val();
+            var sub_total = price * qty;
+            var vat = (parseInt(sub_total)*5)/100;
+            // console.log(qty,price,sub_total);
+            $("#sub_total").val(sub_total);
+            $("#vat").val(vat);
+        });
+
+        $(document).on('change','#discount_amount',function(){
+            var discount = $(this).val();
+            var sub_total = $("#sub_total").val();
+            var vat = $("#vat").val();
+            var total = (parseFloat(sub_total) + parseFloat(vat)) - discount;
+            $("#total_amount").val(total);
+        });
+
+        $(document).on('change','#paid_amount',function(){
+            var paid_amount = parseFloat($(this).val());
+            var total = parseFloat($("#total_amount").val());
+            if(total < paid_amount){
+                console.log("change");
+                var change = paid_amount - total;
+                $("#change_amount").val(change);
+                $("#due_amount").val('0');
+            }else{
+                console.log("Due");
+                var due = total - paid_amount;
+                $("#due_amount").val(due.toFixed(2));
+                $("#change_amount").val('0');
+            }
+        });
+    });
+</script>
+
+@endpush

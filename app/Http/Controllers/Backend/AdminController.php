@@ -31,6 +31,16 @@ class AdminController extends Controller
         return view('backend.layout.dashboard');
     }
 
+    // search
+    // public function searchmed(Request $request)
+    // {
+    //     if($request->search)
+    //     {
+    //         $searchmed = Medicine :: where('name', 'LIKE', '%'. $request->search . '%')->latest()->paginate(15);
+    //         return view('backend.layout.dashboard');
+    //     }
+    // }
+
 
     // contact= pharmacist
     public function contact_pharmacist()
@@ -280,12 +290,12 @@ class AdminController extends Controller
          );
          return redirect()-> route('category');
      }
-    //  public function deletecat($cat_id)
-    //  {
-    //      $cat = Category::find($cat_id);
-    //      $cat ->delete();
-    //      return redirect()-> back();
-    //  }
+     public function deletecat(Request $request)
+     {
+        // dd($request->all());
+        Category::find($request->DelCatId)->delete();
+         return redirect()-> back();
+     }
 
 
     //  unit
@@ -329,6 +339,12 @@ class AdminController extends Controller
              ]
          );
          return redirect()-> route('unit');
+     }
+     public function deleteunit(Request $request)
+     {
+        // dd($request->all());
+        Unit::find($request->DelUnitId)->delete();
+         return redirect()-> back();
      }
 
 
@@ -374,6 +390,12 @@ class AdminController extends Controller
          );
          return redirect()-> route('type');
      }
+     public function deletetype(Request $request)
+     {
+        // dd($request->all());
+        Type::find($request->DelTypeId)->delete();
+         return redirect()-> back();
+     }
     
     // medicine
     public function medicine()
@@ -393,7 +415,7 @@ class AdminController extends Controller
             'med' => $med,
          ]);
      }
-    public function editmed($med_id)
+    public function viewmed($med_id)
      {
          $med = Medicine::find($med_id);
          return response([
@@ -547,6 +569,14 @@ class AdminController extends Controller
         $adpurchase=Subpurchase::Join('purchases','purchases.id','=','subpurchases.purchase_id')->Join('medicines','medicines.id','=','subpurchases.madicine_id')->get(['subpurchases.*','purchases.*','medicines.name']);
         // dd($adpurchase);
         return view('backend.layout.purchase',compact('adpurchase' ));
+    }
+
+    public function purchase_find_med($id){
+        $find_med = Medicine::find($id);
+        return response([
+            'status' => '200',
+            'med' => $find_med,
+        ]);
     }
 
     // purchase= addpurchase
