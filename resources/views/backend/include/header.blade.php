@@ -16,7 +16,7 @@
         data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <input class="form-control w-50 rounded-3 border-0" type="text" placeholder="Search" aria-label="Search">
+    
 
  
     <div class="dropdown  me-5">

@@ -15,14 +15,17 @@ return new class extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
+            $table->string('purchase_no');
             $table->string('date');
             $table->string('time');
             $table->string('supplier');
-            $table->string('purchase_no');
             $table->string('vat')->default(0);
             $table->string('discount_amount')->default(0);
             $table->string('total_amount');
             $table->string('paid_amount')->default(0);
+            $table->string('due_amount');
+            $table->string('change_amount');
+            $table->boolean('status')->default(0);           
             $table->string('description')->nullable();
             $table->timestamps();
         });

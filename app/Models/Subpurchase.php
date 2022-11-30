@@ -14,4 +14,9 @@ class Subpurchase extends Model
     {
         return $this->belongsTo(Purchase::class,'purchase_id','id');
     }
+    public function medicine()
+    {
+        return $this->belongsTo(Medicine::class,'madicine_id','id');
+    }
+
 }

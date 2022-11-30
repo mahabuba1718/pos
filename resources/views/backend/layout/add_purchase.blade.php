@@ -34,7 +34,7 @@
                                             Date
                                             <strong class="text-danger">*</strong>
                                         </label>
-                                        <input class="form-control mb-4" type="date" for="date" name="date" id="date" />
+                                        <input class="form-control mb-4" type="date" name="date" id="date" />
                                         <span class="text-danger"> </span>
                                     </div>
                                     <div class="form-group col-lg-3">
@@ -42,7 +42,7 @@
                                             Time
                                             <strong class="text-danger"> </strong>
                                         </label>
-                                        <input class="form-control mb-4" type="time" for="time" name="time" id="time" />
+                                        <input class="form-control mb-4" type="time" name="time" id="time" />
                                         <span class="text-danger"> </span>
                                     </div>
                                     <div class="form-group col-lg-3">
@@ -73,27 +73,27 @@
                             <div class="container-fluid">
                                 <div class="card-header d-flex p-2">
                                     <h4>Purchase Medicine</h4>
-
+                                    
                                 </div>
                                 <div class="card-body">
                                     <div class=" table_section p-3">
                                         <table id="table1" class="table table-bordered text-center">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col" class="">#</th>
-                                                    <th scope="col" class="">Medicine</th>
-                                                    <th scope="col" class="">Expiry Date</th>
-                                                    <th scope="col" class="">Batch ID</th>
-                                                    <th scope="col" class="">Price</th>
-                                                    <th scope="col" class="">Quantity</th>
-                                                    <th scope="col" class="">Sub Total</th>
-                                                    <th scope="col" class="">Add</th>
-                                                    <th scope="col" class="">Remove</th>
+                                                    <th scope="col" class="" width="5%">#</th>
+                                                    <th scope="col" class="" width="17%">Medicine</th>
+                                                    <th scope="col" class="" width="14%">Expiry Date</th>
+                                                    <th scope="col" class="" width="13%">Batch ID</th>
+                                                    <th scope="col" class="" width="11%">Price</th>
+                                                    <th scope="col" class="" width="11%">Quantity</th>
+                                                    <th scope="col" class="" width="11%">Sub Total</th>
+                                                    <th scope="col" class="" width="9%">Add</th>
+                                                    <th scope="col" class="" width="9%">Remove</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td colspan="1" class="tbl_id" >1</td>
+                                                    <td colspan="1" class="tbl_id"  >1</td>
                                                     <td colspan="1" class="">
                                                         <select class="form-select" name="medicine[]" id="medicine">
                                                             <option>Select One</option>
@@ -324,12 +324,10 @@
             var paid_amount = parseFloat($(this).val());
             var total = parseFloat($("#total_amount").val());
             if(total < paid_amount){
-                console.log("change");
                 var change = paid_amount - total;
                 $("#change_amount").val(change);
                 $("#due_amount").val('0');
             }else{
-                console.log("Due");
                 var due = total - paid_amount;
                 $("#due_amount").val(due.toFixed(2));
                 $("#change_amount").val('0');

@@ -87,6 +87,7 @@ Route::post('/deletetype',[AdminController::class,'deletetype'])->name('deletety
 
 // pos
 Route::get('/pos',[AdminController::class,'pos'])->name('pos');
+Route::get('/pos/{id}',[AdminController::class,'addtocart'])->name('addtocart');
 
 // possale
 Route::get('/possale',[AdminController::class,'possale'])->name('possale');
@@ -102,6 +103,7 @@ Route::get('/add_purchase',[AdminController::class,'addpurchase'])->name('add_pu
 
 // purchase
 Route::get('/purchase',[AdminController::class,'purchase'])->name('purchase');
+Route::get('/viewpurch/{purch_id}',[AdminController::class,'viewpurch'])->name('viewpurch');
 Route::get('/purchase/find_med/{id}',[AdminController::class,'purchase_find_med'])->name('purchase_find_med');
 Route::post('/create/purchase',[AdminController::class,'adpurchase'])->name('adpurchase');
 

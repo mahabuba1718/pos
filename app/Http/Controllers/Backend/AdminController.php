@@ -17,6 +17,7 @@ use Faker\Provider\Medical;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use File;
 
 class AdminController extends Controller
@@ -566,10 +567,15 @@ class AdminController extends Controller
     // purchase
     public function purchase()
     {
-        $adpurchase=Subpurchase::Join('purchases','purchases.id','=','subpurchases.purchase_id')->Join('medicines','medicines.id','=','subpurchases.madicine_id')->get(['subpurchases.*','purchases.*','medicines.name']);
+        $adpurchase=Purchase::all();
+        $subpurchase= Subpurchase::all();
+        // dd($subpurchase);
+        $admedicine=Medicine::all();
+
         // dd($adpurchase);
-        return view('backend.layout.purchase',compact('adpurchase' ));
+        return view('backend.layout.purchase',compact('adpurchase','subpurchase','admedicine' ));
     }
+    
 
     public function purchase_find_med($id){
         $find_med = Medicine::find($id);
@@ -585,11 +591,10 @@ class AdminController extends Controller
         $adpurchase=Purchase::all();
         $admedicine=Medicine::all();
         $supplier=Supplier::all();
-        return view('backend.layout.add_purchase', compact('adpurchase','admedicine','supplier'));
+        return view('backend.layout.add_purchase2', compact('adpurchase','admedicine','supplier'));
     }
     public function adpurchase(Request $request)
-    {
-               
+    {      
         // $request->validate(
         //     [
         //     'date' => ['required'],
@@ -608,40 +613,55 @@ class AdminController extends Controller
         // dd($request->all(),$count);
         $purchase = Purchase::create(
             [
+                'purchase_no'=>$request->purchase_no,
                 'date'=>$request->date,
                 'time'=>$request->time,
                 'supplier'=>$request->supplier,
-                'purchase_no'=>$request->purchase_no,
                 'vat'=>$request->vat,
                 'discount_amount'=>$request->discount_amount,
                 'total_amount'=>$request->total_amount,
                 'paid_amount'=>$request->paid_amount,
+                'due_amount'=>$request->due_amount,
+                'change_amount'=>$request->change_amount,
                 'description'=>$request->description,
             ]
         );
+        for($i=0; $i<$count; $i++){
+           $med= Medicine::find($request->medicine[$i]);
+           $med->update([
+                'stock_status' => '1',
+            ]);
+        }
 
         for ($i=0; $i<$count; $i++)
         {
             Subpurchase::create(
                 [
                 'purchase_id' => $purchase->id,
+                'purchase_no'=>$request->purchase_no,
                 'madicine_id'=>$request->medicine[$i],
+                'date'=>$request->date,
                 'expire_date'=>$request->expire_date[$i],
                 'batch_id'=>$request->batch_id[$i],
-                'price'=>$request->price[$i],
                 'quantity'=>$request->quantity[$i],
+                'price'=>$request->price[$i],
+                'image'=>$med->image[$i],
+                'sub_total'=>$request->sub_total[$i],
                 ]
             );
         }
 
 
-        for($i=0; $i<$count; $i++){
-            Medicine::find($request->medicine[$i])->update([
-                'stock_status' => '1',
-            ]);
-        }
+     
 
         return redirect()-> back();
+    }
+    public function viewpurch($purch_id)
+    {
+        $purch = Purchase::find($purch_id);
+        return response([
+           'purch' => $purch,
+        ]);
     }
 
 
@@ -660,8 +680,27 @@ class AdminController extends Controller
     // pos
     public function pos()
     {
-        $medicines = Medicine::where('stock_status','1')->get();
-        return view('backend.layout.pos',compact('medicines'));
+        $adpurchase=Subpurchase::all();
+        // dd($adpurchase ->medicine->image);
+        $admedicine=Medicine::all();
+        $medicines = Medicine::all();
+        $pos = Cart::content();
+        // dd($pos);
+        return view('backend.layout.pos',compact('medicines','pos','adpurchase','admedicine'));
+    }
+    public function addtocart($id)
+    {
+        $med = Subpurchase::find($id);
+        Cart::add(
+        [
+            'id' => $med -> id,
+            'name' => $med->medicine->name,
+            'qty' => 1,
+            'price' => $med ->price,
+            'weight' => 1,
+            'options' => ['image' => $med->image],
+        ]);
+        return back();
     }
 
     public function possale()

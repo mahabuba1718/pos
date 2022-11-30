@@ -158,7 +158,7 @@
                                                         <label class="mb-2" for="image">
                                                             Image
                                                         </label>
-                                                        <input type="file" class="form-control mb-4" name="image">
+                                                        <input type="file" class="form-control mb-4" name="image" id="image">
                                                         <span class="text-danger"> </span>
                                                     </div>
                                                 </div>
@@ -224,8 +224,8 @@
                                                 <td scope="col" class="">{{$medicine->category->name}}</td>
                                                 <td scope="col" class="">{{$medicine->unit->name}}</td>
                                                 <td scope="col" class="">{{$medicine->type->name}}</td>
-                                                <td scope="col" class="">{{$medicine->price}}</td>
-                                                <td scope="col" class="">{{$medicine->purchaseprice}}</td>
+                                                <td scope="col" class="">৳ {{$medicine->price}}</td>
+                                                <td scope="col" class="">৳ {{$medicine->purchaseprice}}</td>
                                                 <td scope="col" class=" ">
                                                     @if($medicine->status == 1)
                                                     <div class=" form-switch">
@@ -254,6 +254,9 @@
                                                                         data-bs-dismiss="modal"></button>
                                                                 </div>
                                                                 <div class="modal-body">
+                                                                    <div class="" id="viewImg">
+
+                                                                    </div>
                                                                     <div class="p-2" id="viewDes">
 
                                                                     </div>
@@ -350,6 +353,11 @@ $(document).on('click', '.viewBtn', function() {
             $("#viewDes").html('');
             $("#viewDes").append('\
                 <p>'+response.med.description+'</p>\
+            '
+            );
+            $("#viewImg").html('');
+            $("#viewImg").append('\
+                <img>'+response.med.image+'</img>\
             '
             );
 

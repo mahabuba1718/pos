@@ -16,11 +16,15 @@ return new class extends Migration
         Schema::create('subpurchases', function (Blueprint $table) {
             $table->id();
             $table->string('purchase_id');
+            $table->string('purchase_no');
+            $table->string('image');
             $table->string('madicine_id');
+            $table->string('date');
             $table->string('expire_date');
             $table->string('batch_id');
-            $table->string('price');
             $table->string('quantity');
+            $table->string('price');
+            $table->string('sub_total');
             $table->timestamps();
         });
     }

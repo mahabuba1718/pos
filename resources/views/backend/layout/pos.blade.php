@@ -26,36 +26,39 @@
         </div>
         <div class="section-body">
             <div class="row d-flex">
-                <div class="col-lg-6">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="from-group">
-                                <input class="form-control mb-3" type="text" placeholder="Enter Medicine Name"
-                                    name="medicine_name">
-                                <div class="row pos_div">
-                                    @foreach($medicines as $medicine)
-                                    <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
-                                        <div class="card">
-                                            @if($medicine->image != null)
-                                            <img class="card-img-top"
-                                                src="{{asset('/uploads/medicine/'.$medicine->image)}}" alt="image" style="height: 100px">
-                                            @endif
-                                            <div class="card-body text-center" style="padding: 0.2rem;">
-                                                <h6 class="card-title ">
-                                                    {{$medicine->name}}
-                                                </h6>
+                <div class="col-lg-6" style="padding: 0px">
+                    <form action="">
+                        <input type="hidden" name="purchase" value="">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="from-group">
+                                    <input class="form-control mb-3" type="text" placeholder="Enter Medicine Name"
+                                        name="medicine_name">
+                                    <div class="row pos_div">
+                                        
+                                        @foreach($adpurchase as $key=> $subpurchase)
+                                        <div class="col-lg-3 col-md-4 col-sm-6 mb-2" style="padding: 4px;">
+                                            <div class="card">
+                                                <img class="card-img-top mb-2 "
+                                                    src="{{asset('/uploads/medicine/'.$subpurchase->medicine->image)}}" alt="image"
+                                                    style="height: 100px">
+                                                <div class="card-body text-center" style="padding: 0.2rem;">
+                                                    <h6 class="card-title ">
+                                                        {{$subpurchase->medicine->name}}
+                                                    </h6>
+                                                    <a href="{{route('addtocart',$subpurchase->id)}}" class="stretched-link" style="text-decoration: none;"><h6>৳ {{$subpurchase->price}}</h6></a>
+                                                </div>
                                             </div>
                                         </div>
+                                        @endforeach
                                     </div>
-                                    @endforeach
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <input type="hidden" name="purchase" value="0">
+                    </form>
                 </div>
 
-                <div class="col-lg-6 ">
+                <div class="col-lg-6 " style="padding: 0px">
                     <form action="" method="post">
 
                         <div class="card">
@@ -72,36 +75,42 @@
                                 <div class="table ">
                                     <table id="table1" class="table table-bordered pos_table table_reduced">
                                         <thead>
-                                            <tr>
-                                                <th scope="col">Medicine</th>
-                                                <th scope="col">QTY</th>
-                                                <th scope="col">Price</th>
-                                                <th scope="col">Sub Total</th>
-                                                <th scope="col">Action</th>
+                                            <tr style= "text-align: center;">
+                                                <th scope="col" width="35%" >Medicine</th>
+                                                <th scope="col" width="15%">QTY</th>
+                                                <th scope="col" width="15%">Price</th>
+                                                <th scope="col" width="20%">Sub Total</th>
+                                                <th scope="col" width="15%">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
                                         <tfoot>
+                                            @foreach($pos as $data)
                                             <tr>
-                                                <td></td>
-
-                                                <td colspan="1">
-                                                    <div class="input-group">
-                                                        <input type="number" step="1" min="1" name="quantity"
-                                                            class="form-control vat_amount">
-                                                    </div>
+                                                <td class="text-center">
+                                                      
+                                                    {{$data->name}}
                                                 </td>
 
                                                 <td colspan="1">
                                                     <div class="input-group">
-                                                        <input type="number" step="0.1" min="0.1" name="price"
-                                                            class="form-control vat_amount">
-                                                    </div>
+                                                        <input type="number" step="1" min="1"  id="quantity" name="quantity" value="{{$data->qty}}"
+                                                            class="form-control vat_amount QTY">
+                                                    </div> 
                                                 </td>
 
                                                 <td colspan="1">
-                                                    <input type="number" step="0.1" readonly value="0" name="net_total"
-                                                        class="form-control net_total border-0" placeholder="Net Total">
+                                                    <div class="input-group">
+                                                        <input type="number" step="0.1" min="0.1" id="price" name="price" value="{{$data->price}}"
+                                                            class="form-control vat_amount">
+                                                    </div>
+                                                </td>
+                                                @php
+                                                   $total = $data ->price*$data ->qty
+                                                @endphp
+                                                <td colspan="1">
+                                                  
+                                                        <p style="margin-bottom: 0rem;">{{$total}}</p>
                                                 </td>
                                                 <td colspan="1">
                                                     <input type="button" value=" - "
@@ -111,14 +120,16 @@
 
                                                 </td>
                                             </tr>
+                                            @endforeach
                                             <tr>
 
                                                 <td colspan="3" style="text-align: end;">Net Total</td>
                                                 <td>
                                                     <div class="input-group">
-                                                        <input type="number" readonly value="0" name="net_total"
+                                                        <!-- <input type="number" readonly value="0" name="net_total" 
                                                             class="form-control sub_total border-0"
-                                                            placeholder="Net Total">
+                                                            placeholder="Net Total"> -->
+                                                            <p style="margin-bottom: 0rem; padding: 0.5rem;" id="subtotal">{{Cart::subtotal()}}</p>
                                                     </div>
                                                 </td>
                                                 <td></td>
@@ -141,15 +152,18 @@
                                                         <input type="number" step="0.1" min="0.1" name="discount_amount"
                                                             class="form-control discoount_amount">
                                                     </div>
+                                                    
                                                 </td>
                                                 <td></td>
                                             </tr>
                                             <tr>
+                                               
                                                 <td colspan="3" style="text-align: end;">Total</td>
                                                 <td>
                                                     <input type="number" step="0.1" value="0" readonly
                                                         name="total_amount" name="total_amount"
                                                         class="form-control total_amount border-0" placeholder="Total">
+                                                       
                                                 </td>
                                                 <td></td>
                                             </tr>
@@ -186,11 +200,11 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-center pb-3">
-                                <a href="#" class="btn btn-danger mr-2">
+                            <div class="d-flex justify-content-center pb-3 ">
+                                <a href="#" class="btn btn-danger" style="margin: 2px;">
                                     Cancel
                                 </a>
-                                <button class="btn btn-success mr-2" type="submit">Pay Now</button>
+                                <button class="btn btn-success" style="margin: 2px;" type="submit">Pay Now</button>
                             </div>
 
                         </div>
@@ -229,3 +243,21 @@ var ob_adRows = new adRowsTable('table1');
 </script>
 
 @endsection
+@push('custom_script')
+<script>
+
+$(document).ready(function(){
+    $(document).on('change','.QTY',function()
+        {
+            var i = 1;
+            var i = $(this).parents('tr').attr('id');
+            var qty = $('#quantity'+i).val();
+            var price = $('#price'+i).val();
+            var subtotal = price * qty;
+            $('#subtotal'+i).val(subtotal);
+            total();
+        });
+});
+
+</script>
+@endpush
