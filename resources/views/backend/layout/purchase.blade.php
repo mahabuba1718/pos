@@ -10,7 +10,7 @@
                 </div>
                 <div class="m-2">/</div>
                 <div class="m-2">
-                    <a href="{{route('medicine')}}">Medicine</a>
+                    <a href="{{route('purchase')}}">Purchase</a>
                 </div>
             </div>
         </div>
@@ -21,7 +21,8 @@
                         <div class="card-header d-flex p-3">
                             <h4>Purchase</h4>
                             <div class="card-header-form">
-                                <a href="{{route('add_purchase')}}" class="btn text-light float-right" style="background-color: #008080;">
+                                <a href="{{route('add_purchase')}}" class="btn text-light float-right"
+                                    style="background-color: #008080;">
                                     <i class="fa fa-plus"></i>
                                     Add Purchase
                                 </a>
@@ -63,29 +64,48 @@
                                                 <td scope="col" class="">{{$purchase->change_amount}}</td>
 
                                                 <td>
-                                                    <span class="badge bg-danger rounded-pill p-2">Pending</span>
+                                                    @if ($purchase->status == 0)
+                                                    <span class="badge bg-danger" style="padding: 7px;">Pending</span>
+                                                    @else
+                                                    <span class="badge bg-success" style="padding: 7px;">Approve</span>
+                                                    @endif
                                                 </td>
                                                 <td>
                                                     <div class="dropdown">
-                                                        <button type="button" class="btn text-light dropdown-toggle " style="background-color: #008080;" data-bs-toggle="dropdown">
+                                                        <button type="button" class="btn text-light dropdown-toggle " 
+                                                            style="background-color: #008080;"
+                                                            data-bs-toggle="dropdown">
                                                             Action
                                                         </button>
                                                         <ul class="dropdown-menu option">
+                                                            @if ($purchase->status == 0)
                                                             <li>
-                                                                <a class="dropdown-item" href="#">
-                                                                    <i style="font-size: 10px;" class="fas fa-pencil-alt my-2"> Approve</i>
+                                                                <a class="dropdown-item"
+                                                                    href="{{route('purchase_approve',$purchase->id)}}">
+                                                                    <i style="font-size: 10px;"
+                                                                        class="fas fa-pencil-alt my-2"> Approve</i>
                                                                 </a>
+
                                                             </li>
+                                                            @endif
                                                             <li>
-                                                                <a class="dropdown-item" href="#">
-                                                                    <i style="font-size: 10px;" class="fas fa-trash my-2"> Delete</i>
-                                                                </a>
+                                                                <button class="dropdown-item purch_delete"
+                                                                    value="{{$purchase->id}}" type="button"
+                                                                    class="m-1 btn deleteRow float-right"
+                                                                    data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                                                    title="Delete">
+                                                                    <i style="font-size: 10px;"
+                                                                        class="fas fa-trash my-2"> Delete</i>
+                                                                </button>
+
                                                             </li>
                                                         </ul>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <button type="button" data-bs-toggle="modal" class="btn text-light view" style=" background-color:#25aa9e;" data-bs-target="#myModal{{$purchase->id}}">
+                                                    <button type="button" data-bs-toggle="modal"
+                                                        class="btn text-light view" style=" background-color:#25aa9e;"
+                                                        data-bs-target="#myModal{{$purchase->id}}">
                                                         View
                                                     </button>
                                                     <div class="modal" id="myModal{{$purchase->id}}">
@@ -93,54 +113,83 @@
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title">
-                                                                        View Purchase for Purchase No.
+                                                                        View Sub-Purchase for Purchase No. {{$purchase->purchase_no}}
                                                                     </h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"></button>
                                                                 </div>
                                                                 <div class="modal-body">
                                                                     <div class="card-body" id="viewPurch">
                                                                         <div class="">
                                                                             <div class="table_section p-3">
-                                                                                <table class="table table-striped text-center" style="vertical-align: middle;">
+                                                                                <table
+                                                                                    class="table table-striped text-center"
+                                                                                    style="vertical-align: middle;">
                                                                                     <thead>
                                                                                         <tr>
-                                                                                            <th scope="col" class="" width="6%">#</th>
-                                                                                            <th scope="col" class="" width="12%">Purchase No.</th>
-                                                                                            <th scope="col" class="" width="14%">Image</th>
-                                                                                            <th scope="col" class="" width="14%">Medicine Name</th>
-                                                                                            <th scope="col" class="" width="14%">Purchase Date</th>
-                                                                                            <th scope="col" class="" width="14%">Expire Date</th>
-                                                                                            <th scope="col" class="" width="14%">Batch ID</th>
-                                                                                            <th scope="col" class="" width="12%">Total Quantity</th>
-                                                                                            <th scope="col" class="" width="12%">Price(BDT) </th>
-                                                                                            <th scope="col" class="" width="12%">Sub Total(BDT) </th>
-
+                                                                                            <th scope="col" width="8%">
+                                                                                                Image
+                                                                                            </th>
+                                                                                            <th scope="col" width="13%">
+                                                                                                Medicine Name
+                                                                                            </th>
+                                                                                            <th scope="col" width="12%">
+                                                                                                Purchase Date
+                                                                                            </th>
+                                                                                            <th scope="col" width="11%">
+                                                                                                Expire Date
+                                                                                            </th>
+                                                                                            <th scope="col" width="12%">
+                                                                                                Total Quantity
+                                                                                            </th>
+                                                                                            <th scope="col" width="10%">
+                                                                                                Price(BDT)
+                                                                                            </th>
+                                                                                            <th scope="col" width="9%">
+                                                                                                Sub Total(BDT)
+                                                                                            </th>
                                                                                         </tr>
                                                                                     </thead>
                                                                                     <tbody>
-                                                                                        @foreach($subpurchase as $key=> $subpurchases)
-                                                                                        @if($subpurchases -> purchase_id == $purchase -> id)
+                                                                                        @foreach($subpurchase as $key=>
+                                                                                        $subpurchases)
+                                                                                        @if($subpurchases -> purchase_id
+                                                                                        == $purchase -> id)
                                                                                         <tr class="text-center">
-                                                                                            <td scope="col" class="">{{$key+1}}</td>
-                                                                                            <td scope="col" class="my-auto">{{$subpurchases->purchase_no}}</td>
                                                                                             <td scope="col" class="">
-                                                                                                <img class="" src="{{asset('/uploads/medicine/'.$subpurchases->medicine->image)}}" alt="image">
+                                                                                                <img class=""
+                                                                                                    src="{{asset('/uploads/medicine/'.$subpurchases->medicine->image)}}"
+                                                                                                    alt="image">
                                                                                             </td>
-                                                                                            <td scope="col" class="">{{$subpurchases->medicine->name}}</td>
-                                                                                            <td scope="col" class="">{{$subpurchases->date}}</td>
-                                                                                            <td scope="col" class="">{{$subpurchases->expire_date}}</td>
-                                                                                            <td scope="col" class="">{{$subpurchases->batch_id}}</td>
-                                                                                            <td scope="col" class="">{{$subpurchases->quantity}}</td>
-                                                                                            <td scope="col" class="">{{$subpurchases->price}}</td>
-                                                                                            <td scope="col" class="">{{$subpurchases->sub_total}}</td>
+                                                                                            <td scope="col" class="">
+                                                                                                {{$subpurchases->medicine->name}}
+                                                                                            </td>
+                                                                                            <td scope="col" class="">
+                                                                                                {{$subpurchases->date}}
+                                                                                            </td>
+                                                                                            <td scope="col" class="">
+                                                                                                {{$subpurchases->expire_date}}
+                                                                                            </td>
+                                                                                            <td scope="col" class="">
+                                                                                                {{$subpurchases->quantity}}
+                                                                                            </td>
+                                                                                            <td scope="col" class="">
+                                                                                                {{$subpurchases->price}}
+                                                                                            </td>
+                                                                                            <td scope="col" class="">
+                                                                                                {{$subpurchases->sub_total}}
+                                                                                            </td>
                                                                                         </tr>
                                                                                         @endif
                                                                                         @endforeach
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div>
-                                                                            <div class="modal-footer justify-content-center">
-                                                                                <button type="button" data-bs-dismiss="modal" class="btn btn-danger">Close</button>
+                                                                            <div
+                                                                                class="modal-footer justify-content-center">
+                                                                                <button type="button"
+                                                                                    data-bs-dismiss="modal"
+                                                                                    class="btn btn-danger">Close</button>
 
                                                                             </div>
                                                                         </div>
@@ -165,7 +214,49 @@
     </section>
 </div>
 
+<div class="modal" id="PurchDelete">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <form action="{{route('deletepurch')}}" method="POST">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Are You Sure?
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="DelPurchId" name="DelPurchId" value="">
+                    You Want to Delete This Record?
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button class="btn text-light" style="background-color:#25aa9e;" type="submit">
+                        Save Changes
+                    </button>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
+                    <button type="button" data-bs-dismiss="modal" class="btn btn-danger">
+                        Cancel
+                    </button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
 </script>
 @endsection
+
+@push('custom_script')
+<script>
+$(document).on('click', '.purch_delete', function() {
+    var delete_id = $(this).val();
+    // alert(update_id);
+    $("#PurchDelete").modal('show');
+    $("#DelPurchId").val(delete_id);
+});
+</script>
+@endpush

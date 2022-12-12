@@ -39,7 +39,7 @@
                             </div>
                             <div class="m-2">/</div>
                             <div class="m-2">
-                                <a href="{{route('medicine')}}">Medicine</a>
+                                <a href="{{route('stock_report')}}">Stock Report</a>
                             </div>
                         </div>
                     </div>
@@ -60,11 +60,9 @@
                                                         <tr>
                                                             <th scope="col" class="">#</th>
                                                             <th scope="col" class="">Medicine Name</th>
-                                                            <th scope="col" class="">Batch ID</th>
-                                                            <th scope="col" class="">Expiry Date</th>
-                                                            <th scope="col" class="">In Quantity</th>
-                                                            <th scope="col" class="">Out Quantity</th>
                                                             <th scope="col" class="">Available Stock</th>
+                                                            <th scope="col" class="">Stock Alert</th>
+                                                            <th scope="col" class="">Status</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -72,11 +70,15 @@
                                                         <tr class="text-center">
                                                             <td scope="col" class="">{{$key+1}}</td>
                                                             <td scope="col" class="">{{$stock_b->name}}</td>
-                                                            <td scope="col" class="my-auto">{{$stock_b->batch_id}}</td>
-                                                            <td scope="col" class="my-auto">{{$stock_b->expire_date}}</td>
-                                                            <td scope="col" class="my-auto">{{$stock_b->quantity}}</td>
-                                                            <td scope="col" class="my-auto">{{$stock_b->out_quantity}}</td>
                                                             <td scope="col" class="">{{$stock_b->stock}}</td>
+                                                            <td scope="col" class="">{{$stock_b->stock_alert}}</td>
+                                                            <td scope="col" class="">
+                                                                @if($stock_b->status == 1)
+                                                                    <p>Active</p>
+                                                                @else
+                                                                    <p>Inactive</p>
+                                                                @endif
+                                                            </td>
                                                         </tr>
                                                         @endforeach
                                                     </tbody>
@@ -102,11 +104,7 @@
                             </div>
                             <div class="m-2">/</div>
                             <div class="m-2">
-                                <a href="{{route('contact_supplier')}}">Supplier</a>
-                            </div>
-                            <div class="m-2">/</div>
-                            <div class="m-2">
-                                <a href="{{route('purchase')}}">Purchase History</a>
+                                <a href="{{route('expiry_report')}}">Expiry Report</a>
                             </div>
                         </div>
                     </div>

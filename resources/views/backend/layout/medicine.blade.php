@@ -12,6 +12,10 @@
 .p-2 {
     padding: 2rem !important;
 }
+
+.table:not(.table-sm)> :not(caption)>*>* {
+    padding: 0rem;
+}
 </style>
 <div class="container-fluid px-0">
 
@@ -24,11 +28,7 @@
                 </div>
                 <div class="m-2">/</div>
                 <div class="m-2">
-                    <a href="{{route('category')}}">Add Category</a>
-                </div>
-                <div class="m-2">/</div>
-                <div class="m-2">
-                    <a href="{{route('purchase')}}">Purchase</a>
+                    <a href="{{route('medicine')}}">Medicine</a>
                 </div>
             </div>
         </div>
@@ -67,7 +67,8 @@
                                                         </label>
                                                         <input type="text" class="form-control mb-4" name="name"
                                                             placeholder="Name" id="name" value="">
-                                                        <span class="text-danger"> </span>
+                                                        <span class="text-danger">@error('name') {{$message}} @enderror
+                                                        </span>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -78,7 +79,8 @@
                                                         </label>
                                                         <input type="text" class="form-control mb-4" name="genericname"
                                                             placeholder="Name" id="genericname" value="">
-                                                        <span class="text-danger"> </span>
+                                                        <span class="text-danger">@error('genericname') {{$message}}
+                                                            @enderror </span>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -96,7 +98,8 @@
                                                             </option>
                                                             @endforeach
                                                         </select>
-                                                        <span class="text-danger"> </span>
+                                                        <span class="text-danger">@error('category_id') {{$message}}
+                                                            @enderror </span>
                                                     </div>
                                                 </div>
 
@@ -112,7 +115,8 @@
                                                             <option value="{{$unit->id}}">{{$unit->name}}</option>
                                                             @endforeach
                                                         </select>
-                                                        <span class="text-danger"> </span>
+                                                        <span class="text-danger"> @error('unit_id') {{$message}}
+                                                            @enderror</span>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -127,7 +131,8 @@
                                                             <option value="{{$type->id}}">{{$type->name}}</option>
                                                             @endforeach
                                                         </select>
-                                                        <span class="text-danger"> </span>
+                                                        <span class="text-danger">@error('type_id') {{$message}}
+                                                            @enderror </span>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -138,7 +143,8 @@
                                                         </label>
                                                         <input type="number" class="form-control mb-4" name="price"
                                                             placeholder="Price" id="price" value="" min="1">
-                                                        <span class="text-danger"> </span>
+                                                        <span class="text-danger"> @error('price') {{$message}}
+                                                            @enderror</span>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -150,7 +156,8 @@
                                                         <input type="number" class="form-control mb-4"
                                                             name="purchaseprice" placeholder="Purchase Price"
                                                             id="purchaseprice" value="" min="1">
-                                                        <span class="text-danger"> </span>
+                                                        <span class="text-danger"> @error('purchaseprice') {{$message}}
+                                                            @enderror</span>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -158,7 +165,8 @@
                                                         <label class="mb-2" for="image">
                                                             Image
                                                         </label>
-                                                        <input type="file" class="form-control mb-4" name="image" id="image">
+                                                        <input type="file" class="form-control mb-4" name="image"
+                                                            id="image">
                                                         <span class="text-danger"> </span>
                                                     </div>
                                                 </div>
@@ -194,17 +202,22 @@
                                     <table class="table table-striped text-center" style="vertical-align: middle;">
                                         <thead>
                                             <tr>
-                                                <th scope="col" class="" width="5%">#</th>
-                                                <th scope="col" class="" width="9%">Image</th>
-                                                <th scope="col" class="" width="7%">Name</th>
-                                                <th scope="col" class="" width="12%">Generic Name</th>
-                                                <th scope="col" class="" width="9%">Category</th>
-                                                <th scope="col" class="" width="8%">Unit</th>
-                                                <th scope="col" class="" width="9%">Type</th>
-                                                <th scope="col" class="" width="9%">Price(BDT)</th>
-                                                <th scope="col" class="" width="9%">Purchase Price(BDT)</th>
-                                                <th scope="col" class="" width="7%">Status</th>
-                                                <th scope="col" class="" width="15%">Action</th>
+                                                <th scope="col" class="" width="5%" style="padding: 0.7rem;">#</th>
+                                                <th scope="col" class="" width="7%" style="padding: 0.7rem;">Image</th>
+                                                <th scope="col" class="" width="9%" style="padding: 0.7rem;">Name</th>
+                                                <th scope="col" class="" width="14%" style="padding: 0.7rem;">Generic
+                                                    Name</th>
+                                                <th scope="col" class="" width="9%" style="padding: 0.7rem;">Category
+                                                </th>
+                                                <th scope="col" class="" width="10%" style="padding: 0.7rem;">Unit</th>
+                                                <th scope="col" class="" width="10%" style="padding: 0.7rem;">Type</th>
+                                                <th scope="col" class="" width="9%" style="padding: 0.7rem;">Price(BDT)
+                                                </th>
+                                                <th scope="col" class="" width="9%" style="padding: 0.7rem;">Purchase
+                                                    Price(BDT)</th>
+                                                <th scope="col" class="" width="7%" style="padding: 0.7rem;">Status</th>
+                                                <th scope="col" class="" width="13%" style="padding: 0.7rem;">Action
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -227,14 +240,11 @@
                                                 <td scope="col" class="">৳ {{$medicine->price}}</td>
                                                 <td scope="col" class="">৳ {{$medicine->purchaseprice}}</td>
                                                 <td scope="col" class=" ">
-                                                    @if($medicine->status == 1)
                                                     <div class=" form-switch">
                                                         <input class="form-check-input " type="checkbox" role="switch"
-                                                            id="flexSwitchCheckDefault">
-                                                        <label class="form-check-label"
-                                                            for="flexSwitchCheckDefault"></label>
+                                                        id="flexSwitchCheckDefault" value="{{$medicine->id}}"
+                                                        {{$medicine->status == 1 ? 'checked':''}}>
                                                     </div>
-                                                    @endif
                                                 </td>
                                                 <td scope="col" class="p-1" style="display: flex; flex-wrap: nowrap;">
                                                     <button type="button" class="m-1 btn viewBtn float-right text-light"
@@ -254,11 +264,15 @@
                                                                         data-bs-dismiss="modal"></button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <div class="" id="viewImg">
-
-                                                                    </div>
-                                                                    <div class="p-2" id="viewDes">
-
+                                                                    <div class="row">
+                                                                        <div class="col-lg-6">
+                                                                            <div class="" id="viewImg">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-6">
+                                                                            <div class="p-2" id="viewDes">
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer justify-content-center">
@@ -277,12 +291,13 @@
                                                         style="font-size: 0.7rem; background-color: #008080;"
                                                         data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                         title="Edit"> -->
-                                                        <a href="{{route('editmedicine',$medicine->id)}}"
-                                                            class="m-1 btn float-right text-light" style="font-size: 0.7rem; background-color: #008080;"
+                                                    <a href="{{route('editmedicine',$medicine->id)}}"
+                                                        class="m-1 btn float-right text-light"
+                                                        style="font-size: 0.7rem; background-color: #008080;"
                                                         data-bs-toggle="tooltip" data-bs-placement="bottom"
                                                         title="Edit">
-                                                            <i class="fa-solid fa-pencil"></i>
-                                                        </a>
+                                                        <i class="fa-solid fa-pencil"></i>
+                                                    </a>
                                                     <!-- </button> -->
                                                     <button type="button"
                                                         class="m-1 btn btn-danger deleteRow float-right"
@@ -295,9 +310,10 @@
                                                             <div class="modal-content">
                                                                 <div class="modal-body">
                                                                     <div class="form-group col-lg-12 p-1">
-                                                                    <h5 class="modal-title bolder">
-                                                                        Are Your Sure?
-                                                                    </h5>
+                                                                        <h5 class="modal-title bolder"
+                                                                            style="line-height: 50px;">
+                                                                            Are Your Sure?
+                                                                        </h5>
                                                                         You Want to Delete This Record?
                                                                     </div>
                                                                 </div>
@@ -352,14 +368,12 @@ $(document).on('click', '.viewBtn', function() {
         success: function(response) {
             $("#viewDes").html('');
             $("#viewDes").append('\
-                <p>'+response.med.description+'</p>\
-            '
-            );
+                <p>' + response.med.description + '</p>\
+            ');
             $("#viewImg").html('');
             $("#viewImg").append('\
-                <img>'+response.med.image+'</img>\
-            '
-            );
+                <img>' + response.med.image + '</img>\
+            ');
 
         }
     });
@@ -375,6 +389,14 @@ $(document).on('click', '.deleteRow', function() {
         success: function(response) {
             $("#med_id").val(update_id);
         }
+    });
+});
+$(document).on('click', '#flexSwitchCheckDefault', function() {
+    var update_id = $(this).val();
+
+    $.ajax({
+        type: "GET",
+        url: "/med_status/" + update_id,
     });
 });
 </script>

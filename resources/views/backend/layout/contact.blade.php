@@ -31,7 +31,7 @@
                             </div>
                             <div class="m-2">/</div>
                             <div class="m-2">
-                                <a href="{{route('contact_supplier')}}">Supplier</a>
+                                <a href="{{route('contact_pharmacist')}}">Pharmacist</a>
                             </div>
                         </div>
                     </div>
@@ -164,17 +164,10 @@
                                                             <td scope="col" class="">{{$contact-> email}}</td>
                                                             <td scope="col" class="">{{$contact-> phone}}</td>
                                                             <td scope="col" class=" ">
-                                                            @if($contact->status == 1)
                                                                 <div class=" form-switch">
-                                                                    <input class="form-check-input " type="checkbox"
-                                                                        role="switch" id="flexSwitchCheckDefault">
-                                                                    <label class="form-check-label"
-                                                                        for="flexSwitchCheckDefault"></label>
+                                                                    <input class="form-check-input " type="checkbox" role="switch" id="flexSwitchCheckDefault" value="{{$contact->id}}" {{$contact->status == 1 ? 'checked':''}}>
                                                                 </div>
-                                                                @endif
                                                             </td>
-
-
                                                             <td colspan="1">
                                                                 <button type="button" class="btn editRow float-right text-light"  style="font-size: 0.7rem; background-color: #008080;"data-bs-toggle="tooltip"
                                                                     data-bs-placement="bottom"
@@ -185,9 +178,10 @@
                                                                 </button>
                                                                 <button type="button" data-bs-toggle="tooltip"
                                                                     data-bs-placement="bottom"
-                                                                    title="Delete" class="btn btn-danger deleteRow float-right" style="font-size: 0.7rem;">
+                                                                    title="Delete" class="btn btn-danger deleteRow float-right" style="font-size: 0.7rem;" value="{{$contact->id}}">
                                                                     <i class="fa-solid fa-trash"></i>
                                                                 </button>
+                                                                
                                                                 <div class="modal fade" id="myModalp">
                                                                     <div class="modal-dialog modal-dialog-centered modal-sm">
                                                                         <div class="modal-content">
@@ -198,27 +192,31 @@
                                                                                 <button type="button" class="btn-close"
                                                                                     data-bs-dismiss="modal"></button>
                                                                             </div>
-                                                                            <div class="modal-body">
-                                                                                <div class="form-group col-lg-12 p-2">
-                                                                                You Want to Delete This Record?
-
+                                                                            <form action="{{route('deletepharma')}}" method="POST">
+                                                                                @csrf
+                                                                                @method('Delete')
+                                                                                <input type="hidden" name="del_id" id="deletingId" value="">
+                                                                                <div class="modal-body">
+                                                                                    <div class="form-group col-lg-12 p-2">
+                                                                                    You Want to Delete This Record?
+    
+    
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                            <div class="modal-footer justify-content-center">
-                                                                                <button class="btn text-light"
-                                                                                    style="background-color:#25aa9e;"
-                                                                                    type="submit">
-                                                                                    <a href="{{route('deletepharma', $contact->id)}}" class="text-light" style="text-decoration: none;">
-                                                                                    Yes Delete
-                                                                                    </a>
-                                                                                </button>
-
-                                                                                <button type="button" data-bs-dismiss="modal"
-                                                                                    class="btn btn-danger">
-                                                                                    Cancel
-                                                                                </button>
-
-                                                                            </div>
+                                                                                <div class="modal-footer justify-content-center">
+                                                                                    <button class="btn text-light"
+                                                                                        style="background-color:#25aa9e;"
+                                                                                        type="submit">
+                                                                                        Yes Delete
+                                                                                    </button>
+    
+                                                                                    <button type="button" data-bs-dismiss="modal"
+                                                                                        class="btn btn-danger">
+                                                                                        Cancel
+                                                                                    </button>
+    
+                                                                                </div>
+                                                                            </form>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -250,7 +248,7 @@
                             </div>
                             <div class="m-2">/</div>
                             <div class="m-2">
-                                <a href="{{route('contact_pharmacist')}}">Pharmacist</a>
+                                <a href="{{route('contact_supplier')}}">Supplier</a>
                             </div>
                         </div>
                     </div>
@@ -379,14 +377,10 @@
                                                             <td scope="col" class="">{{$supplied->email}}</td>
                                                             <td scope="col" class="">{{$supplied->phone}}</td>
                                                             <td scope="col" class=" ">
-                                                                @if($supplied->status == 1)
                                                                 <div class=" form-switch">
                                                                     <input class="form-check-input " type="checkbox"
-                                                                        role="switch" id="flexSwitchCheckDefault">
-                                                                    <label class="form-check-label"
-                                                                        for="flexSwitchCheckDefault"></label>
-                                                                <div>
-                                                                @endif    
+                                                                    role="switch" id="flexSwitchCheckDefault1" value="{{$supplied->id}}" {{$supplied->status == 1 ? 'checked':''}}>
+                                                                <div>  
                                                             </td>
                                                             <td>
                                                                 <button type="button" class="btn editRow float-right text-light"  style="font-size: 0.7rem; background-color: #008080;"data-bs-toggle="tooltip"
@@ -460,17 +454,9 @@
 @push('custom_script')
 <script>
 $(document).on('click', '.deleteRow', function() {
-    var update_id = $(this).val();
-    // alert(update_id);
+    var delete_id = $(this).val();
     $("#myModalp").modal('show');
-
-    $.ajax({
-        type: "GET",
-        url: "/deleteRow/" + update_id,
-        success: function(response) {
-            $("#pharm_id").val(update_id);
-        }
-    });
+    $("#deletingId").val(delete_id);
 });
 
 $(document).on('click', '.deleteRow2', function() {
@@ -484,6 +470,23 @@ $(document).on('click', '.deleteRow2', function() {
         success: function(response) {
             $("#sup_id").val(update_id);
         }
+    });
+});
+
+$(document).on('click', '#flexSwitchCheckDefault', function() {
+    var update_id = $(this).val();
+
+    $.ajax({
+        type: "GET",
+        url: "/status/" + update_id,
+    });
+});
+$(document).on('click', '#flexSwitchCheckDefault1', function() {
+    var update_id = $(this).val();
+
+    $.ajax({
+        type: "GET",
+        url: "/sup_status/" + update_id,
     });
 });
 </script>

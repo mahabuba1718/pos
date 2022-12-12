@@ -37,7 +37,7 @@
                             </div>
                             <div class="m-2">/</div>
                             <div class="m-2">
-                                <a href="{{route('purchase')}}">Purchase</a>
+                                <a href="{{route('account_expense')}}">Expense</a>
                             </div>
                         </div>
                     </div>
@@ -368,7 +368,7 @@
                             </div>
                             <div class="m-2">/</div>
                             <div class="m-2">
-                                <a href="{{route('pos')}}">POS</a>
+                                <a href="{{route('account_income')}}">Income</a>
                             </div>
                         </div>
                     </div>

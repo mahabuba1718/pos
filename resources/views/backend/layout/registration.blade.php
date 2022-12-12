@@ -16,6 +16,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- css -->
     <link rel="stylesheet" href="assets/backend/css/registration.css" type="text/css" />
+   
 </head>
 
 <body>
@@ -27,38 +28,55 @@
                     <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                         <div class="card" style="border-radius: 15px;">
                             <div class="card-body p-5">
-                                <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+                                <h2 class="text-uppercase text-center mb-4">Create an account</h2>
 
-                                <form action="{{route('register')}}" method="$_POST">
+                                <form action="{{route('register')}}" method="$_POST" enctype="multipart/form-data">
                                     @csrf
-                                    <div class="form-outline mb-4">
+                                    <div class="form-outline mb-3">
                                         <label class="form-label" for="form3Example1cg">Name: </label>
                                         <input type="text" for="form3Example1cg" id="form3Example1cg" name="name"
                                             placeholder="Enter Your Name" class="form-control form-control-lg" />
                                     </div>
 
-                                    <div class="form-outline mb-4">
+                                    <div class="form-outline mb-3">
                                         <label class="form-label" for="form3Example3cg">E-mail:</label>
                                         <input type="email" for="form3Example3cg" id="form3Example3cg" name="email"
                                             placeholder="Enter Your E-mail" class="form-control form-control-lg" />
                                     </div>
 
-                                    <div class="form-outline mb-4">
+                                    <div class="form-outline mb-3">
+                                        <label class="form-label" for="form3Example5cg">Phone:</label>
+                                        <input type="tel" for="form3Example5cg" id="form3Example5cg" name="phone"
+                                            placeholder="Enter Your Phone Number"
+                                            class="form-control form-control-lg" />
+                                    </div>
+
+                                    <div class="form-outline mb-3">
                                         <label class="form-label" for="form3Example4cg">Password:</label>
                                         <input type="password" for="form3Example4cg" id="form3Example4cg"
                                             name="password" placeholder="Enter Your Password"
                                             class="form-control form-control-lg" />
                                     </div>
 
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form3Example6cg">Image:</label>
+                                        <input type="file" for="form3Example6cg" id="form3Example6cg" name="image"
+                                            class="form-control form-control-lg" />
+                                    </div>
+
                                     <div class="d-flex justify-content-center">
-                                        <button type="submit" class="btn btn-success btn-block btn-lg ">
-                                            Register</button>
+                                        <button type="submit" class="btn btn-block btn-lg text-light"
+                                            style="background-color:#25aa9e">Register</button>
                                     </div>
 
                                     <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="#"
-                                            class="fw-bold text-body"><u>
+                                            class="fw-bold text-body">
+                                            <u>
                                                 <a href="{{route('master')}}" class="link-danger">
-                                                    Login here</u></a></p>
+                                                    Login here
+                                                </a>
+                                            </u>
+                                    </p>
 
                                 </form>
 

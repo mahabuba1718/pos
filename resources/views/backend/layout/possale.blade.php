@@ -10,7 +10,7 @@
                 </div>
                 <div class="m-2">/</div>
                 <div class="m-2">
-                    <a href="{{route('pos')}}">POS</a>
+                    <a href="{{route('possale')}}">POS Sale</a>
                 </div>
             </div>
         </div>

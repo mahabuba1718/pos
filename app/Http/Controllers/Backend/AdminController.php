@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Medicine;
 use App\Models\Purchase;
 use App\Models\Setting;
+use App\Models\Stock;
 use App\Models\Subpurchase;
 use App\Models\Supplier;
 use App\Models\Type;
@@ -50,13 +51,37 @@ class AdminController extends Controller
         $supplier=Supplier::all();
         return view('backend.layout.contact', compact('pharma','supplier'));
     }
-    public function deltpharm($pharm_id)
+    // public function deltpharm($pharm_id)
+    // {
+    //     $pharme = User::find($pharm_id);
+    //     return response([
+    //        'pharme' => $pharme,
+    //     ]);
+    // }
+
+    public function status($id)
     {
-        $pharme = User::find($pharm_id);
-        return response([
-           'pharme' => $pharme,
-        ]);
+        $pharm = User::find($id);
+        if($pharm->status == 1)
+        {
+            $update_status = 0;
+        }
+        else
+        {
+            $update_status = 1;
+        }
+        $pharm->update(
+            [
+            'status' => $update_status
+            ]
+        );
+        return response(
+            [
+            'status' => 200
+            ]
+        );
     }
+
     public function editpharma($pharm_id)
     {
         $pharm = User::find($pharm_id);
@@ -135,9 +160,10 @@ class AdminController extends Controller
         );
         return redirect()->route('contact_pharmacist');
     }
-    public function deletepharma($pharm_id)
+    public function deletepharma(Request $request)
     {
-        $pharm = User::find($pharm_id);
+        // dd($request->all());
+        $pharm = User::find($request->del_id);
         $destination = 'uploads/pharmacist/'.$pharm->image;
         if(File :: exists($destination))
         {
@@ -185,6 +211,28 @@ class AdminController extends Controller
             ]
         );
         return redirect()-> back();
+    }
+    public function sup_status($id)
+    {
+        $sup = Supplier::find($id);
+        if($sup->status == 1)
+        {
+            $update_status = 0;
+        }
+        else
+        {
+            $update_status = 1;
+        }
+        $sup->update(
+            [
+            'status' => $update_status
+            ]
+        );
+        return response(
+            [
+            'status' => 200
+            ]
+        );
     }
     public function deltsupe($sup_id)
     {
@@ -272,6 +320,29 @@ class AdminController extends Controller
          );
          return redirect()-> back();
      }
+    
+    public function cat_status($id)
+    {
+        $cat = Category::find($id);
+        if($cat->status == 1)
+        {
+            $update_status = 0;
+        }
+        else
+        {
+            $update_status = 1;
+        }
+        $cat->update(
+            [
+            'status' => $update_status
+            ]
+        );
+        return response(
+            [
+            'status' => 200
+            ]
+        );
+    }
      public function editcat($cat_id)
      {
          $cat = Category::find($cat_id);
@@ -321,6 +392,28 @@ class AdminController extends Controller
              ]
          );
          return redirect()-> back();
+     }
+     public function unit_status($id)
+     {
+         $unit = Unit::find($id);
+         if($unit->status == 1)
+         {
+             $update_status = 0;
+         }
+         else
+         {
+             $update_status = 1;
+         }
+         $unit->update(
+             [
+             'status' => $update_status
+             ]
+         );
+         return response(
+             [
+             'status' => 200
+             ]
+         );
      }
      public function editunit($unit_id)
      {
@@ -372,6 +465,28 @@ class AdminController extends Controller
          );
          return redirect()-> back();
      }
+     public function type_status($id)
+    {
+        $type = Type::find($id);
+        if($type->status == 1)
+        {
+            $update_status = 0;
+        }
+        else
+        {
+            $update_status = 1;
+        }
+        $type->update(
+            [
+            'status' => $update_status
+            ]
+        );
+        return response(
+            [
+            'status' => 200
+            ]
+        );
+    }
      public function edittype($type_id)
      {
          $type = Type::find($type_id);
@@ -407,6 +522,28 @@ class AdminController extends Controller
         $types=Type::all();
         return view('backend.layout.medicine', compact('admedicine','categories','units','types'));
   
+    }
+    public function med_status($id)
+    {
+        $med = Medicine::find($id);
+        if($med->status == 1)
+        {
+            $update_status = 0;
+        }
+        else
+        {
+            $update_status = 1;
+        }
+        $med->update(
+            [
+            'status' => $update_status
+            ]
+        );
+        return response(
+            [
+            'status' => 200
+            ]
+        );
     }
     
     public function deletemed($med_id)
@@ -458,7 +595,7 @@ class AdminController extends Controller
                 }
             }
            
-            Medicine::create(
+            $med = Medicine::create(
                 [
                     'image'=>$filename,
                     'name'=>$request->name,
@@ -471,6 +608,11 @@ class AdminController extends Controller
                     'description'=>$request->description,
                 ]
             );
+
+            Stock::create([
+                'madicine_id' => $med->id,
+            ]);
+
             return redirect()-> back();
         }
 
@@ -575,8 +717,14 @@ class AdminController extends Controller
         // dd($adpurchase);
         return view('backend.layout.purchase',compact('adpurchase','subpurchase','admedicine' ));
     }
+    public function deletepurch(Request $request)
+    {
+       // dd($request->all());
+        Purchase::find($request->DelPurchId)->delete();
+        Subpurchase::where('purchase_id',$request->DelPurchId)->delete();
+        return redirect()-> back();
+    }
     
-
     public function purchase_find_med($id){
         $find_med = Medicine::find($id);
         return response([
@@ -589,9 +737,9 @@ class AdminController extends Controller
     public function addpurchase()
     {
         $adpurchase=Purchase::all();
-        $admedicine=Medicine::all();
-        $supplier=Supplier::all();
-        return view('backend.layout.add_purchase2', compact('adpurchase','admedicine','supplier'));
+        $admedicine=Medicine::where('status','1')->get();
+        $supplier=Supplier::where('status','1')->get();
+        return view('backend.layout.add_purchase', compact('adpurchase','admedicine','supplier'));
     }
     public function adpurchase(Request $request)
     {      
@@ -642,17 +790,30 @@ class AdminController extends Controller
                 'madicine_id'=>$request->medicine[$i],
                 'date'=>$request->date,
                 'expire_date'=>$request->expire_date[$i],
-                'batch_id'=>$request->batch_id[$i],
+                // 'batch_id'=>$request->batch_id[$i],
                 'quantity'=>$request->quantity[$i],
                 'price'=>$request->price[$i],
-                'image'=>$med->image[$i],
+                // 'image'=>$med->image[$i],
                 'sub_total'=>$request->sub_total[$i],
                 ]
             );
+
+            $med_info = Stock::where('madicine_id',$request->medicine[$i])->first();
+            if($med_info->stock == null){
+                $med_info->update([
+                    'stock' => $request->quantity[$i],
+                    'stock_alert' => $request->alert_id[$i],
+                    'status' => '1'
+                ]);
+            }else{
+                $update_stock = $med_info->stock + $request->quantity[$i];
+                $med_info->update([
+                    'stock' => $update_stock,
+                    'stock_alert' => $request->alert_id[$i],
+                    'status' => '1'
+                ]);
+            }
         }
-
-
-     
 
         return redirect()-> back();
     }
@@ -664,11 +825,20 @@ class AdminController extends Controller
         ]);
     }
 
+    public function approve($id){
+        // dd($id);
+        Purchase::find($id)->update([
+            'status' => 1
+        ]);
+        return back();
+    }
+
 
     // stock
     public function stock_report()
     {
-        $adpurchase=Subpurchase::Join('purchases','purchases.id','=','subpurchases.purchase_id')->Join('medicines','medicines.id','=','subpurchases.madicine_id')->get(['subpurchases.*','purchases.*','medicines.name']);
+        // $adpurchase=Subpurchase::Join('purchases','purchases.id','=','subpurchases.purchase_id')->Join('medicines','medicines.id','=','subpurchases.madicine_id')->get(['subpurchases.*','purchases.*','medicines.name']);
+        $adpurchase=Stock::Join('medicines','medicines.id','=','stocks.madicine_id')->get(['stocks.*','medicines.name']);
         return view('backend.layout.stock',compact('adpurchase'));
     }
     public function expiry_report()
@@ -678,15 +848,18 @@ class AdminController extends Controller
     }
     
     // pos
-    public function pos()
+    public function pos(Request $request)
     {
-        $adpurchase=Subpurchase::all();
-        // dd($adpurchase ->medicine->image);
-        $admedicine=Medicine::all();
-        $medicines = Medicine::all();
+        // search
+        if($request->search == null){
+            $adpurchase=Subpurchase::all();
+        }else{
+            $adpurchase = Subpurchase::Join('medicines','subpurchases.madicine_id','=','medicines.id')->where('name','LIKE', '%'.$request->search.'%')->get(['subpurchases.*']);
+        }
+        // cart
         $pos = Cart::content();
         // dd($pos);
-        return view('backend.layout.pos',compact('medicines','pos','adpurchase','admedicine'));
+        return view('backend.layout.pos',compact('pos','adpurchase'));
     }
     public function addtocart($id)
     {
@@ -700,6 +873,19 @@ class AdminController extends Controller
             'weight' => 1,
             'options' => ['image' => $med->image],
         ]);
+        return back();
+    }
+    public function deletecart($id)
+    {
+        Cart::remove($id);
+        return back();
+    }
+
+    public function cart_increment(Request $request){
+        // dd($request->all());
+        // $i = Cart::get($request->row_id)->qty;
+        // $i++;
+        cart::update($request->row_id, $request->quantity);
         return back();
     }
 
@@ -756,10 +942,22 @@ class AdminController extends Controller
 
     public function register(Request $request)
     {
+        $filename = '';
+        if($request->hasFile('image'))
+        {
+            $file = $request->file('image');
+            if($file->isValid())
+            {
+                $filename = date('Ymdhms').'.'.$file->getClientOriginalExtension();
+                $file->storeAs('registration',$filename);
+            }
+        }
         User::create(
             [
                 'name'=> $request -> name,
                 'email'=> $request -> email,
+                'phone'=> $request -> phone,
+                'image'=>$filename,
                 'password'=> Hash::make($request ->password),
             ]
         );
@@ -781,7 +979,7 @@ class AdminController extends Controller
                 {
                 return redirect()->route('dashboard')->with('message', 'Admin Login Successful');
                 }
-                if (Auth::user()->role_id == 2) 
+                if (Auth::user()->role_id == 2 && Auth::user()->status == 1)
                 {
                     return redirect()->route('dashboard')->with('message', 'Pharmacist Login Successful');
                 }
@@ -799,6 +997,10 @@ class AdminController extends Controller
     {
             
         Auth::logout();
+
+        $request->session()->invalidate();
+ 
+        $request->session()->regenerateToken();
     
         return redirect('/');
     }

@@ -37,7 +37,7 @@
                             {{ session()->get('fail') }}
                         </div>
                         @endif
-                        <form action="{{route('login_post')}}" method="$_POST">
+                        <form action="{{route('login_post')}}" method="POST">
                             @csrf
                             <div class="form-group mb-1">
                                 <label for="email" class="form-label font-weight-bold">Email</label>
@@ -59,9 +59,8 @@
                                 </div>
                             </div>
                             <div class="form-group mt-3 text-center text-light">
-                                <button type="submit" class="btn btn-success gradient-custom-4 btn-block btn-md">
-                                    <a href="{{route('login_post')}}" class="link-danger text-light"
-                                        style="text-decoration: none;">Submit</a>
+                                <button type="submit" class="btn btn-block btn-md text-light" style="background-color: #418975;">
+                                    Submit
                                 </button>
                             </div>
                             <div class="text-center text-lg-start" style="font-size: 20px;">

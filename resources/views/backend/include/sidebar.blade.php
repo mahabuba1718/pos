@@ -104,13 +104,13 @@
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="{{route('account_expense')}}">
                 <i class="fa-solid fa-bag-shopping"></i>
-                Add Expenses
+                Expenses
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="{{route('account_income')}}">
                 <i class="fa-solid fa-money-check-dollar"></i>
-                Add Income
+                Income
                 </a>
               </li>
             </ul>
@@ -133,13 +133,13 @@
                   <i class="fa-brands fa-salesforce"></i>
                   POS Sale
                   </a>
-                </li>
+                <!-- </li>
                 <li class="nav-item">
-                  <a class="nav-link" aria-current="page" href="{{route('invoice')}}">
+                  <a class="nav-link" aria-current="page" href="#">
                   <i class="fa-solid fa-file-invoice"></i>
                   Invoice
                   </a>
-                </li>
+                </li> -->
 
               </ul>
               <hr>

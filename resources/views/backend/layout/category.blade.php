@@ -39,7 +39,7 @@
                             </div>
                             <div class="m-2">/</div>
                             <div class="m-2">
-                                <a href="{{route('medicine')}}">Medicine</a>
+                                <a href="{{route('category')}}">Category</a>
                             </div>
                         </div>
                     </div>
@@ -104,14 +104,12 @@
                                                 <td scope="col" class="">{{$category->name}}</td>
                                                 <td scope="col" class="">{{$category->description}}</td>
                                                 <td scope="col" class=" ">
-                                                    @if($category->status == 1)
                                                     <div class=" form-switch">
                                                         <input class="form-check-input " type="checkbox" role="switch"
-                                                            id="flexSwitchCheckDefault">
-                                                        <label class="form-check-label"
-                                                            for="flexSwitchCheckDefault"></label>
+                                                            id="flexSwitchCheckDefault_c" value="{{$category->id}}"
+                                                        {{$category->status == 1 ? 'checked':''}}>
                                                         <div>
-                                                            @endif
+                                                    </div>
                                                 </td>
                                                 <td>
                                                     <div class="dropdown">
@@ -210,6 +208,7 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -226,7 +225,7 @@
                             </div>
                             <div class="m-2">/</div>
                             <div class="m-2">
-                                <a href="{{route('medicine')}}">Medicine</a>
+                                <a href="{{route('unit')}}">Unit</a>
                             </div>
                         </div>
                     </div>
@@ -289,14 +288,11 @@
                                                 <td scope="col" class="">{{$unit->name}}</td>
                                                 <td scope="col" class="">{{$unit->description}}</td>
                                                 <td scope="col" class=" ">
-                                                    @if($unit-> status == 1)
                                                     <div class=" form-switch">
                                                         <input class="form-check-input " type="checkbox" role="switch"
-                                                            id="flexSwitchCheckDefault">
-                                                        <label class="form-check-label"
-                                                            for="flexSwitchCheckDefault"></label>
-                                                        <div>
-                                                            @endif
+                                                        id="flexSwitchCheckDefault" value="{{$unit->id}}"
+                                                        {{$unit->status == 1 ? 'checked':''}}>
+                                                    </div>
                                                 </td>
                                                 <td>
                                                     <div class="dropdown">
@@ -407,7 +403,7 @@
                             </div>
                             <div class="m-2">/</div>
                             <div class="m-2">
-                                <a href="{{route('medicine')}}">Medicine</a>
+                                <a href="{{route('type')}}">Type</a>
                             </div>
                         </div>
                     </div>
@@ -470,14 +466,11 @@
                                                 <td scope="col" class="">{{$type->name}}</td>
                                                 <td scope="col" class="">{{$type->description}}</td>
                                                 <td scope="col" class=" ">
-                                                    @if($type-> status == 1)
                                                     <div class=" form-switch">
                                                         <input class="form-check-input " type="checkbox" role="switch"
-                                                            id="flexSwitchCheckDefault">
-                                                        <label class="form-check-label"
-                                                            for="flexSwitchCheckDefault"></label>
-                                                        <div>
-                                                            @endif
+                                                            id="flexSwitchCheckDefault_t" value="{{$type->id}}"
+                                                        {{$type->status == 1 ? 'checked':''}}>
+                                                    </div>
                                                 </td>
                                                 <td>
                                                     <div class="dropdown">
@@ -752,11 +745,42 @@ $(document).on('click', '.unit_delete', function() {
     
 });
 
+// type modal delete
 $(document).on('click', '.type_delete', function() {
     var delete_id = $(this).val();
     // alert(update_id);
     $("#TypeDelete").modal('show');
     $("#DelTypeId").val(delete_id);
+});
+
+//  category status
+$(document).on('click', '#flexSwitchCheckDefault_c', function() {
+    var update_id = $(this).val();
+
+    $.ajax({
+        type: "GET",
+        url: "/cat_status/" + update_id,
+    });
+});
+
+// unit status
+$(document).on('click', '#flexSwitchCheckDefault', function() {
+    var update_id = $(this).val();
+
+    $.ajax({
+        type: "GET",
+        url: "/unit_status/" + update_id,
+    });
+});
+
+// type status
+$(document).on('click', '#flexSwitchCheckDefault_t', function() {
+    var update_id = $(this).val();
+
+    $.ajax({
+        type: "GET",
+        url: "/type_status/" + update_id,
+    });
 });
 </script>
 @endpush
