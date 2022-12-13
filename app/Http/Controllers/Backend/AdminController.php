@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Account;
 use App\Models\Category;
+use App\Models\Customer;
 use App\Models\Medicine;
+use App\Models\Pos;
 use App\Models\Purchase;
 use App\Models\Setting;
 use App\Models\Stock;
@@ -33,31 +35,15 @@ class AdminController extends Controller
         return view('backend.layout.dashboard');
     }
 
-    // search
-    // public function searchmed(Request $request)
-    // {
-    //     if($request->search)
-    //     {
-    //         $searchmed = Medicine :: where('name', 'LIKE', '%'. $request->search . '%')->latest()->paginate(15);
-    //         return view('backend.layout.dashboard');
-    //     }
-    // }
-
 
     // contact= pharmacist
     public function contact_pharmacist()
     {
         $pharma=User::where('role_id','2')->get();
+        $customer=Customer::all();
         $supplier=Supplier::all();
-        return view('backend.layout.contact', compact('pharma','supplier'));
+        return view('backend.layout.contact', compact('pharma','supplier', 'customer'));
     }
-    // public function deltpharm($pharm_id)
-    // {
-    //     $pharme = User::find($pharm_id);
-    //     return response([
-    //        'pharme' => $pharme,
-    //     ]);
-    // }
 
     public function status($id)
     {
@@ -173,13 +159,133 @@ class AdminController extends Controller
         return redirect()-> back();
     }
 
+    // contact = customer
+    public function contact_customer()
+    {
+        $pharma=User::all();
+        $customer=Customer::all();
+        $supplier=Supplier::all();
+        return view('backend.layout.contact', compact('pharma','supplier','customer'));
+    }
+    public function cus_status($cus_id)
+    {
+        $cus = Customer::find($cus_id);
+        if($cus->status == 1)
+        {
+            $update_status = 0;
+        }
+        else
+        {
+            $update_status = 1;
+        }
+        $cus->update(
+            [
+            'status' => $update_status
+            ]
+        );
+        return response(
+            [
+            'status' => 200
+            ]
+        );
+    }
+
+    public function editcus($cus_id)
+    {
+        $cus = Customer::find($cus_id);
+        // dd($cus);
+        return view('backend.layout.edit_cus', compact('cus'));
+    }
+    public function cus(Request $request)
+    {
+        // dd($request->all());
+        $request->validate
+        (
+            [
+            'customer_name' => ['required'],
+            'email' => ['required','email'],
+            'password' => ['required'],
+            ]
+        );
+        $filename = '';
+        if ($request->hasFile('image'))
+        {
+            $file = $request->file('image');
+            if($file ->isValid())
+            {
+                $filename = date('Ymdhms'). '.'.$file->getClientOriginalExtension();
+                $file -> storeAs('customer',$filename);
+            }
+        }
+        Customer::create(
+            [
+                'customer_name'=>$request->customer_name,
+                'customer_id'=>$request->customer_id,
+                'email'=>$request->email,
+                'phone'=>$request->phone,
+                'image'=>$filename,
+            ]
+        );
+        return redirect()-> back();
+    }
+
+    public function updatecus(Request $request)
+    {
+        // dd($request->all());
+        // $request->validate(
+        //     [
+        //     'name' => ['required'],
+        //     'email' => ['required','email'],
+        //     'password' => ['required'],  
+        //     ]
+        // );
+        $cus = Customer::find($request->id);
+        $filename = $cus -> image;
+        if ($request->hasFile('image'))
+        {
+            $destination = 'uploads/customer/'.$cus->image;
+            if(File :: exists($destination))
+            {
+                File::delete($destination);
+            }
+            $file = $request->file('image');
+            if($file->isValid())
+            {
+                $filename = date('Ymdhms').'.'.$file->getClientOriginalExtension();
+                $file-> storeAs('customer',$filename);
+            }
+        }
+        Customer::find($request->id)->update(
+            [
+                'customer_name'=>$request->customer_name,
+                'customer_id'=>$request->customer_id,
+                'email'=>$request->email,
+                'phone'=>$request->phone,
+                'image'=>$filename,
+            ]
+        );
+        return redirect()->route('contact_customer');
+    }
+    public function deletecus(Request $request)
+    {
+        // dd($request->all());
+        $cus = User::find($request->del_id);
+        $destination = 'uploads/customer/'.$cus->image;
+        if(File :: exists($destination))
+        {
+            File :: delete($destination);
+        }
+        $cus ->delete();
+        return redirect()-> back();
+    }
 
     // contact = supplier
     public function contact_supplier()
     {
         $pharma=User::all();
+        $customer=Customer::all();
         $supplier=Supplier::all();
-        return view('backend.layout.contact', compact('supplier','pharma'));
+        return view('backend.layout.contact', compact('supplier','pharma', 'customer'));
     }
     public function supplier(Request $request)
     {
@@ -843,7 +949,7 @@ class AdminController extends Controller
     }
     public function expiry_report()
     {
-        $adpurchase=Subpurchase::Join('purchases','purchases.id','=','subpurchases.purchase_id')->Join('medicines','medicines.id','=','subpurchases.madicine_id')->get(['subpurchases.*','purchases.*','medicines.name']);
+        $adpurchase=Stock::all();
         return view('backend.layout.stock',compact('adpurchase'));
     }
     
@@ -889,10 +995,29 @@ class AdminController extends Controller
         return back();
     }
 
+    // pos sale
     public function possale()
     {
         return view('backend.layout.possale');
     }
+    // public function pos_sale(Request $request)
+    //     {
+    //         Pos::create(
+    //             [
+    //                 'date'=>$request->date,
+    //                 'invoice_no'=>$request->invoice_no,
+    //                 'customer_name'=>$request->customer_name,
+    //                 'total_quantity'=>$request->total_quantity,
+    //                 'total_amount'=>$request->total_amount,
+    //                 'vat'=>$request->vat,
+    //                 'discount_amount'=>$request->discount_amount,
+    //                 'paid_amount'=>$request->paid_amount,
+    //                 'change_amount'=>$request->change_amount,
+    //                 'due_amount'=>$request->due_amount,
+    //             ]
+    //         );
+    //         return redirect()-> back();
+    //     }
 
     public function invoice()
     {

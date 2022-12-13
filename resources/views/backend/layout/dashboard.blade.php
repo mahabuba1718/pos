@@ -67,16 +67,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 ">
-            <div class="features-col" style="background-color: #3fa278; color:white">
-                <h5 class="text-light ">Batch Wise Medicine</h5>
-                <i class="fa-2x p-2 mb-3 fa-solid fa-bookmark"></i>
-                <div class=" ">
-                    <h4 class="text-light ">4</h4>
-                    <h5 class="text-light ">Total Batched Medicine</h5>
-                </div>
-            </div>
-        </div>
+        
         <div class="col-lg-3 col-md-6 ">
             <div class="features-col" style="background-color: #16b1ce; color:white">
                 <h5 class="text-light ">Expired Medicine</h5>
@@ -94,6 +85,16 @@
                 <div class=" ">
                     <h4 class="text-light ">4</h4>
                     <h5 class="text-light ">Total Pharmacist</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 ">
+            <div class="features-col" style="background-color: #3fa278; color:white">
+                <h5 class="text-light ">Customer</h5>
+                <i class="fa-2x p-2 mb-3 fa-solid fa-user"></i>
+                <div class=" ">
+                    <h4 class="text-light ">4</h4>
+                    <h5 class="text-light ">Total Customer</h5>
                 </div>
             </div>
         </div>

@@ -9,7 +9,9 @@
 <div class="container-fluid px-0">
     <section class="section p-3">
         <div class="section-header d-flex p-3">
-            <h2 class="mt-3">POS</h2>
+            <h2 class="mt-3">
+             <a href="{{route('pos')}}" style="text-decoration:none;" class="text-dark">POS</a>   
+            </h2>
             <div class="section-header-breadcrumb d-flex p-3">
                 <div class="breadcrumb-item m-2 ">
                     <a href="{{route('dashboard')}}">Home</a>
@@ -30,17 +32,22 @@
                                     <!-- @csrf -->
                                     <input class="form-control mb-3 search-box test" type="text"
                                         placeholder="Enter a Medicine Name" name="search">
-                                        </form>
+                                </form>
 
                                 <div class="row pos_div">
 
                                     @forelse($adpurchase as $key=> $subpurchase)
-                                    <div class="col-lg-3 col-md-4 col-sm-6 mb-2" style="padding: 4px;">
+                                    <div class="col-lg-3 col-md-4 col-sm-6 mb-2" style="padding: 8px;">
                                         <div class="card">
                                             <img class="card-img-top mb-2 "
                                                 src="{{asset('/uploads/medicine/'.$subpurchase->medicine->image)}}"
                                                 alt="image" style="height: 100px">
                                             <div class="card-body text-center" style="padding: 0.2rem;">
+                                                <span
+                                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill" style=" background-color: #008080;;">
+                                                    99+
+                                                    <span class="visually-hidden">quantity</span>
+                                                </span>
                                                 <h6 class="card-title " style="font-size: inherit;">
                                                     {{$subpurchase->medicine->name}}
                                                 </h6>
@@ -56,7 +63,7 @@
                                     <h2>No Mahabuba Found Here.</h2>
                                     @endforelse
                                 </div>
-                               
+
                             </div>
                         </div>
                     </div>
@@ -81,11 +88,11 @@
                                     <table id="table1" class="table table-bordered pos_table table_reduced">
                                         <thead>
                                             <tr style="text-align: center;">
-                                                <th scope="col" width="26%">Medicine</th>
-                                                <th scope="col">QTY</th>
-                                                <th scope="col">Price</th>
-                                                <th scope="col">Sub Total</th>
-                                                <th scope="col">Action</th>
+                                                <th scope="col" width="30%">Medicine</th>
+                                                <th scope="col" width="22%">QTY</th>
+                                                <th scope="col" width="18%">Price</th>
+                                                <th scope="col" width="20%">Sub Total</th>
+                                                <th scope="col" width="10 %"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -101,8 +108,8 @@
                                                         @csrf
                                                         <div class="input-group">
                                                             <input type="hidden" name="row_id" value="{{$data->rowId}}">
-                                                            <input type="number" id="quantity"
-                                                                name="quantity" value="{{$data->qty}}"
+                                                            <input type="number" id="quantity" name="quantity"
+                                                                value="{{$data->qty}}"
                                                                 class="form-control vat_amount QTY"
                                                                 style=" padding: 0px; text-align: center; border-radius:10px;">
                                                             <button type="submit" class="btn btn-link ">
@@ -115,10 +122,7 @@
 
                                                 <td colspan="1">
                                                     <div class="input-group">
-                                                        {{--<input type="number" step="0.1" min="0.1" id="price"
-                                                            name="price" value="{{$data->price}}"
-                                                            class="form-control vat_amount text-center" readonly>--}}
-                                                            <p>৳ {{$data->price}}</p>
+                                                        <p id="price" name="price"  style="margin-bottom: 0rem;" >৳ {{$data->price}}</p>
                                                     </div>
                                                 </td>
                                                 @php
@@ -126,7 +130,7 @@
                                                 @endphp
                                                 <td colspan="1">
 
-                                                    <p style="margin-bottom: 0rem;" readonly>৳ {{$total}}</p>
+                                                    <p style="margin-bottom: 0rem;" >৳ {{$total}}</p>
                                                 </td>
                                                 <td colspan="1">
                                                     <!-- <input type="button" value=" - "
@@ -154,7 +158,7 @@
                                             </tr>
                                             <tr>
 
-                                                <td colspan="3" style="text-align: end;">Vat</td>
+                                                <td colspan="3" style="text-align: end;">Vat(%)</td>
                                                 <td>
                                                     <div class="input-group">
                                                         <input type="number" min="0.1" name="net_total"
@@ -221,7 +225,7 @@
                                 <button class="btn btn-danger" style="margin: 2px;">
                                     Cancel
                                 </button>
-                                <a href="{{route('invoice')}}" class="btn btn-success" style="margin: 2px;"
+                                <a href="{{route('invoice')}}" class="btn text-light" style="margin: 2px; background-color: #25aa9e;"
                                     type="submit">Pay Now</a>
                             </div>
 

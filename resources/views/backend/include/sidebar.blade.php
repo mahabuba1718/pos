@@ -30,6 +30,12 @@
             </a>
           </li>         
          <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="{{route('contact_customer')}}">
+              <i class="fa-solid fa-user "></i>
+               Customer
+            </a>
+          </li>         
+         <li class="nav-item">
               <a class="nav-link" aria-current="page" href="{{route('contact_supplier')}}">
               <i class="fa-solid fa-truck-field"></i>
               Supplier
@@ -92,29 +98,6 @@
           </li>
         </ul>
         <hr>
-        
-         
-            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
-            <span>Account</span>
-            <a class="link-secondary" href="#" aria-label="Add a new report">
-              <span data-feather="dollar-sign" class="align-text-bottom"></span>
-            </a>
-            </h6>
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{{route('account_expense')}}">
-                <i class="fa-solid fa-bag-shopping"></i>
-                Expenses
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{{route('account_income')}}">
-                <i class="fa-solid fa-money-check-dollar"></i>
-                Income
-                </a>
-              </li>
-            </ul>
-            <hr>
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
             <span>Sale</span>
             <a class="link-secondary" href="#" aria-label="Add a new report">
@@ -143,6 +126,27 @@
 
               </ul>
               <hr>
+              <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
+            <span>Account</span>
+            <a class="link-secondary" href="#" aria-label="Add a new report">
+              <span data-feather="dollar-sign" class="align-text-bottom"></span>
+            </a>
+            </h6>
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{{route('account_expense')}}">
+                <i class="fa-solid fa-bag-shopping"></i>
+                Expenses
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{{route('account_income')}}">
+                <i class="fa-solid fa-money-check-dollar"></i>
+                Income
+                </a>
+              </li>
+            </ul>
+            <hr>
             <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
             <span>Report</span>
             <a class="link-secondary" href="#" aria-label="Add a new report">
@@ -153,7 +157,7 @@
                 <li class="nav-item">
                   <a class="nav-link" aria-current="page" href="{{route('stock_report')}}">
                   <i class="fa-solid fa-money-bill-trend-up"></i>
-                  Stock Report(Batch wise)
+                  Stock Report
                   </a>
                 </li>
                 <li class="nav-item">

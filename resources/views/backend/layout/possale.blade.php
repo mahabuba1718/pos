@@ -20,31 +20,32 @@
                     <div class="card">
                         <div class="card-header d-flex p-3">
                             <h4>POS Sale</h4>
-                            <div class="card-header-form">
+                            <!-- <div class="card-header-form">
                                 <a href="#" class="btn float-right text-light" style="background-color: #008080;">
                                     <i class="fa fa-list"></i>
                                     Draft List
                                 </a>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="card-body">
                             <div class="">
                                 <div class="table_section p-3">
                                     <table class="table table-striped text-center" style="vertical-align: middle;" >
                                         <thead>
-                                            <tr>
-                                                <th scope="col" class="">#</th>
-                                                <th scope="col" class="">Date</th>
-                                                <th scope="col" class="">Invoice No.</th>
-                                                <th scope="col" class="">Customer</th>
-                                                <th scope="col" class="">Total Quantity</th>
-                                                <th scope="col" class="">Total Amount</th>
-                                                <th scope="col" class="">Vat </th>
-                                                <th scope="col" class="">Discount </th>
-                                                <th scope="col" class="">Paid Amount(BDT)</th>
-                                                <th scope="col" class="">Due </th>
-                                                <th scope="col" class="">Status</th>
-                                                <th scope="col" class="">Action</th>
+                                            <tr >
+                                                <th scope="col" class="" width="4%">#</th>
+                                                <th scope="col" class="" width="8%">Date</th>
+                                                <th scope="col" class="" width="7%">Invoice No.</th>
+                                                <th scope="col" class="" width="8%">Customer</th>
+                                                <th scope="col" class="" width="8%">Total Quantity</th>
+                                                <th scope="col" class="" width="8%">Total Amount</th>
+                                                <th scope="col" class="" width="5%">Vat</th>
+                                                <th scope="col" class="" width="8%">Discount </th>
+                                                <th scope="col" class="" width="11%">Paid Amount(BDT)</th>
+                                                <th scope="col" class="" width="11%">Change Amount(BDT)</th>
+                                                <th scope="col" class="" width="5%">Due </th>
+                                                <th scope="col" class="" width="7%">Status </th>
+                                                <th scope="col" class="" width="9%">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -57,19 +58,15 @@
                                                 <td scope="col" class="">18</td>
                                                 <td scope="col" class="">0</td>
                                                 <td scope="col" class="">0</td>
-                                                <td scope="col" class=""></td>
+                                                <td scope="col" class="">100</td>
                                                 <td scope="col" class="">18</td>
-
-
-                                                <td scope="col" class=" ">
-
-                                                    <div class=" form-switch">
-                                                        <input class="form-check-input " type="checkbox" role="switch"
-                                                            id="flexSwitchCheckDefault">
-                                                        <label class="form-check-label"
-                                                            for="flexSwitchCheckDefault"></label>
-                                                    </div>
-
+                                                <td scope="col" class="">18</td>
+                                                <td>
+                                                
+                                                    <span class="badge bg-danger" style="padding: 7px;">Pending</span>
+                                                    
+                                                    <!-- <span class="badge bg-success" style="padding: 7px;">Approve</span> -->
+                                                   
                                                 </td>
                                                 <td>
 
@@ -80,8 +77,8 @@
                                                         </button>
                                                         <ul class="dropdown-menu option">
                                                             <li><a class="dropdown-item" href="#">
-                                                                    <i style="font-size: 10px;"
-                                                                        class="fas fa-pencil-alt my-2"> Edit</i>
+                                                                <i style="font-size: 10px;"
+                                                                        class="fas fa-pencil-alt my-2"> Approve</i>
                                                                 </a>
                                                             </li>
                                                             <li><a class="dropdown-item" href="#">

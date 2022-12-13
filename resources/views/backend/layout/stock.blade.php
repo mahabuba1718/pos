@@ -48,7 +48,7 @@
                             <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-header d-flex p-3">
-                                        <h4>Stock Report(Batch Wise)</h4>
+                                        <h4>Stock Report</h4>
                                         <input class="d-flex"  type="text" placeholder="Search" style="border-radius: 5px; padding:5px ">
                                     </div>
 
@@ -132,17 +132,15 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @foreach($adpurchase as $key=> $purchase)
                                                         <tr class="text-center">
-                                                            <td scope="col" class="">{{$key+1}}</td>
-                                                            <td scope="col" class="">{{$purchase->name}}</td>
-                                                            <td scope="col" class="my-auto">{{$purchase->supplier}}</td>
-                                                            <td scope="col" class="my-auto">{{$purchase->date}}</td>
-                                                            <td scope="col" class="">{{$purchase->expire_date}}</td>
-                                                            <td scope="col" class="">{{$purchase->purchase_no}}</td>
-                                                            <td scope="col" class="">{{$purchase->quantity}}</td>
+                                                            <td scope="col" class=""></td>
+                                                            <td scope="col" class=""></td>
+                                                            <td scope="col" class="my-auto"></td>
+                                                            <td scope="col" class="my-auto"></td>
+                                                            <td scope="col" class=""></td>
+                                                            <td scope="col" class=""></td>
+                                                            <td scope="col" class=""></td>
                                                         </tr>
-                                                        @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>

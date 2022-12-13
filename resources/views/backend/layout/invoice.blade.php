@@ -1,14 +1,12 @@
 @extends('backend.master')
 @section('content')
 <style>
-@media (min-width: 1200px)
-{
+@media (min-width: 1200px) {
     .col-xl-6 {
         flex: 0 0 auto;
         width: 85%;
+    }
 }
-}
-
 </style>
 
 
@@ -108,7 +106,8 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="5" class="text-end border-bottom-0">
-                                                    <strong>Discount:</strong></td>
+                                                    <strong>Discount:</strong>
+                                                </td>
                                                 <td class="text-end border-bottom-0">0.00</td>
                                             </tr>
                                             <tr>
@@ -146,13 +145,16 @@
                             <div class="btn-group btn-group-sm d-print-none"> <a href="javascript:window.print()"
                                     class="btn btn-light border text-black-50 shadow-none"><i class="fa fa-print"></i>
                                     Print</a>
-                                <a href="" class="btn btn-light border text-black-50 shadow-none"><i
-                                        class="fa fa-download"></i>
-                                    Download</a>
                             </div>
                         </div>
                     </footer>
                 </div>
+            </div>
+            <div class="modal-footer justify-content-center p-2 mt-2">
+                <button type="submit" class="btn text-light" style="background-color:#25aa9e;">
+                <a href="{{route('pos')}}" class="text-light" style="text-decoration: none;">Back</a> 
+            </button>
+
             </div>
         </div>
     </div>

@@ -9,9 +9,9 @@
     padding: 1rem !important;
 }
 
-.p-2 {
+/* .p-2 {
     padding: 2rem !important;
-}
+} */
 
 .table:not(.table-sm)> :not(caption)>*>* {
     padding: 0rem;

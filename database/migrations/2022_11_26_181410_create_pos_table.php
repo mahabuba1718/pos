@@ -15,6 +15,17 @@ return new class extends Migration
     {
         Schema::create('pos', function (Blueprint $table) {
             $table->id();
+            $table->string('date');
+            $table->string('invoice_no');
+            $table->string('customer_name');
+            $table->string('total_quantity');
+            $table->string('total_amount');
+            $table->string('vat')->default(0);
+            $table->string('discount_amount')->default(0);
+            $table->string('paid_amount')->default(0);
+            $table->string('change_amount');
+            $table->string('due_amount');
+            $table->boolean('status')->default(0); 
             $table->timestamps();
         });
     }

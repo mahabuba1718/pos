@@ -38,7 +38,6 @@ Route::get('/dashboard',[AdminController::class,'dashboard'])->name('dashboard')
 // search
 // Route::get('/search',[AdminController::class,'searchmed'])->name('searchmed');
 
-
 // contact=pharmacist
 Route::get('/pharmacist',[AdminController::class,'contact_pharmacist'])->name('contact_pharmacist');
 Route::post('/create/contact',[AdminController::class,'pharma'])->name('pharma');
@@ -47,6 +46,14 @@ Route::put('/update/pharmacist',[AdminController::class,'updatepharm'])->name('u
 Route::delete('/deletepharma',[AdminController::class,'deletepharma'])->name('deletepharma');
 // Route::get('/deltpharm/{pharm_id}',[AdminController::class,'deltpharm'])->name('deltpharm');
 Route::get('/status/{id}',[AdminController::class,'status'])->name('status');
+
+// contact=customer
+Route::get('/customer',[AdminController::class,'contact_customer'])->name('contact_customer');
+Route::post('/create/cutomer',[AdminController::class,'cus'])->name('cus');
+Route::get('/editcus/{cus_id}',[AdminController::class,'editcus'])->name('editcus');
+Route::put('/update/customer',[AdminController::class,'updatecus'])->name('updatecus');
+Route::delete('/deletecus',[AdminController::class,'deletecus'])->name('deletecus');
+Route::get('/cus_status/{cus_id}',[AdminController::class,'cus_status'])->name('cus_status');
 
 // supplier
 Route::get('/supplier',[AdminController::class,'contact_supplier'])->name('contact_supplier');
@@ -102,6 +109,7 @@ Route::get('/pos-search', [AdminController::class,'searchmedicine'])->name('sear
 
 // possale
 Route::get('/possale',[AdminController::class,'possale'])->name('possale');
+Route::post('/create/possale',[AdminController::class,'pos_sale'])->name('pos_sale');
 
 // account
 Route::get('/expense',[AdminController::class,'account_expense'])->name('account_expense');

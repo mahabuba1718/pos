@@ -57,7 +57,7 @@
                                             <option value="{{$supplied->supplier_id}}">{{$supplied->supplier_id}}</option>
                                             @endforeach
                                         </select>
-                                        <span class="text-danger"> </span>
+                                        <span class="text-danger">@error('supplier') {{$message}} @enderror </span>
                                     </div>
                                     <div class="form-group col-lg-3">
                                         <label for="purchase_no" class="mb-2">

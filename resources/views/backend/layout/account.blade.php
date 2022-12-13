@@ -119,7 +119,8 @@
                                                                                         contact@pharma.com
                                                                                     </address>
                                                                                 </div>
-                                                                                <div class="col-sm-6 text-sm-start order-sm-0">
+                                                                                <div
+                                                                                    class="col-sm-6 text-sm-start order-sm-0">
                                                                                     <strong>Invoiced To:</strong>
                                                                                     <address>
                                                                                         Customer<br />
@@ -132,7 +133,8 @@
                                                                             <div class="card">
                                                                                 <div class="card-body p-0">
                                                                                     <div class="table-responsive ">
-                                                                                        <table class="table table_reduced mb-0">
+                                                                                        <table
+                                                                                            class="table table_reduced mb-0">
                                                                                             <thead class="card-header">
                                                                                                 <tr>
                                                                                                     <td class="col-1">
@@ -297,11 +299,6 @@
                                                                                             class="fa fa-print"></i>
                                                                                         Print
                                                                                     </a>
-                                                                                    <a href=""
-                                                                                        class="btn btn-light border text-black-50 shadow-none"><i
-                                                                                            class="fa fa-download"></i>
-                                                                                        Download
-                                                                                    </a>
                                                                                 </div>
                                                                             </div>
                                                                         </footer>
@@ -325,11 +322,11 @@
                                                             Action
                                                         </button>
                                                         <ul class="dropdown-menu option">
-                                                            <li><a class="dropdown-item" href="#">
+                                                            <!-- <li><a class="dropdown-item" href="#">
                                                                     <i style="font-size: 10px;"
                                                                         class="fas fa-pencil-alt my-2"> Edit</i>
                                                                 </a>
-                                                            </li>
+                                                            </li> -->
                                                             <li><a class="dropdown-item" href="#">
                                                                     <i style="font-size: 10px;"
                                                                         class="fas fa-trash my-2"> Delete</i>
@@ -382,6 +379,7 @@
                                                 <th scope="col" class="">#</th>
                                                 <th scope="col" class="">Title</th>
                                                 <th scope="col" class="">Amount</th>
+                                                <th scope="col" class="">Invoice</th>
                                                 <th scope="col" class="">Action</th>
                                             </tr>
                                         </thead>
@@ -391,6 +389,259 @@
                                                 <td scope="col" class="">Purchase Medicine</td>
                                                 <td scope="col" class="">400</td>
                                                 <td>
+                                                    <button class="btn text-light" style="background-color:#5fb9a9;"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#myModal1">Invoice</button>
+                                                    <div class=" modal" id="myModal1">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">
+                                                                        Medicine Description
+                                                                    </h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="container invoice-container">
+                                                                        <!-- Header -->
+                                                                        <header>
+                                                                            <div class="row align-items-center">
+                                                                                <div
+                                                                                    class="col-sm-7 text-center text-sm-start mb-3 mb-sm-0">
+                                                                                    <img id="logo"
+                                                                                        src="assets/backend/img/medi.png"
+                                                                                        style="width: 100px;"
+                                                                                        title="Logo" alt="logo" />
+                                                                                    <h4>Medicine POS</h4>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col-sm-5 text-center text-sm-end">
+                                                                                    <h4 class="text-7 mb-0">Invoice</h4>
+                                                                                </div>
+                                                                            </div>
+                                                                            <hr>
+                                                                        </header>
+
+                                                                        <!-- Main Content -->
+                                                                        <main>
+                                                                            <div class="row">
+                                                                                <div class="col-sm-6 text-sm-start">
+                                                                                    <strong>Date:</strong> 05/12/2020
+                                                                                </div>
+                                                                                <div class="col-sm-6 text-sm-end">
+                                                                                    <strong>Invoice No:</strong> 16835
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <hr>
+                                                                            <div class="row">
+                                                                                <div
+                                                                                    class="col-sm-6 text-sm-end order-sm-1">
+                                                                                    <strong>Pay To:</strong>
+                                                                                    <address>
+                                                                                        Uttara Dhaka<br />
+                                                                                        Joynal Market<br />
+                                                                                        T.I.C Colony<br />
+                                                                                        contact@pharma.com
+                                                                                    </address>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col-sm-6 text-sm-start order-sm-0">
+                                                                                    <strong>Invoiced To:</strong>
+                                                                                    <address>
+                                                                                        Customer<br />
+                                                                                        Uttara Dhaka<br />
+                                                                                        Sector-10<br />
+                                                                                        Kamarpara
+                                                                                    </address>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="card">
+                                                                                <div class="card-body p-0">
+                                                                                    <div class="table-responsive ">
+                                                                                        <table
+                                                                                            class="table table_reduced mb-0">
+                                                                                            <thead class="card-header">
+                                                                                                <tr>
+                                                                                                    <td class="col-1">
+                                                                                                        <strong>#</strong>
+                                                                                                    </td>
+                                                                                                    <td class="col-3">
+                                                                                                        <strong>Medicine</strong>
+                                                                                                    </td>
+                                                                                                    <td
+                                                                                                        class="col-2 text-center">
+                                                                                                        <strong>QTY</strong>
+                                                                                                    </td>
+                                                                                                    <td
+                                                                                                        class="col-2 text-center">
+                                                                                                        <strong>Unit
+                                                                                                            Price</strong>
+                                                                                                    </td>
+                                                                                                    <td
+                                                                                                        class="col-2 text-center">
+                                                                                                        <strong>Price</strong>
+                                                                                                    </td>
+                                                                                                    <td
+                                                                                                        class="col-2 text-end">
+                                                                                                        <strong>Total</strong>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </thead>
+                                                                                            <tbody>
+                                                                                                <tr>
+                                                                                                    <td class="col-1">1
+                                                                                                    </td>
+                                                                                                    <td
+                                                                                                        class="col-3 text-1">
+                                                                                                        Napa
+                                                                                                    </td>
+                                                                                                    <td
+                                                                                                        class="col-2 text-center">
+                                                                                                        20
+                                                                                                    </td>
+                                                                                                    <td
+                                                                                                        class="col-2 text-center">
+                                                                                                        5
+                                                                                                    </td>
+                                                                                                    <td
+                                                                                                        class="col-2 text-center">
+                                                                                                        100
+                                                                                                    </td>
+                                                                                                    <td
+                                                                                                        class="col-2 text-end">
+                                                                                                        100
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td>2</td>
+                                                                                                    <td class="text-1">
+                                                                                                        Napa Extra
+                                                                                                    </td>
+                                                                                                    <td
+                                                                                                        class="text-center">
+                                                                                                        10
+                                                                                                    </td>
+                                                                                                    <td
+                                                                                                        class="text-center">
+                                                                                                        6
+                                                                                                    </td>
+                                                                                                    <td
+                                                                                                        class="text-center">
+                                                                                                        150
+                                                                                                    </td>
+                                                                                                    <td
+                                                                                                        class="text-end">
+                                                                                                        150
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                            </tbody>
+                                                                                            <tfoot class="card-footer">
+                                                                                                <tr>
+                                                                                                    <td colspan="5"
+                                                                                                        class="text-end border-bottom-0">
+                                                                                                        <strong>Sub
+                                                                                                            Total:</strong>
+                                                                                                    </td>
+                                                                                                    <td
+                                                                                                        class="text-end border-bottom-0">
+                                                                                                        250.00</td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td colspan="5"
+                                                                                                        class="text-end border-bottom-0">
+                                                                                                        <strong>Vat:</strong>
+                                                                                                    </td>
+                                                                                                    <td
+                                                                                                        class="text-end border-bottom-0">
+                                                                                                        5.00
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td colspan="5"
+                                                                                                        class="text-end border-bottom-0">
+                                                                                                        <strong>Discount:</strong>
+                                                                                                    </td>
+                                                                                                    <td
+                                                                                                        class="text-end border-bottom-0">
+                                                                                                        0.00</td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td colspan="5"
+                                                                                                        class="text-end border-bottom-0">
+                                                                                                        <strong>Total:</strong>
+                                                                                                    </td>
+                                                                                                    <td
+                                                                                                        class="text-end border-bottom-0">
+                                                                                                        255.00</td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td colspan="5"
+                                                                                                        class="text-end border-bottom-0">
+                                                                                                        <strong>Paid:</strong>
+                                                                                                    </td>
+                                                                                                    <td
+                                                                                                        class="text-end border-bottom-0">
+                                                                                                        260.00</td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td colspan="5"
+                                                                                                        class="text-end">
+                                                                                                        <strong>Change
+                                                                                                            Amount:</strong>
+                                                                                                    </td>
+                                                                                                    <td
+                                                                                                        class="text-end ">
+                                                                                                        5.00</td>
+
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td colspan="5"
+                                                                                                        class="text-end border-bottom-0">
+                                                                                                        <strong>Due:</strong>
+                                                                                                    </td>
+                                                                                                    <td
+                                                                                                        class="text-end border-bottom-0">
+                                                                                                        0.00</td>
+                                                                                                </tr>
+                                                                                            </tfoot>
+
+                                                                                        </table>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </main>
+                                                                        <!-- Footer -->
+                                                                        <footer class="text-start mt-4">
+                                                                            <p class="text-1"><strong>Tk :</strong> Two
+                                                                                Hundred Fifty Five Taka Only.</p>
+                                                                            <p class="text-1"><strong>NB :</strong> Wish
+                                                                                Your Good Health.</p>
+                                                                            <div class="text-center">
+                                                                                <div
+                                                                                    class="btn-group btn-group-sm d-print-none">
+                                                                                    <a href="javascript:window.print()"
+                                                                                        class="btn btn-light border text-black-50 shadow-none"><i
+                                                                                            class="fa fa-print"></i>
+                                                                                        Print
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </footer>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer justify-content-center">
+                                                                    <button type="button" data-bs-dismiss="modal"
+                                                                        class="btn btn-danger">
+                                                                        Cancel
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
                                                     <div class="dropdown">
                                                         <button type="button" class="btn dropdown-toggle text-light"
                                                             style="background-color: #008080;"
@@ -398,12 +649,12 @@
                                                             Action
                                                         </button>
                                                         <ul class="dropdown-menu option">
-                                                            <li><a class="dropdown-item" href="edit-income.html">
+                                                            <!-- <li><a class="dropdown-item" href="edit-income.html">
                                                                     <i style="font-size: 10px;"
                                                                         class="fas fa-pencil-alt my-2">
                                                                         Edit</i>
                                                                 </a>
-                                                            </li>
+                                                            </li> -->
                                                             <li><a class="dropdown-item" href="#">
                                                                     <i style="font-size: 10px;"
                                                                         class="fas fa-trash my-2">
